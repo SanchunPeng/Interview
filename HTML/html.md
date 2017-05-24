@@ -72,274 +72,214 @@ Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
 8、Label的作用是什么？是怎么用的？
 -------
 label标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。   
-\<label for="Name"\>Number:\</label\>
-\<input type=“tex e" id="Name"/\>
-\<label>Date:<input type="text" name="B"/\>\</label\>
+\<label for="Name"\>Number:\</label\>    
+\<input type=“tex e" id="Name"/\>    
+\<label>Date:<input type="text" name="B"/\>\</label\>    
 
+9、HTML5的form如何关闭自动完成功能？
+---------
+给不想要提示的 form 或某个 input 设置为 autocomplete=off。      
 
-6、HTML5的form如何关闭自动完成功能？
-给不想要提示的 form 或某个 input 设置为 autocomplete=off。
-
-
-7、页面可见性（Page Visibility API） 可以有哪些用途？
-通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;
+10、页面可见性（Page Visibility API） 可以有哪些用途？
+------------
+通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;     
 在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；
 
 
-8、如何在页面上实现一个圆形的可点击区域？
-1）、map+area或者svg
-2）、border-radius
-3）、纯js实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等
+11、如何在页面上实现一个圆形的可点击区域？
+-------
+1）、map+area或者svg   
+2）、border-radius   
+3）、纯js实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等    
 
 
-9、实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
-<div style="height:1px;overflow:hidden;background:red"></div>
+12、实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。 
+------
+\<div style="height:1px;overflow:hidden;background:red"\>\</div\>
 
+13、网页验证码是干嘛的，是为了解决什么安全问题。
+--------
+区分用户是计算机还是人的公共全自动程序。可以防止恶意破解密码、刷票、论坛灌水；    
+有效防止黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试。    
 
-10、网页验证码是干嘛的，是为了解决什么安全问题。
-区分用户是计算机还是人的公共全自动程序。可以防止恶意破解密码、刷票、论坛灌水；
-有效防止黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试。
+14、title与h1的区别、b与strong的区别、i与em的区别？
+--------
+title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；    
+strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：\<strong\>会重读，而\<B\>是展示强调内容。    
+i内容展示为斜体，em表示强调的文本；    
+Physical Style Elements -- 自然样式标签    
+b, i, u, s, pre    
+Semantic Style Elements -- 语义样式标签    
+strong, em, ins, del, code   
+应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签    
 
-
-11、title与h1的区别、b与strong的区别、i与em的区别？
-title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；
-strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：<strong>会重读，而<B>是展示强调内容。
-i内容展示为斜体，em表示强调的文本；
-Physical Style Elements -- 自然样式标签
-b, i, u, s, pre
-Semantic Style Elements -- 语义样式标签
-strong, em, ins, del, code
-应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签
-
-12、Canvas和SVG图形的区别是什么？
+15、Canvas和SVG图形的区别是什么？
+--------
 SVGCanvas这个就好像绘制和记忆，换句话说任何使用SVG绘制的形状都能被记忆和操作，浏览器可以再次显示Canvas就像绘制和忘记，一旦绘制完成你不能访问像素和操作它SVG对于创建图形例如CAD软件是良好的，一旦东西绘制，用户就想去操作它Canvas在绘制和忘却的场景例如动画和游戏是良好的因为为了之后的操作，需要记录坐标，所以比较缓慢因为没有记住以后事情的意向，所以更快我们可以用绘制对象的相关事件处理我们不能使用绘制对象的相关事件处理，因为我们没有他们的参考分辨率无关分辨率相关
 
-13、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
-行内元素：span  a  b  img  input  select  strong i  em
-块级元素：div  ul  ol  li  dl  dt  dd  h1  h2  h3  h4  p  等
-空元素：<br>  <hr>  <img>  <link> <meta>
-鲜为人知的是：
-    <area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wbr>
+16、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+-------
+行内元素：span  a  b  img  input  select  strong i  em    
+块级元素：div  ul  ol  li  dl  dt  dd  h1  h2  h3  h4  p  等    
+空元素：\<br\>  \<hr\>  \<img\>  \<link\> \<meta\>    
+鲜为人知的是：     
+    \<area\> \<base\> \<col\> \<command\> \<embed\> \<keygen\> \<param\> \<source\> \<track\> \<wbr\>
 
+17、html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？
+-------
+是什么：     
+HTML5指的是包括 HTML 、CSS 和 JavaScript 在内的一套技术组合。它希望能够减少网页浏览器对于需要插件的丰富性网络应用服务（ Plug-in-Based Rich Internet Application ， RIA ），例如： AdobeFlash 、 Microsoft Silverlight 与 Oracle JavaFX 的需求，并且提供更多能有效加强网络应用的标准集。 HTML5 是 HTML 最新版本， 2014 年 10 月由万维网联盟（ W3C ）完成标准制定。目标是替换 1999 年所制定的 HTML 4.01 和XHTML 1.0 标准，以期能在互联网应用迅速发展的时候，使网络标准达到匹配当代的网络需求。   
+为什么：     
+HTML4陈旧不能满足日益发展的互联网需要，特别是移动互联网。为了增强浏览器功能 Flash 被广泛使用，但安全与稳定堪忧，不适合在移动端使用（耗电、触摸、不开放）。       
+HTML5增强了浏览器的原生功能，符合 HTML5 规范的浏览器功能将更加强大，减少了 Web 应用对插件的依赖，让用户体验更好，让开发更加方便，另外 W3C 从推出 HTML4.0 到 5.0 之间共经历了 17 年， HTML 的变化很小，这并不符合一个好产品的演进规则。      
 
+Html5新增了 27 个元素，废弃了 16 个元素，根据现有的标准规范，把 HTML5 的元素按优先级定义为结构性属性、级块性元素、行内语义性元素和交互性元素 4 大类。      
+结构性元素主要负责web上下文结构的定义    
+section：在 web 页面应用中，该元素也可以用于区域的章节描述。   
+header：页面主体上的头部， header 元素往往在一对 body 元素中。   
+footer：页面的底部（页脚），通常会标出网站的相关信息。   
+nav：专门用于菜单导航、链接导航的元素，是 navigator 的缩写。   
+article：用于表现一篇文章的主体内容，一般为文字集中显示的区域。   
+级块性元素主要完成web页面区域的划分，确保内容的有效分割   
+aside：用于表达注记、贴士、侧栏、摘要、插入的引用等作为补充主体的内容。   
+figure：是对多个元素进行组合并展示的元素，通常与 ficaption 联合使用。   
+code：表示一段代码块。   
+dialog：用于表达人与人之间的对话，该元素包含 dt 和 dd 这两个组合元素， dt 用于表示说话者，而 dd 用来表示说话内容。    
+行内语义性元素主要完成web页面具体内容的引用和描述，是丰富内容展示的基础。    
+meter：表示特定范围内的数值，可用于工资、数量、百分比等。   
+time：表示时间值。    
+progress：用来表示进度条，可通过对其 max 、 min 、 step 等属性进行控制，完成对进度的表示和监事。   
+video：视频元素，用于支持和实现视频文件的直接播放，支持缓冲预载和多种视频媒体格式。   
+audio：音频元素，用于支持和实现音频文件的直接播放，支持缓冲预载和多种音频媒体格式。   
+交互性元素主要用于功能性的内容表达，会有一定的内容和数据的关联，是各种事件的基础。   
+details：用来表示一段具体的内容，但是内容默认可能不显示，通过某种手段（如单击）与 legend 交互才会显示出来。   
+datagrid：用来控制客户端数据与显示，可以由动态脚本及时更新。   
+menu：主要用于交互菜单（曾被废弃又被重新启用的元素）。    
+command：用来处理命令按钮。    
 
+新特性，新增元素：   
+1）内容元素：article、footer、header、nav、section   
+  ● \<header\>：代表HTML的头部数据   
+  ● \<footer\>：页面的脚部区域   
+  ● \<nav\>：页面导航元素   
+  ● \<article\>：自包含的内容   
+  ● \<section\>：使用内部article去定义区域或者把分组内容放到区域里   
+  ● \<aside\>：代表页面的侧边栏内容   
+2）表单控件：calendar、date、time、email、url、search、Telephone、Range(显示范围控制)、Number、Color    
+3）控件元素：新的技术：webworker，websockt，Geolocation   
+4）多媒体：video、audio、    
+5）游戏：绘画canvas、webgl、     
+6）存储：localstorage、sessonstorage、websql、indexedDB（使用对象进行存储数据，indexedDB.open()打开或新建某个数据库，     database=indexedDB.open("mydatabase").result。对象存储空间-表，对象-表中的记录，使用keyPath指定键，使用add()，put()向对象存储空间中存储对象，当存储的对象相同时add报错。put则是更新，可以使用database.transaction("users")(即操作users表)进行读取和修改数据。）         
 
-14、html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？
-是什么：
-HTML5指的是包括 HTML 、CSS 和 JavaScript 在内的一套技术组合。它希望能够减少网页浏览器对于需要插件的丰富性网络应用服务（ Plug-in-Based Rich Internet Application ， RIA ），例如： AdobeFlash 、 Microsoft Silverlight 与 Oracle JavaFX 的需求，并且提供更多能有效加强网络应用的标准集。 HTML5 是 HTML 最新版本， 2014 年 10 月由万维网联盟（ W3C ）完成标准制定。目标是替换 1999 年所制定的 HTML 4.01 和XHTML 1.0 标准，以期能在互联网应用迅速发展的时候，使网络标准达到匹配当代的网络需求。
-为什么：
-HTML4陈旧不能满足日益发展的互联网需要，特别是移动互联网。为了增强浏览器功能 Flash 被广泛使用，但安全与稳定堪忧，不适合在移动端使用（耗电、触摸、不开放）。
-HTML5增强了浏览器的原生功能，符合 HTML5 规范的浏览器功能将更加强大，减少了 Web 应用对插件的依赖，让用户体验更好，让开发更加方便，另外 W3C 从推出 HTML4.0 到 5.0 之间共经历了 17 年， HTML 的变化很小，这并不符合一个好产品的演进规则。
+\<audio\> 标签定义声音，比如音乐或其他音频流。 
+\<canvas\> 标签定义图形，比如图表和其他图像。\<canvas\> 标签只是图形容器，您必须使用脚本来绘制图形。 
+\<article\>标签定义外部的内容。比如来自一个外部的新闻提供者的一篇新的文章，或者来自blog 的文本，或者是来自论坛的文本。亦或是来自其他外部源内容。
+\<menu\> 标签定义命令的列表或菜单。\<menu\> 标签用于上下文菜单、工具栏以及用于列出表单控件和命令。 
+command 元素表示用户能够调用的命令。\<command\> 标签可以定义命令按钮，比如单选按钮、复选框或 按钮。只有当 command 元素位于 menu 元素内时，该元素才 可见的。否则不会显示这个元素，但是 可以用它规定键盘快捷键。  
 
-Html5新增了 27 个元素，废弃了 16 个元素，根据现有的标准规范，把 HTML5 的元素按优先级定义为结构性属性、级块性元素、行内语义性元素和交互性元素 4 大类。
-结构性元素主要负责web上下文结构的定义
-section：在 web 页面应用中，该元素也可以用于区域的章节描述。
-header：页面主体上的头部， header 元素往往在一对 body 元素中。
-footer：页面的底部（页脚），通常会标出网站的相关信息。
-nav：专门用于菜单导航、链接导航的元素，是 navigator 的缩写。
-article：用于表现一篇文章的主体内容，一般为文字集中显示的区域。
-级块性元素主要完成web页面区域的划分，确保内容的有效分割。
-aside：用于表达注记、贴士、侧栏、摘要、插入的引用等作为补充主体的内容。
-figure：是对多个元素进行组合并展示的元素，通常与 ficaption 联合使用。
-code：表示一段代码块。
-dialog：用于表达人与人之间的对话，该元素包含 dt 和 dd 这两个组合元素， dt 用于表示说话者，而 dd 用来表示说话内容。
-行内语义性元素主要完成web页面具体内容的引用和描述，是丰富内容展示的基础。
-meter：表示特定范围内的数值，可用于工资、数量、百分比等。
-time：表示时间值。
-progress：用来表示进度条，可通过对其 max 、 min 、 step 等属性进行控制，完成对进度的表示和监事。
-video：视频元素，用于支持和实现视频文件的直接播放，支持缓冲预载和多种视频媒体格式。
-audio：音频元素，用于支持和实现音频文件的直接播放，支持缓冲预载和多种音频媒体格式。
-交互性元素主要用于功能性的内容表达，会有一定的内容和数据的关联，是各种事件的基础。
-details：用来表示一段具体的内容，但是内容默认可能不显示，通过某种手段（如单击）与 legend 交互才会显示出来。
-datagrid：用来控制客户端数据与显示，可以由动态脚本及时更新。
-menu：主要用于交互菜单（曾被废弃又被重新启用的元素）。
-command：用来处理命令按钮。
+移除元素：   
+1）显现层元素：basefont，big，center，font，s，strike，tt，u    
+2）性能较差元素：frame，frameset，noframes   
 
-新特性，新增元素：
-1）内容元素：article、footer、header、nav、section
-  ● <header>：代表HTML的头部数据
-  ● <footer>：页面的脚部区域
-  ● <nav>：页面导航元素
-  ● <article>：自包含的内容
-  ● <section>：使用内部article去定义区域或者把分组内容放到区域里
-  ● <aside>：代表页面的侧边栏内容
+处理兼容问题有两种方式：   
+1）IE6/IE7/IE8支持通过document.createElement方法产生的标签，利用这一特性让这些浏览器支持HTML5新标签。浏览器支持新标签后，还需要添加标签默认的样式；   
+2）使用是html5shim框架    
+\<!--[if lt IE 9]\>
+  \<script\> src="http://html5shim.googlecode.com/svn/trunk/html5.js"\</script\>
+ \<![endif]--\>
+另外，DOCTYPE声明的方式是区分HTML和HTML5标志的一个重要因素，此外，还可以根据新增的结构元素header等，功能元素audio等来加以区分。   
 
-2）表单控件：calendar、date、time、email、url、search、Telephone、Range(显示范围控制)、Number、Color
-3）控件元素：新的技术：webworker，websockt，Geolocation
-4）多媒体：video、audio、
-5）游戏：绘画canvas、webgl、
-6）存储：localstorage、sessonstorage、websql、indexedDB（使用对象进行存储数据，indexedDB.open()打开或新建某个数据库，database=indexedDB.open("mydatabase").result。对象存储空间-表，对象-表中的记录，使用keyPath指定键，使用add()，put()向对象存储空间中存储对象，当存储的对象相同时add报错。put则是更新，可以使用database.transaction("users")(即操作users表)进行读取和修改数据。）
+HTML5中的datalist是什么？   
+HTML5中的Datalist元素有助于提供文本框自动完成特性。    
 
+18、HTML5中什么是输出元素?
+----
+当你需要计算两个输入的和值到一个标签中的时候你需要输出元素。显示a+b  
+\<form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)"\>
+  \<input name="a" type="number"\> +
+  \<input name="b" type="number"\> =
+  \<output name="o" /\>
+\</form\>
+\<output name="o" for="a b"\>\</output\>
 
-<audio> 标签定义声音，比如音乐或其他音频流。 
-<canvas> 标签定义图形，比如图表和其他图像。<canvas> 标签只是图形容器，您必须使用脚本来绘制图形。 
-<article>标签定义外部的内容。比如来自一个外部的新闻提供者的一篇新的文章，或者来自blog 的文本，或者是来自论坛的文本。亦或是来自其他外部源内容。
-<menu> 标签定义命令的列表或菜单。<menu> 标签用于上下文菜单、工具栏以及用于列出表单控件和命令。 
-command 元素表示用户能够调用的命令。<command> 标签可以定义命令按钮，比如单选按钮、复选框或 按钮。只有当 command 元素位于 menu 元素内时，该元素才是可见的。否则不会显示这个元素，但是 可以用它规定键盘快捷键。
+19、如何区分 HTML 和 HTML5？
+------
+DOCTYPE声明\新增的结构元素\功能元素     
+1）在文档类型声明上不同：   
+HTML是很长的一段代码，很难记住，而HTML5却只有简简单单的声明，方便记忆。    
+2）在结构语义上不同：   
+HTML：没有体现结构语义化的标签，通常都是这样来命名的\<div id="header"\>\</div\>，这样表示网站的头部。   
+HTML5：在语义上却有很大的优势。提供了一些新的标签，比如：\<header\>\<article\>\<footer\>   
 
-移除元素：
-1）显现层元素：basefont，big，center，font，s，strike，tt，u
-2）性能较差元素：frame，frameset，noframes
-
-处理兼容问题有两种方式：
-1）IE6/IE7/IE8支持通过document.createElement方法产生的标签，利用这一特性让这些浏览器支持HTML5新标签。浏览器支持新标签后，还需要添加标签默认的样式；
-
-2）使用是html5shim框架
-<!--[if lt IE 9]>
-  <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
- <![endif]-->
-另外，DOCTYPE声明的方式是区分HTML和HTML5标志的一个重要因素，此外，还可以根据新增的结构元素header等，功能元素audio等来加以区分。
-
-HTML5中的datalist是什么？
-HTML5中的Datalist元素有助于提供文本框自动完成特性。
-
-15、HTML5中什么是输出元素？
-当你需要计算两个输入的和值到一个标签中的时候你需要输出元素。显示a+b
-<form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)">
-  <input name="a" type="number"> +
-  <input name="b" type="number"> =
-  <output name="o" />
-</form>
-<output name="o" for="a b"></output>
-
-如何区分 HTML 和 HTML5？
-DOCTYPE声明\新增的结构元素\功能元素
-1）在文档类型声明上不同：
-HTML是很长的一段代码，很难记住，而HTML5却只有简简单单的声明，方便记忆。
-2）在结构语义上不同：
-HTML：没有体现结构语义化的标签，通常都是这样来命名的<div id="header"></div>，这样表示网站的头部。
-HTML5：在语义上却有很大的优势。提供了一些新的标签，比如：<header><article><footer>
-
-HTML与XHTML——二者有什么区别
-1)所有的标记都必须要有一个相应的结束标记
+20、HTML与XHTML——二者有什么区别
+-------
+1)所有的标记都必须要有一个相应的结束标记  
 2)所有标签的元素和属性的名字都必须使用小写
-3)所有的XML标记都必须合理嵌套
-4)所有的属性必须用引号""括起来
-5)把所有<和&特殊符号用编码表示
-6)给所有属性赋一个值
-7)不要在注释内容中使“--”
-8)图片必须有说明文字
+3)所有的XML标记都必须合理嵌套 
+4)所有的属性必须用引号""括起来  
+5)把所有<和&特殊符号用编码表示  
+6)给所有属性赋一个值   
+7)不要在注释内容中使“--”   
+8)图片必须有说明文字  
 
-Doctype作用？标准模式与兼容模式各有什么区别?
-（1）、<!DOCTYPE>声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
-（2）、标准模式（严格模式）的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式（在混杂模式中）中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作。
+21、Doctype作用？标准模式与兼容模式各有什么区别?
+--------
+（1）、\<!DOCTYPE\>声明位于位于HTML文档中的第一行，处于 \<html\> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。    
+（2）、标准模式（严格模式）的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式（在混杂模式中）中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作。    
 
-你知道多少种Doctype文档类型？
-该标签可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。
- HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset。
- XHTML 1.0 规定了三种 XML 文档类型：Strict、Transitional 以及 Frameset。
-Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页，而 Quirks
- （包容）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页。
+你知道多少种Doctype文档类型？  
+该标签可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。   
+HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset   
+XHTML 1.0 规定了三种 XML 文档类型：Strict、Transitional 以及 Frameset。    
+Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页，而 Quirks（包容）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页。    
 
-简述一下你对HTML语义化的理解？
+22、简述一下你对HTML语义化的理解？
+-------
 1）用正确的标签做正确的事情；
 2）html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析；
 3）即使在没有样式css情况下也以一种文档格式显示，并且是容易阅读的；
 4）搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO；
 5）使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
 
-HTML5的优点与缺点？
-优点： a、网络标准统一、HTML5本身是由W3C推荐出来的。
-          b、多设备、跨平台 
-          c、即时更新。
-          d、提高可用性和改进用户的友好体验；
-          e、有几个新的标签，这将有助于开发人员定义重要的内容； 
-          f、可以给站点带来更多的多媒体元素(视频和音频)；  
-          g、可以很好的替代Flash和Silverlight；
-          h、涉及到网站的抓取和索引的时候，对于SEO很友好； 
-          i、被大量应用于移动应用程序和游戏。 
-缺点： a、安全：像之前Firefox4的web socket和透明代理的实现存在严重的安全问题，同时web storage、web socket 这样的功能很容易被黑客利用，来盗取用户的信息和资料。 
-          b、完善性：许多特性各浏览器的支持程度也不一样。 
-          c、技术门槛：HTML5简化开发者工作的同时代表了有许多新的属性和API需要开发者学习，像web worker、web socket、web storage 等新特性，后台甚至浏览器原理的知识，机遇的同时也是巨大的挑战 
-          d、性能：某些平台上的引擎问题导致HTML5性能低下。 
-          e、浏览器兼容性：最大缺点，IE9以下浏览器几乎全军覆没。
+23、HTML5的优点与缺点？
+---------
+优点： 
+a、网络标准统一、HTML5本身是由W3C推荐出来的。   
+b、多设备、跨平台    
+c、即时更新。   
+d、提高可用性和改进用户的友好体验；   
+e、有几个新的标签，这将有助于开发人员定义重要的内容；   
+f、可以给站点带来更多的多媒体元素(视频和音频)；     
+g、可以很好的替代Flash和Silverlight；  
+h、涉及到网站的抓取和索引的时候，对于SEO很友好；    
+i、被大量应用于移动应用程序和游戏。    
+缺点：    
+a、安全：像之前Firefox4的web socket和透明代理的实现存在严重的安全问题，同时web storage、web socket 这样的功能很容易被黑客利用，来盗取用户的信息和资料。    
+b、完善性：许多特性各浏览器的支持程度也不一样。    
+c、技术门槛：HTML5简化开发者工作的同时代表了有许多新的属性和API需要开发者学习，像web worker、web socket、web storage 等新特性，后台甚至浏览器原理的知识，机遇的同时也是巨大的挑战    
+d、性能：某些平台上的引擎问题导致HTML5性能低下。    
+e、浏览器兼容性：最大缺点，IE9以下浏览器几乎全军覆没。    
 
-16、如何实现浏览器内多个标签页之间的通信? (阿里)
-1)WebSocket、SharedWorker；
-2)也可以调用localstorge、cookies等本地存储方式；
-localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发storage事件，我们通过监听事件，控制它的值来进行页面信息通信；
-注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；
+23、如何实现浏览器内多个标签页之间的通信? (阿里)
+--------
+1)WebSocket、SharedWorker；   
+2)也可以调用localstorge、cookies等本地存储方式；   
+localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发storage事件，我们通过监听事件，控制它的值来进行页面信息通信；    
+注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；     
+
+24、WebSocket
+-----
+WebSocket ：WebSocket protocol 是HTML5一种新的协议。     
+目标：在一个单独的持久连接上提供全双工，双向通信。webSocket是一种与服务器进行全双工、双向通信的信道。需要支持这种协议的专门服务器，HTTP服务器无法实现WebSocket，未加密的协议是ws://，加密的协议是wss://,使用自定义协议的好处是传递的数据包很小，适合移动应用。缺点是制定协议的时间比js API时间还要长，必须给websocket构造函数传入绝对URL，同源策略对于Web Sockets完全不适用，因此可以通过它打开到任何站点的连接。     
+
+webSocket如何兼容低浏览器？(阿里)    
+Adobe Flash Socket 、   
+ActiveX HTMLFile (IE) 、   
+基于 multipart 编码发送 XHR 、   
+基于长轮询的 XHR（组合SSE和XHR也可以实现双向通信）    
+引用WebSocket.js这个文件来兼容低版本浏览器    
 
 
-WebSocket ：WebSocket protocol 是HTML5一种新的协议。目标：在一个单独的持久连接上提供全双工，双向通信。webSocket是一种与服务器进行全双工、双向通信的信道。需要支持这种协议的专门服务器，HTTP服务器无法实现WebSocket，未加密的协议是ws://，加密的协议是wss://,使用自定义协议的好处是传递的数据包很小，适合移动应用。缺点是制定协议的时间比js API时间还要长，必须给websocket构造函数传入绝对URL，同源策略对于Web Sockets完全不适用，因此可以通过它打开到任何站点的连接。
-
-webSocket如何兼容低浏览器？(阿里)
-Adobe Flash Socket 、
-ActiveX HTMLFile (IE) 、
-基于 multipart 编码发送 XHR 、
-基于长轮询的 XHR（组合SSE和XHR也可以实现双向通信）
-引用WebSocket.js这个文件来兼容低版本浏览器
-
-什么是Web Workers？为什么我们需要他们？
-循环代码在HTML按钮点击以后执行，这个方法执行是同步的，换句话说这个浏览器必须等到循环完成才能操作，这个会进一步导致浏览器冻结并且没有响应。
-如果你能移动这些繁重的循环到Javascript文件中，采用异步的方式运行，这意味着浏览器不需要等到循环接触，我们可以有更敏感的浏览器，这就是web worker的作用。Web worker帮助我们用异步执行Javascript文件。在 HTML5 的新规范中，实现了 Web Worker 来引入 JavaScript 的 “多线程” 技术，他的能力让我们可以在页面主运行的 JavaScript 线程中加载运行另外单独的一个或者多个 JavaScript 线程；当然 Web Worker 提供不像其他的多线程语言(Java、C++ 等)，主程序线程和 Worker 线程之间，Worker 线程之间，不会共享任何作用域或资源，他们间唯一的通信方式就是一个基于事件监听机制的 message；同时，这并不意味着 JavaScript 语言本身就支持了多线程，对于 JavaScript 语言本身它仍是运行在单线程上的， Web Worker 只是浏览器（宿主环境）提供的一个能力／API。
-
-我们如何在JavaScript中创建一个worker线程？
-var worker = new Worker("MyHeavyProcess.js");//文件名
-worker.postMessage();//使用“PostMessage”发送信息给worker对象
-worker.onmessage = function (e) {
-document.getElementById("txt1").value = e.data;
-};//当worker线程发送数据的时候，我们在调用结束的时候，通过”onMessage”事件获取
-这个繁重的循环在“MyHeavyProcess.js”的Javascript文件中，以下代码，当Javascript文件想发送信息，他使用”postmessage”，同时任何来自发送者的信息都在“onmessage”事件中接收到。
-worker.terminate();//中止Web Worker
-
-规定：main.js 为页面运行的主要脚本文件，workder.js 为 Web Worker 脚本的文件
-实例化一个 Worker:
-在main.js中，new Worker() 之后会返回一个实例对象，它包含一个 postMessage 方法，可以通过调用这个方法来给 Worker 线程传递信息；通过给这个对象添加onmessage方法，在 Worker 中触发事件通信的时候接收到数据并进行处理。
-// main.js 
-var worker = new Worker('./worker.js'); 
-worker.addEventListener('message', function (e) {   // 监听消息事件
-console.log('MAIN: ', 'RECEIVE', e.data); 
-}); 
-worker.onmessage = function () {   	// 或者可以使用 onMessage 来监听事件
-console.log('MAIN: ', 'RECEIVE', e.data); 
-}; 
-worker.addEventListener('error', function (e) {        // 监听 error 事件 
-console.log('MAIN: ', 'ERROR', e); 
-console.log('MAIN: ', 'ERROR', 'filename:' + e.filename + '---message:' + e.message + '---lineno:' + e.lineno); }); 
-worker.onerror = function () {                                        // 或者可以使用 onMessage 来监听事件
-console.log('MAIN: ', 'ERROR', e); 
-}; 
-worker.postMessage({ m: 'Hello Worker, I am main.js' });        // 触发事件，传递信息给 Worker 
-在 Worker 的脚本中，我们可以调用全局函数 postMessage 和给全局的 onmessage 赋值来发送和监听数据和事件
-// worker.js 
-console.log('WORKER TASK: ', 'running'); 
-onmessage = function (e) {                                              //监听数据进行处理
-console.log('WORKER TASK: ', 'RECEIVE', e.data); 
-postMessage('Hello, I am Worker');                      // 发送数据事件
-} 
-addEventListener('message', function (e) {        // 或者使用 addEventListener 来监听事件
-console.log('WORKER TASK: ', 'RECEIVE', e.data);
-postMessage('Hello, I am Worker'); 
-});
-event 这个事件对象中有几个比较重要的参数需要我们注意：
-  ● event.filename: 导致错误的 Worker 脚本的名称；
-  ● event.message: 错误的信息；
-  ● event.lineno: 出现错误的行号；
-
-Worker 的环境与作用域
-如前文所述，在 Worker 线程的运行环境中没有 window 全局对象，也无法访问 DOM 对象，所以一般来说他只能来执行纯 JavaScript 的计算操作。
-但是，他还是可以获取到部分浏览器提供的 API 的：
-  ● setTimeout()， clearTimeout()， setInterval()， clearInterval()：有了设计个函数，就可以在 Worker 线程中执行定时操作了；
-  ● XMLHttpRequest 对象：意味着我们可以在 Worker 线程中执行 ajax 请求； 
-  ● navigator 对象：可以获取到 ppName，appVersion，platform，userAgent 等信息；
-  ● location 对象（只读）：可以获取到有关当前 URL 的信息；
-
-在 Worker 中加载外部脚本
-可以通过 Worker 环境中的全局函数 importScripts() 加载外部 js 脚本到当前 Worker 脚本中，它接收多个参数，参数都为加载脚本的链接字符串，比如：
-importScripts('worker2.js', 'worker3.js'); importScripts('worker2.js'); importScripts('worker3.js');
-
-应用:
-Web Worker 的实现为前端程序带来了后台计算的能力，可以实现主 UI 线程与复杂计运算线程的分离，从而极大减轻了因计算量大而造成 UI 阻塞而出现的界面渲染卡、掉帧的情况，并且更大程度地利用了终端硬件的性能；
-同时把程序之间的任务更清晰、条理化；
-其主要应用有几个场景：
-  ● 对于图像、视频、音频的解析处理；
-  ● canvas 中的图像计算处理；
-  ● 大量的 ajax 请求或者网络服务轮询；
-  ● 大量数据的计算处理（排序、检索、过滤、分析…）；
-
-Web Worker线程的限制是什么？
-Web worker线程不能修改HTML元素，全局变量和Window.Location一类的窗口属性。你可以自由使用Javascript数据类型，XMLHttpRequest调用等。
 
 17、什么是WebSQL？
 WebSQL是一个在浏览器客户端的结构关系数据库，这是浏览器内的本地RDBMS(关系型数据库系统)，你可以使用SQL查询
