@@ -12,10 +12,9 @@ worker.onmessage = function (e) {
 document.getElementById("txt1").value = e.data;   
 };//当worker线程发送数据的时候，我们在调用结束的时候，通过”onMessage”事件获取
 ```
-这个繁重的循环在“MyHeavyProcess.js”的Javascript文件中，以下代码，当Javascript文件想发送信息，他使用”postmessage”，同时任何来自发送者的信息都在“onmessage”事件中接收到。         
-现规定：main.js 为页面运行的主要脚本文件，workder.js 为 Web Worker 脚本的文件           
-实例化一个 Worker:       
-在main.js中，new Worker() 之后会返回一个实例对象，它包含一个 postMessage 方法，可以通过调用这个方法来给 Worker 线程传递信息；通过给这个对象添加onmessage方法，在 Worker 中触发事件通信的时候接收到数据并进行处理。     
+         
+现规定：main.js 为页面运行的主要脚本文件，workder.js 为 Web Worker 脚本的文件                    
+将繁重的循环放在“MyHeavyProcess.js”的文件中，当Javascript文件想发送信息，可以使用”postmessage”方法来给 Worker 线程传递信息，同时任何来自worker的信息都在“onmessage”事件中接收到。在main.js中，new Worker() 之后会返回一个实例对象，它包含一个 postMessage 方法，可以通过调用这个。    
 ```javascript
 // main.js     
 var worker = new Worker('./worker.js');     
@@ -55,7 +54,7 @@ event 这个事件对象中有几个比较重要的参数需要我们注意：
 Worker 的环境与作用域
 --------
 如前文所述，在 Worker 线程的运行环境中没有 window 全局对象，也无法访问 DOM 对象，所以一般来说他只能来执行纯 JavaScript 的计算操作。    
-但是，他还是可以获取到部分浏览器提供的 API 的：   
+但是，他还是可以获取到部分浏览器提供的 API 的：       
   ● setTimeout()， clearTimeout()， setInterval()， clearInterval()：有了设计个函数，就可以在 Worker 线程中执行定时操作了；    
   ● XMLHttpRequest 对象：意味着我们可以在 Worker 线程中执行 ajax 请求； 
   ● navigator 对象：可以获取到 ppName，appVersion，platform，userAgent 等信息；
@@ -64,7 +63,7 @@ Worker 的环境与作用域
 在 Worker 中加载外部脚本
 --------
 可以通过 Worker 环境中的全局函数 importScripts() 加载外部 js 脚本到当前 Worker 脚本中，它接收多个参数，参数都为加载脚本的链接字符串，比如：
-importScripts('worker2.js', 'worker3.js'); importScripts('worker2.js'); importScripts('worker3.js');   
+importScripts('worker2.js', 'worker3.js'); importScripts('worker2.js'); importScripts('worker3.js');       
 
 应用:
 -----
