@@ -12,7 +12,7 @@
 \<meta name="author" content="your name"\>    
 * 响应式页面    
 \<meta name="viewport" content="width=device-width, initial-scale=1.0"\>    
-* 定时让网页在3秒内跳转到mozilla首页(http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。)
+* 定时让网页在3秒内跳转到mozilla首页(http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。)         
 \<meta http-equiv="refresh" content="3" url=https://www.mozilla.org"\>
 * 如果安装了GCF (Google Chrome Frame)，则使用GCF来渲染页面 ("chrome=1"), 如果没有安装GCF，则使用最高版本的IE内核进行渲染 ("IE=edge")。X-UA-Compatible(浏览器采取何种版本渲染当前页面)
 \<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"\>
@@ -281,28 +281,6 @@ ActiveX HTMLFile (IE) 、
 
 
 
-17、什么是WebSQL？
-WebSQL是一个在浏览器客户端的结构关系数据库，这是浏览器内的本地RDBMS(关系型数据库系统)，你可以使用SQL查询
-WebSql不是HTML5的一个规范吗，许多人把它标记为HTML5，但是他不是HTML5的规范的一部分，这个规范是基于SQLite的
-我们如何使用WebSQL：
-第一步我们需要做的是使用如下所示的“OpenDatabase”方法打开数据库，第一个参数是数据库的名字，接下来是版本，然后是简单原文标题，最后是数据库大小；
-var db=openDatabase('dbCustomer','1.0','Customer app’, 2 * 1024 * 1024);
-为了执行SQL，我们需要使用“transaction”方法，并调用”executeSql”方法来使用SQL
-db.transaction(function (tx) 
-{
-tx.executeSql('CREATE TABLE IF NOT EXISTS tblCust(id unique, customername)');
-tx.executeSql('INSERT INTO tblcust (id, customername) VALUES(1, "shiv")');
-tx.executeSql('INSERT INTO tblcust (id, customername) VALUES (2, "raju")');
-}
-万一你要使用“select”查询你会得到数据”result”集合，我们可以通过循环展示到HTML的用户界面
-db.transaction(function (tx) {
-   tx.executeSql('SELECT * FROM tblcust', [], function (tx, results) {
-   for (i = 0; i < len; i++){
-     msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
-     document.querySelector('#customer).innerHTML +=  msg;
-}
-}, null);
-});
 
 18、客户端存储
 请你谈谈Cookie的弊端
