@@ -187,6 +187,7 @@ localStorage：
 
 6、HTML5的离线储存怎么使用，工作原理能不能解释一下？
 --------
+
 离线检测：     
 HTML5定义了一个navigator.onLine属性，ture表示能上网，由于浏览器兼容问题，配合使用online和offline事件，当网络从在线转为离线触发offline，转为在线触发online，都在window对象上触发。    
 
@@ -225,24 +226,24 @@ CACHE MANIFEST          //所有manifest文件都以“CACHE MANIFEST”语句�
 CACHE :           //CACHE 命令指出哪些文件需要被缓存.Mainfest文件的内容类型应是“text/cache-manifest”.
 Login.aspx
 ```
-2)创建一个缓存manifest文件以后，接下来的事情实在HTML页面中提供mainfest连接，如下所示：
-\<html manifest="cache.aspx"\>
-当以上文件第一次运行，他会添加到浏览器应用缓存中，在服务器宕机时，页面从应用缓存中获取
-3)应用缓存通过变更“#”标签后的版本版本号而被移除
-4)应用缓存中的回退帮助你指定在服务器不可访问的时候，将会显示某文件。例如在下面的manifest文件中，我们说如果谁敲击了”/home”同时服务器不可到达的时候，”homeoffline.html”文件应送达.
-FALLBACK:
-/home/homeoffline.html
-5)NETWORK:                                                        //不需要缓存的文件
-home.aspx
+2)创建一个缓存manifest文件以后，接下来的事情实在HTML页面中提供mainfest连接，如下所示：       
+\<html manifest="cache.aspx"\>         
+当以上文件第一次运行，他会添加到浏览器应用缓存中，在服务器宕机时，页面从应用缓存中获取      
+3)应用缓存通过变更“#”标签后的版本版本号而被移除       
+4)应用缓存中的回退帮助你指定在服务器不可访问的时候，将会显示某文件。例如在下面的manifest文件中，我们说如果谁敲击了”/home”同时服务器不可到达的时候，”homeoffline.html”文件应送达.     
+FALLBACK:       
+/home/homeoffline.html     
+5)NETWORK://不需要缓存的文件      
+home.aspx      
 
 浏览器是怎么对HTML5的离线储存资源进行管理和加载    
 在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。    
 离线的情况下，浏览器就直接使用离线存储的资源。      
-步骤：   
+步骤：     
 （1）html5是使用一个manifest文件来标明那些文件是需要被存储，对于manifest文件，文件的mime-type必须是text/cache-manifest类型。       
 （2）cache manifest下直接写需要缓存的文件，这里指明文件被缓存到浏览器本地；在network下指明的文件，强制必须通过网络资源获取的；在failback下指明是一种失败的回调方案，比如无法访问，就发出404.htm请求。           
 
-6、iframe有那些优缺点？
+6、iframe有那些优缺点？ 
 ----------
 优点：
 1）解决加载缓慢的第三方内容如图标和广告等的加载问题    
