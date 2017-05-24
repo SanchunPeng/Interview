@@ -113,11 +113,7 @@ Semantic Style Elements -- 语义样式标签
 strong, em, ins, del, code   
 应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签    
 
-15、Canvas和SVG图形的区别是什么？
---------
-SVGCanvas这个就好像绘制和记忆，换句话说任何使用SVG绘制的形状都能被记忆和操作，浏览器可以再次显示Canvas就像绘制和忘记，一旦绘制完成你不能访问像素和操作它SVG对于创建图形例如CAD软件是良好的，一旦东西绘制，用户就想去操作它Canvas在绘制和忘却的场景例如动画和游戏是良好的因为为了之后的操作，需要记录坐标，所以比较缓慢因为没有记住以后事情的意向，所以更快我们可以用绘制对象的相关事件处理我们不能使用绘制对象的相关事件处理，因为我们没有他们的参考分辨率无关分辨率相关
-
-16、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+15、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
 -------
 行内元素：span  a  b  img  input  select  strong i  em    
 块级元素：div  ul  ol  li  dl  dt  dd  h1  h2  h3  h4  p  等    
@@ -125,7 +121,7 @@ SVGCanvas这个就好像绘制和记忆，换句话说任何使用SVG绘制的�
 鲜为人知的是：     
     \<area\> \<base\> \<col\> \<command\> \<embed\> \<keygen\> \<param\> \<source\> \<track\> \<wbr\>
 
-17、html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？
+16、html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？
 -------
 是什么：     
 HTML5指的是包括 HTML 、CSS 和 JavaScript 在内的一套技术组合。它希望能够减少网页浏览器对于需要插件的丰富性网络应用服务（ Plug-in-Based Rich Internet Application ， RIA ），例如： AdobeFlash 、 Microsoft Silverlight 与 Oracle JavaFX 的需求，并且提供更多能有效加强网络应用的标准集。 HTML5 是 HTML 最新版本， 2014 年 10 月由万维网联盟（ W3C ）完成标准制定。目标是替换 1999 年所制定的 HTML 4.01 和XHTML 1.0 标准，以期能在互联网应用迅速发展的时候，使网络标准达到匹配当代的网络需求。   
@@ -192,7 +188,7 @@ command 元素表示用户能够调用的命令。\<command\> 标签可以定义
 HTML5中的datalist是什么？   
 HTML5中的Datalist元素有助于提供文本框自动完成特性。    
 
-18、HTML5中什么是输出元素?
+17、HTML5中什么是输出元素?
 ----
 当你需要计算两个输入的和值到一个标签中的时候你需要输出元素。显示a+b  
 \<form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)"\>
@@ -202,7 +198,7 @@ HTML5中的Datalist元素有助于提供文本框自动完成特性。
 \</form\>
 \<output name="o" for="a b"\>\</output\>
 
-19、如何区分 HTML 和 HTML5？
+18、如何区分 HTML 和 HTML5？
 ------
 DOCTYPE声明\新增的结构元素\功能元素     
 1）在文档类型声明上不同：   
@@ -211,7 +207,7 @@ HTML是很长的一段代码，很难记住，而HTML5却只有简简单单的�
 HTML：没有体现结构语义化的标签，通常都是这样来命名的\<div id="header"\>\</div\>，这样表示网站的头部。   
 HTML5：在语义上却有很大的优势。提供了一些新的标签，比如：\<header\>\<article\>\<footer\>   
 
-20、HTML与XHTML——二者有什么区别
+19、HTML与XHTML——二者有什么区别
 -------
 1)所有的标记都必须要有一个相应的结束标记  
 2)所有标签的元素和属性的名字都必须使用小写
@@ -222,7 +218,7 @@ HTML5：在语义上却有很大的优势。提供了一些新的标签，比如
 7)不要在注释内容中使“--”   
 8)图片必须有说明文字  
 
-21、Doctype作用？标准模式与兼容模式各有什么区别?
+20、Doctype作用？标准模式与兼容模式各有什么区别?
 --------
 （1）、\<!DOCTYPE\>声明位于位于HTML文档中的第一行，处于 \<html\> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。    
 （2）、标准模式（严格模式）的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式（在混杂模式中）中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作。    
@@ -233,7 +229,7 @@ HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset
 XHTML 1.0 规定了三种 XML 文档类型：Strict、Transitional 以及 Frameset。    
 Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页，而 Quirks（包容）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页。    
 
-22、简述一下你对HTML语义化的理解？
+21、简述一下你对HTML语义化的理解？
 -------
 1）用正确的标签做正确的事情；
 2）html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析；
@@ -241,7 +237,7 @@ Standards （标准）模式（也就是严格呈现模式）用于呈现遵循�
 4）搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO；
 5）使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
 
-23、HTML5的优点与缺点？
+22、HTML5的优点与缺点？
 ---------
 优点： 
 a、网络标准统一、HTML5本身是由W3C推荐出来的。   
@@ -260,152 +256,6 @@ c、技术门槛：HTML5简化开发者工作的同时代表了有许多新的�
 d、性能：某些平台上的引擎问题导致HTML5性能低下。    
 e、浏览器兼容性：最大缺点，IE9以下浏览器几乎全军覆没。    
 
-23、如何实现浏览器内多个标签页之间的通信? (阿里)
---------
-1)WebSocket、SharedWorker；   
-2)也可以调用localstorge、cookies等本地存储方式；   
-localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发storage事件，我们通过监听事件，控制它的值来进行页面信息通信；    
-注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；     
-
-24、WebSocket
------
-WebSocket ：WebSocket protocol 是HTML5一种新的协议。     
-目标：在一个单独的持久连接上提供全双工，双向通信。webSocket是一种与服务器进行全双工、双向通信的信道。需要支持这种协议的专门服务器，HTTP服务器无法实现WebSocket，未加密的协议是ws://，加密的协议是wss://,使用自定义协议的好处是传递的数据包很小，适合移动应用。缺点是制定协议的时间比js API时间还要长，必须给websocket构造函数传入绝对URL，同源策略对于Web Sockets完全不适用，因此可以通过它打开到任何站点的连接。     
-
-webSocket如何兼容低浏览器？(阿里)    
-Adobe Flash Socket 、   
-ActiveX HTMLFile (IE) 、   
-基于 multipart 编码发送 XHR 、   
-基于长轮询的 XHR（组合SSE和XHR也可以实现双向通信）    
-引用WebSocket.js这个文件来兼容低版本浏览器    
-
-
-
-
-18、客户端存储
-请你谈谈Cookie的弊端
-cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。 第一：每个特定的域名下最多生成20个cookie，在客户端使用document.cookie访问cookie
-1）IE6或更低版本最多20个cookie
-2）IE7和之后的版本最后可以有50个cookie。
-3）Firefox最多50个cookie
-4）Opera限制每个域最多30个cookie
-5）chrome和Safari没有做硬性限制
-IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。cookie的最大大约为4096字节4KB，为了兼容性，一般不能超过4095字节。IE 提供了一种存储可以持久化用户数据，叫做userData，从IE5.0就开始支持。每个数据最多128K，每个域名下最多1M。这个持久化数据放在缓存中，如果缓存没有清理，那么会一直存在。
-优点：极高的扩展性和可用性
-1）通过良好的编程，控制保存在cookie中的session对象的大小。
-2）通过加密和安全传输技术（SSL），减少cookie被破解的可能性。
-3）只在cookie中存放不敏感数据，即使被盗也不会有重大损失。
-4）控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie。
-缺点：
-1）`Cookie`数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。
-2）安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。
-3）有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。
-所以为了绕开cookie个数限制，一些开发人员使用了子cookie，使用cookie存储多个名值对，用&连接。
-cookie的构造：cookie的名称不区分大小写，可以设置cookie域，路径，，失效时间（没定义的话是会话结束失效），安全标志（SSL）e.g.Set-Cookie:name-value;domain=.wrox.com;path=/;secure，指定在.erox.com域或子域下的所有路径发送https请求时都会带上cookie。都会进行URL编码。
-
-web storage和cookie的区别
-Web Storage的概念和cookie相似，区别是它是为了更大容量存储，在cookie之外存储会话数据的途径设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。
-
-Web Storage定义了两种用于存储数据的对象，sessionStorage和localStorage，前者严格用于在一个浏览器会话中存储数据，浏览器关闭后立即删除，后者用户跨会话持久化数据并遵循跨域安全策略。要访问同一个localStorage对象，页面必须来自同一个域名（子域名无效），同一种协议，同一端口。
-
-但是Cookie也是不可以或缺的：Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生。浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的UserData（可以应用在页面的某个元素上，每个文档最多128KB，每个域名最多1M，在使用userData之前需要再DOM元素上使用style的behavior属性，通过setAttribute()保存数据，最后必须使用save(数据空间名称)指定数据空间名称，最后就可以使用load(数据空间名称)方法指定同样的数据空间名称来获取数据，每次添加或者删除后都要使用save进行提交更改，用户数据会跨越会话永久存在，所以需要使用removeAttribute删除释放，也不安全）其实就是javascript本地存储的解决方案。所以通过简单的代码封装可以统一到所有的浏览器都支持web storage。很容就能够兼容。
-
-在较高版本的浏览器（IE8+）中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。
-localStorage和sessionStorage都具有相同的操作方法，例如（setItem、getItem）（也可以用点的方式存取）和removeItem,key(index)：获得index位置处的值的名字等，也可以通过Storage对象间接调用，因为localStorage，sessionStorage都是Storage对象的实例。。
-
-sessionStorage：可以跨页面刷新存在，浏览器崩溃后重启依然可用（IE不行）只能由最初给对象存储数据的页面可以访问，所以对多页应用有限制。IE8可以通过这个对象将数据写入磁盘，设置数据之前使用sessionStorage.begin()。成功之后使用sessionStorage.commit()，主要用于仅针对会话的小段数据存储，如果需要跨越会话存储数据，用localStorage或globalStorage更合适。
-
-globalStorage：跨越会话存储数据，globalStorage不是Storage实例，使用globalStorage["wrox.com"]确定针对特定域名的存储空间，globalStorage["wrox.com"]是Storage实例，也就是该域可以访问存储在上面的数据。同时也要遵从类似同源策略的规则设置和访问。没有使用removeItem()或者delete删除，或者用户没有清除浏览器缓存，globalStorage中存储的数据会一直保存在磁盘上，适合存储文档或用户偏好设置。
-
-localStorage：是Storage实例，该对象在HTML5规范中作为持久保存客户端的数据的方案取代了globalStorage。访问规则事先也设定，相当于globalStorage[location.host]。
-对localStorage，globalStorage，sessionStorage进行操作都会触发storage事件。
-
-请描述一下 cookies，sessionStorage 和 localStorage 的区别
-cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
-cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。
-sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
-
-CookiesLocal storage客户端/服务端客户端和服务端都能访问数据。Cookie的数据通过每一个请求发送到服务端只有本地浏览器端可访问数据，服务器不能访问本地存储直到故意通过POST或者GET的通道发送到服务器大小每个cookie有4095byte每个域5MB，chrome和safari限制是2.5MB过期Cookies有有效期，所以在过期之后cookie和cookie数据会被删除没有过期数据，无论最后用户从浏览器删除或者使用Javascript程序删除，我们都需要删除
-存储大小：
-    cookie数据大小不能超过4k。
-    sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5MB或更大，Chrome和Safari是2.5MB。
-有期时间：
-    localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；
-    sessionStorage  数据在当前浏览器窗口关闭后自动删除。
-    cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭,或者过期时间
-
-本地存储和事务存储之间的区别:
-本地存储数据持续永久，但是会话在浏览器打开时有效知道浏览器关闭时会话变量重置
-
-19、HTML5的离线储存怎么使用，工作原理能不能解释一下？
-离线检测：
-HTML5定义了一个navigator.onLine属性，ture表示能上网，由于浏览器兼容问题，配合使用online和offline事件，当网络从在线转为离线触发offline，转为在线触发online，都在window对象上触发。
-离线储存：
-所谓的离线存储就是将一些资源文件保存在本地，这样后续的页面加载将使用本地的资源文件，在 离线的情况下可以继续访问web应用。在用户与因特网连接时，更新用户机器上的缓存文件。
-原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
-localStorage 长期存储数据，浏览器关闭后数据不丢失；
-localStorage.setItem("key","value");//数据添加到本地存储采用键值对,value也可以是一个js对象。localStorage.setItem(“I001”,JSON.stringify(country));//也可以存储json格式的数据
-var item = localStorage.getItem("key");//从本地存储中检索数据
-本地存储没有生命周期，它将保留直到用户从浏览器清除或者使用Javascript代码移除。
-sessionStorage 数据在浏览器关闭后自动删除。
-如何使用：
-1)、页面头部像下面一样加入一个manifest的属性；将描述文件与页面关联起来<html manifest="/offine.manifest">
-2)、在cache.manifest文件的编写离线存储的资源;现在推荐描述文件扩展名为appcache.
-    CACHE MANIFEST
-    #v0.11
-    CACHE:
-    js/app.js
-    css/style.css
-    NETWORK:
-    resourse/logo.png
-    FALLBACK:
-    / /offline.html
-3)、在离线状态时，操作window.applicationCache进行需求实现。
-
-
-HTML5中的应用缓存
-一个最需要的事最终是用户的离线浏览，换句话说，如果网络连接不可用时，页面应该来自浏览器缓存，离线应用缓存可以帮助你达到这个目的，应用缓存可以帮助你指定哪些文件需要缓存，哪些不需要。
-1)如何实现应用缓存：首先我们需要指定”manifest”文件，“manifest”文件帮助你定义你的缓存如何工作
-CACHE MANIFEST          //所有manifest文件都以“CACHE MANIFEST”语句开始.
-# version 1.0     //#（散列标签）有助于提供缓存文件的版本.
-CACHE :           //CACHE 命令指出哪些文件需要被缓存.Mainfest文件的内容类型应是“text/cache-manifest”.
-Login.aspx
-2)创建一个缓存manifest文件以后，接下来的事情实在HTML页面中提供mainfest连接，如下所示：
-<html manifest="cache.aspx">
-当以上文件第一次运行，他会添加到浏览器应用缓存中，在服务器宕机时，页面从应用缓存中获取
-3)应用缓存通过变更“#”标签后的版本版本号而被移除
-4)应用缓存中的回退帮助你指定在服务器不可访问的时候，将会显示某文件。例如在下面的manifest文件中，我们说如果谁敲击了”/home”同时服务器不可到达的时候，”homeoffline.html”文件应送达.
-FALLBACK:
-/home/ /homeoffline.html
-5)NETWORK:                                                        //不需要缓存的文件
-home.aspx
-
-浏览器是怎么对HTML5的离线储存资源进行管理和加载
-在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
-离线的情况下，浏览器就直接使用离线存储的资源。
-步骤：
-（1）html5是使用一个manifest文件来标明那些文件是需要被存储，对于manifest文件，文件的 
-mime-type必须是text/cache-manifest类型。
-（2）cache manifest下直接写需要缓存的文件，这里指明文件被缓存到浏览器本地；在network下指明 
-的文件，强制必须通过网络资源获取的；在failback下指明是一种失败的回调方案，比如无法访问，就 
-发出404.htm请求。
-
-20、iframe有那些缺点？
-1）在网页中使用框架结构最大的弊病是搜索引擎的检索程序无法解读这种页面，不利于SEO;
-2）iframe会阻塞主页面的Onload事件；
-3）iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
-4）框架结构有时会让人感到迷惑，页面很混乱；
-使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。
-
-iframe的优缺点
-1）<iframe>优点：
-    解决加载缓慢的第三方内容如图标和广告等的加载问题
-    Security sandbox
-    并行加载脚本
-2）<iframe>的缺点：
-    *iframe会阻塞主页面的Onload事件；
-    *即时内容为空，加载也需要时间
-    *没有语意
 
 21、如何居中div？ 如何居中一个浮动元素？
 水平居中和垂直居中：
