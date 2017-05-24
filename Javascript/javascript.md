@@ -202,8 +202,8 @@ var item = localStorage.getItem("key");//从本地存储中检索数据
 本地存储没有生命周期，它将保留直到用户从浏览器清除或者使用Javascript代码移除。
 sessionStorage 数据在浏览器关闭后自动删除。    
 如何使用：       
-1)、页面头部像下面一样加入一个manifest的属性；将描述文件与页面关联起来\<html manifest="/offine.manifest"\>           
-2)、在cache.manifest文件的编写离线存储的资源;现在推荐描述文件扩展名为appcache.           
+1）、页面头部像下面一样加入一个manifest的属性；将描述文件与页面关联起来\<html manifest="/offine.manifest"\>           
+2）、在cache.manifest文件的编写离线存储的资源;现在推荐描述文件扩展名为appcache.           
 ```javscript
     CACHE MANIFEST
     #v0.11
@@ -215,7 +215,7 @@ sessionStorage 数据在浏览器关闭后自动删除。
     FALLBACK:
    //offline.html
 ```
-3)、在离线状态时，操作window.applicationCache进行需求实现。    
+3）、在离线状态时，操作window.applicationCache进行需求实现。    
 
 HTML5中的应用缓存
 一个最需要的事最终是用户的离线浏览，换句话说，如果网络连接不可用时，页面应该来自浏览器缓存，离线应用缓存可以帮助你达到这个目的，应用缓存可以帮助你指定哪些文件需要缓存，哪些不需要。     
@@ -245,7 +245,7 @@ home.aspx
 
 6、iframe有那些优缺点？ 
 ----------
-优点：
+优点：     
 1）解决加载缓慢的第三方内容如图标和广告等的加载问题    
 2）Security sandbox    
 3）并行加载脚本    
