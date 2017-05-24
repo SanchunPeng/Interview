@@ -1,14 +1,14 @@
 前端面试整理之HTML
 =========
 ##1、有哪些常见的meta标签?      
-*指定字符集   
-<meta charset="utf-8">   
+*指定字符集   
+\<meta charset="utf-8"\>  
 * 向搜索引擎说明你的网页的关键词    
-<meta name="keywords" content="">    
+\<meta name="keywords" content=""\>    
 * 告诉搜索引擎你的站点的主要内容    
-<meta name="description" content="">    
+\<meta name="description" content=""\>    
 *告诉搜索引擎你的站点的制作的作者     
-<meta name="author" content="your name">    
+\<meta name="author" content="your name"\>    
 *响应式页面    
 <meta name="viewport" content="width=device-width, initial-scale=1.0">    
 *定时让网页在3秒内跳转到mozilla首页(http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。)
