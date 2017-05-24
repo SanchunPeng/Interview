@@ -156,8 +156,10 @@ IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie�
 1）Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。      
 2）安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。    
 3）有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。
-所以为了绕开cookie个数限制，一些开发人员使用了子cookie，使用cookie存储多个名值对，用&连接。     
-cookie的构造：cookie的名称不区分大小写，可以设置cookie域，路径，失效时间（没定义的话是会话结束失效），安全标志（SSL）e.g.Set-Cookie:name-value;domain=.wrox.com;path=/;secure，指定在.erox.com域或子域下的所有路径发送https请求时都会带上cookie。都会进行URL编码。    
+所以为了绕开cookie个数限制，一些开发人员使用了子cookie，使用cookie存储多个名值对，用&连接。   
+
+cookie的构造：
+cookie的名称不区分大小写，可以设置cookie域，路径，失效时间（没定义的话是会话结束失效），安全标志（SSL）e.g.Set-Cookie:name-value;domain=.wrox.com;path=/;secure，指定在.erox.com域或子域下的所有路径发送https请求时都会带上cookie。都会进行URL编码。    
 
 web storage和cookie的区别    
 Web Storage的概念和cookie相似，区别是它是为了更大容量存储，在cookie之外存储会话数据的途径设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。     
@@ -211,7 +213,7 @@ sessionStorage 数据在浏览器关闭后自动删除。
     resourse/logo.png
     FALLBACK:
    //offline.html
-    ```
+```
 3)、在离线状态时，操作window.applicationCache进行需求实现。    
 
 HTML5中的应用缓存
@@ -235,18 +237,19 @@ home.aspx
 
 浏览器是怎么对HTML5的离线储存资源进行管理和加载    
 在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。    
-离线的情况下，浏览器就直接使用离线存储的资源。   
+离线的情况下，浏览器就直接使用离线存储的资源。      
 步骤：   
-（1）html5是使用一个manifest文件来标明那些文件是需要被存储，对于manifest文件，文件的mime-type必须是text/cache-manifest类型。
-（2）cache manifest下直接写需要缓存的文件，这里指明文件被缓存到浏览器本地；在network下指明的文件，强制必须通过网络资源获取的；在failback下指明是一种失败的回调方案，比如无法访问，就发出404.htm请求。      
+（1）html5是使用一个manifest文件来标明那些文件是需要被存储，对于manifest文件，文件的mime-type必须是text/cache-manifest类型。       
+（2）cache manifest下直接写需要缓存的文件，这里指明文件被缓存到浏览器本地；在network下指明的文件，强制必须通过网络资源获取的；在failback下指明是一种失败的回调方案，比如无法访问，就发出404.htm请求。           
 
 6、iframe有那些优缺点？
 ----------
 优点：
-1）解决加载缓慢的第三方内容如图标和广告等的加载问题
-2）Security sandbox
-3）并行加载脚本
-缺点：   
+1）解决加载缓慢的第三方内容如图标和广告等的加载问题    
+2）Security sandbox    
+3）并行加载脚本    
+
+缺点：       
 1）在网页中使用框架结构最大的弊病是搜索引擎的检索程序无法解读这种页面，不利于SEO;     
 2）iframe会阻塞主页面的Onload事件；     
 3）iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。即使内容为空，加载也需要时间。     
