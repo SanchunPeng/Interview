@@ -145,11 +145,13 @@ cookie虽然在持久保存客户端数据提供了方便，分担了服务器�
 4）Opera限制每个域最多30个cookie   
 5）chrome和Safari没有做硬性限制    
 IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。cookie的最大大约为4096字节4KB，为了兼容性，一般不能超过4095字节。IE 提供了一种存储可以持久化用户数据，叫做userData，从IE5.0就开始支持。每个数据最多128K，每个域名下最多1M。这个持久化数据放在缓存中，如果缓存没有清理，那么会一直存在。     
+
 优点：极高的扩展性和可用性      
 1）通过良好的编程，控制保存在cookie中的session对象的大小。    
 2）通过加密和安全传输技术（SSL），减少cookie被破解的可能性。   
 3）只在cookie中存放不敏感数据，即使被盗也不会有重大损失。    
 4）控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie。    
+
 缺点：    
 1）Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。      
 2）安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。    
@@ -162,38 +164,30 @@ Web Storage的概念和cookie相似，区别是它是为了更大容量存储，
 
 Web Storage定义了两种用于存储数据的对象，sessionStorage和localStorage，前者严格用于在一个浏览器会话中存储数据，浏览器关闭后立即删除，后者用户跨会话持久化数据并遵循跨域安全策略。要访问同一个localStorage对象，页面必须来自同一个域名（子域名无效），同一种协议，同一端口。    
 
-但是Cookie也是不可以或缺的：Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生。浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的UserData（可以应用在页面的某个元素上，每个文档最多128KB，每个域名最多1M，在使用userData之前需要再DOM元素上使用style的behavior属性，通过setAttribute()保存数据，最后必须使用save(数据空间名称)指定数据空间名称，最后就可以使用load(数据空间名称)方法指定同样的数据空间名称来获取数据，每次添加或者删除后都要使用save进行提交更改，用户数据会跨越会话永久存在，所以需要使用removeAttribute删除释放，也不安全）其实就是javascript本地存储的解决方案。所以通过简单的代码封装可以统一到所有的浏览器都支持web storage。很容就能够兼容。    
+但是Cookie也是不可以或缺的：
+Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生。浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的UserData（可以应用在页面的某个元素上，每个文档最多128KB，每个域名最多1M，在使用userData之前需要再DOM元素上使用style的behavior属性，通过setAttribute()保存数据，最后必须使用save(数据空间名称)指定数据空间名称，最后就可以使用load(数据空间名称)方法指定同样的数据空间名称来获取数据，每次添加或者删除后都要使用save进行提交更改，用户数据会跨越会话永久存在，所以需要使用removeAttribute删除释放，也不安全）其实就是javascript本地存储的解决方案。所以通过简单的代码封装可以统一到所有的浏览器都支持web storage。很容就能够兼容。    
 
 在较高版本的浏览器（IE8+）中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。    
 localStorage和sessionStorage都具有相同的操作方法，例如（setItem、getItem）（也可以用点的方式存取）和removeItem,key(index)：获得index位置处的值的名字等，也可以通过Storage对象间接调用，因为localStorage，sessionStorage都是Storage对象的实例。     
 
-sessionStorage：可以跨页面刷新存在，浏览器崩溃后重启依然可用（IE不行）只能由最初给对象存储数据的页面可以访问，所以对多页应用有限制。IE8可以通过这个对象将数据写入磁盘，设置数据之前使用sessionStorage.begin()。成功之后使用sessionStorage.commit()，主要用于仅针对会话的小段数据存储，如果需要跨越会话存储数据，用localStorage或globalStorage更合适。
+sessionStorage：
+可以跨页面刷新存在，浏览器崩溃后重启依然可用（IE不行）只能由最初给对象存储数据的页面可以访问，所以对多页应用有限制。IE8可以通过这个对象将数据写入磁盘，设置数据之前使用sessionStorage.begin()。成功之后使用sessionStorage.commit()，主要用于仅针对会话的小段数据存储，如果需要跨越会话存储数据，用localStorage或globalStorage更合适。
 
-globalStorage：跨越会话存储数据，globalStorage不是Storage实例，使用globalStorage["wrox.com"]确定针对特定域名的存储空间，globalStorage["wrox.com"]是Storage实例，也就是该域可以访问存储在上面的数据。同时也要遵从类似同源策略的规则设置和访问。没有使用removeItem()或者delete删除，或者用户没有清除浏览器缓存，globalStorage中存储的数据会一直保存在磁盘上，适合存储文档或用户偏好设置。     
+globalStorage：
+跨越会话存储数据，globalStorage不是Storage实例，使用globalStorage["wrox.com"]确定针对特定域名的存储空间，globalStorage["wrox.com"]是Storage实例，也就是该域可以访问存储在上面的数据。同时也要遵从类似同源策略的规则设置和访问。没有使用removeItem()或者delete删除，或者用户没有清除浏览器缓存，globalStorage中存储的数据会一直保存在磁盘上，适合存储文档或用户偏好设置。     
 
-localStorage：是Storage实例，该对象在HTML5规范中作为持久保存客户端的数据的方案取代了globalStorage。访问规则事先也设定，相当于globalStorage[location.host]。    
+localStorage：
+是Storage实例，该对象在HTML5规范中作为持久保存客户端的数据的方案取代了globalStorage。访问规则事先也设定，相当于globalStorage[location.host]。    
 对localStorage，globalStorage，sessionStorage进行操作都会触发storage事件。    
-
-请描述一下 cookies，sessionStorage 和 localStorage 的区别    
-cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）   
-cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。    
-sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。   
-
-CookiesLocal storage客户端/服务端客户端和服务端都能访问数据。Cookie的数据通过每一个请求发送到服务端只有本地浏览器端可访问数据，服务器不能访问本地存储直到故意通过POST或者GET的通道发送到服务器大小每个cookie有4095byte每个域5MB，chrome和safari限制是2.5MB过期Cookies有有效期，所以在过期之后cookie和cookie数据会被删除没有过期数据，无论最后用户从浏览器删除或者使用Javascript程序删除，我们都需要删除。
-存储大小：    
-    cookie数据大小不能超过4k。    
-    sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5MB或更大，Chrome和Safari是2.5MB。     
-有期时间：     
-    localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；   
-    sessionStorage  数据在当前浏览器窗口关闭后自动删除。   
-    cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭,或者过期时间   
 
 本地存储和事务存储之间的区别:    
 本地存储数据持续永久，但是会话在浏览器打开时有效知道浏览器关闭时会话变量重置    
 
 6、HTML5的离线储存怎么使用，工作原理能不能解释一下？
-离线检测：     
+--------
+离线检测：     
 HTML5定义了一个navigator.onLine属性，ture表示能上网，由于浏览器兼容问题，配合使用online和offline事件，当网络从在线转为离线触发offline，转为在线触发online，都在window对象上触发。    
+
 离线储存：    
 所谓的离线存储就是将一些资源文件保存在本地，这样后续的页面加载将使用本地的资源文件，在 离线的情况下可以继续访问web应用。在用户与因特网连接时，更新用户机器上的缓存文件。   
 原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
@@ -218,22 +212,24 @@ sessionStorage 数据在浏览器关闭后自动删除。
     FALLBACK:
    //offline.html
     ```
-3)、在离线状态时，操作window.applicationCache进行需求实现。
+3)、在离线状态时，操作window.applicationCache进行需求实现。    
 
 HTML5中的应用缓存
-一个最需要的事最终是用户的离线浏览，换句话说，如果网络连接不可用时，页面应该来自浏览器缓存，离线应用缓存可以帮助你达到这个目的，应用缓存可以帮助你指定哪些文件需要缓存，哪些不需要。
+一个最需要的事最终是用户的离线浏览，换句话说，如果网络连接不可用时，页面应该来自浏览器缓存，离线应用缓存可以帮助你达到这个目的，应用缓存可以帮助你指定哪些文件需要缓存，哪些不需要。     
 1)如何实现应用缓存：首先我们需要指定”manifest”文件，“manifest”文件帮助你定义你的缓存如何工作
+```javascript
 CACHE MANIFEST          //所有manifest文件都以“CACHE MANIFEST”语句开始.
 # version 1.0     //#（散列标签）有助于提供缓存文件的版本.
 CACHE :           //CACHE 命令指出哪些文件需要被缓存.Mainfest文件的内容类型应是“text/cache-manifest”.
 Login.aspx
+```
 2)创建一个缓存manifest文件以后，接下来的事情实在HTML页面中提供mainfest连接，如下所示：
 \<html manifest="cache.aspx"\>
 当以上文件第一次运行，他会添加到浏览器应用缓存中，在服务器宕机时，页面从应用缓存中获取
 3)应用缓存通过变更“#”标签后的版本版本号而被移除
 4)应用缓存中的回退帮助你指定在服务器不可访问的时候，将会显示某文件。例如在下面的manifest文件中，我们说如果谁敲击了”/home”同时服务器不可到达的时候，”homeoffline.html”文件应送达.
 FALLBACK:
-/home/ /homeoffline.html
+/home/homeoffline.html
 5)NETWORK:                                                        //不需要缓存的文件
 home.aspx
 
