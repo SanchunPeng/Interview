@@ -93,7 +93,7 @@ WebSql不是HTML5的一个规范吗，许多人把它标记为HTML5，但是他�
 我们如何使用WebSQL：     
 第一步我们需要做的是使用如下所示的“OpenDatabase”方法打开数据库，第一个参数是数据库的名字，接下来是版本，然后是简单原文标题，最后是数据库大小；     
 ```javascript
-var db=openDatabase('dbCustomer','1.0','Customer app’, 2 * 1024 * 1024);
+var db=openDatabase('dbCustomer','1.0','Customer app', 2 * 1024 * 1024);
 ```
 为了执行SQL，我们需要使用“transaction”方法，并调用”executeSql”方法来使用SQL
 ```javascript
@@ -110,7 +110,7 @@ db.transaction(function (tx) {
    tx.executeSql('SELECT * FROM tblcust', [], function (tx, results) {
    for (i = 0; i < len; i++){
      msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
-     document.querySelector('#customer).innerHTML +=  msg;
+     document.querySelector('#customer').innerHTML +=  msg;
 }
 }, null);
 });
