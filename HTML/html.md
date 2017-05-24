@@ -318,69 +318,77 @@ flex有兼容性问题
 父元素高度确定的单行文本垂直居中：line-height值与父元素的高度值相同    
 
 1)、table-cell + vertical-align
+```css
 .parent {
-		display: table-cell;
-		vertical-align: middle;
- 	}
-
+	display: table-cell;
+	vertical-align: middle;
+}
+```
 兼容性好(IE 8以下版本需要调整页面结构至 table)
 2)、absolute + transform
 强大的absolute对于这种小问题当然也是很简单的
+```css
 .parent {
-		position: relative;	
+	position: relative;	
 }
 .child {
-    		position: absolute;
-    		top: 50%;
-    		transform: translateY(-50%);
+    	position: absolute;
+    	top: 50%;
+    	transform: translateY(-50%);
 }
-
-绝对定位脱离文档流，不会对后续元素的布局造成影响。但如果绝对定位元素是唯一的元素则父元素也会失去高度。
-transform 为 CSS3 属性，有兼容性问题
-同水平居中，这也可以用margin-top实现，原理水平居中
+```
+绝对定位脱离文档流，不会对后续元素的布局造成影响。但如果绝对定位元素是唯一的元素则父元素也会失去高度。   
+transform 为 CSS3 属性，有兼容性问题   
+同水平居中，这也可以用margin-top实现，原理水平居中    
 3)、flex + align-items
-如果说absolute强大，那flex是最强的。但它有兼容问题
-	.parent {
- 		display: flex;
-		align-items: center;
-  	}
-
+如果说absolute强大，那flex是最强的。但它有兼容问题 
+```css
+.parent {
+ 	display: flex;
+	align-items: center;
+}
+```
 
 水平垂直居中
+--------
 1)、absolute + transform
+```css
 .parent {
-		position: relative;
+	position: relative;
 }
 .child {
-    		position: absolute;
-    		left: 50%;
-    		top: 50%;
-    		transform: translate(-50%, -50%)
+    	position: absolute;
+    	left: 50%;
+    	top: 50%;
+    	transform: translate(-50%, -50%)
 }
-
+```
 绝对定位脱离文档流，不会对后续元素的布局造成影响。
 transform 为 CSS3 属性，有兼容性问题
 2)、inline-block + text-align + table-cell + vertical-align
+```css
 .parent {
-    		text-align: center;
-   		 display: table-cell;
-    		vertical-align: middle;
+    	text-align: center;
+   	display: table-cell;
+    	vertical-align: middle;
 }
 .child {
-   		display: inline-block;
+   	display: inline-block;
 }
-
+```
 兼容性好
 3)、flex + justify-content + align-items
+```css
 .parent {
-		display: flex;
-		justify-content: center; /* 水平居中 */
-		align-items: center; /*垂直居中*/
+	display: flex;
+	justify-content: center; /* 水平居中 */
+	align-items: center; /*垂直居中*/
 }
-
+```
 只需设置父节点属性，无需设置子元素
 兼容性问题
 4)、jQuery、
+```javascript
 $(window).resize(function(){ 
     $(".mydiv").css({ 
          position: "absolute", 
@@ -388,104 +396,123 @@ $(window).resize(function(){
          top: ($(window).height() - $(".mydiv").outerHeight())/2 
     });        
  }); 
+```
  此外在页面载入时，就需要调用resize()。
+```javascript
  $(function(){ 
 	$(window).resize(); 
  }); 
-##一列定宽，一列自适应
+```
+一列定宽，一列自适应
+---------
 1)、float + margin
+```html
 <div class="parent">
  	 <div class="left">
   	 </div>
     	 <div class="right">
   	 </div>
-     </div>
-     <style>
-     .left {
-float: left;
-    	    width: 100px;
+ </div>
+```
+```css
+<style>
+.left {
+	float: left;
+    	width: 100px;
 }
-    .right {
-    	     margin-left: 100px
-   	     /*间距可再加入 margin-left */
+.right {
+    	 margin-left: 100px
+   	/*间距可再加入 margin-left */
 }
-    </style>
-
+</style>
+```
 IE 6 中会有3像素的 BUG，解决方法可以在 .left 加入 margin-left:-3px 当然也有解决这个小bug的方案如下：
+```html
 <div class="parent">
- 	 <div class="left">
+ 	<div class="left">
   	</div>
   	<div class="right-fix">
     		<div class="right">
     		</div>
   	</div>
-    </div>
-    <style>
-  	.left {
-    		float: left;
-    		width: 100px;
-  	}
-  	.right-fix {
-    		float: right;
-    		width: 100%;
-    		margin-left: -100px;
- 	}
-  	.right {
-    		margin-left: 100px
-    		/*间距可再加入 margin-left */
-  	}
+</div>
+```
+```css
+<style>
+.left {
+    	float: left;
+    	width: 100px;
+}
+.right-fix {
+    	float: right;
+    	width: 100%;
+    	margin-left: -100px;
+ }
+.right {
+    	margin-left: 100px
+    	/*间距可再加入 margin-left */
+}
 </style>
-
+```
 此方法不会存在 IE 6 中3像素的 BUG，但 .left 不可选择， 需要设置 .left {position: relative} 来提高层级。 注意此方法增加了不必要的 HTML 文本结构。
 2)、float + overflow
+```html
 <div class="parent">
   	 <div class="left">
   	 </div>
   	 <div class="right">
   	 </div>
-      </div>
-      <style>
-  	.left {
-    		float: left;
-    		width: 100px;
-  	}
-  	.right {
-    		overflow: hidden;
-  	}
-      </style>
-
-设置 overflow: hidden 会触发 BFC 模式（Block Formatting Context）块级格式上下文。BFC是什么呢。用通俗的来讲就是，随便你在BFC 里面干啥，外面都不会受到影响 。此方法样式简单但不支持 IE 6
+</div>
+```
+```css
+ <style>
+.left {
+    	float: left;
+    	width: 100px;
+}
+.right {
+    	overflow: hidden;
+}
+</style>
+```
+设置 overflow: hidden 会触发 BFC 模式（Block Formatting Context）块级格式上下文。BFC是什么呢。用通俗的来讲就是，随便你在BFC 里面干啥，外面都不会受到影响 。此方法样式简单但不支持 IE 6   
 3)、table
+```html
 <div class="parent">
   	<div class="left">
   	</div>
   	<div class="right">
   	</div>
-     </div>
-     <style>
-  	.parent {
-  		display: table;
- 		width: 100%;
-		table-layout: fixed;
-  	}
- 	.left {
-		display: table-cell;
-		width: 100px;
- 	}
-  .right {
+</div>
+```
+```css
+<style>
+.parent {
+  	display: table;
+ 	width: 100%;
+	table-layout: fixed;
+}
+.left {
+	display: table-cell;
+	width: 100px;
+ }
+.right {
 	display: table-cell;
 	/*宽度为剩余宽度*/
-  }
+ }
 </style>
-
+```
 table 的显示特性为每列的单元格宽度和一定等与表格宽度。 table-layout: fixed 可加速渲染，也是设定布局优先。table-cell 中不可以设置 margin 但是可以通过 padding 来设置间距
 4)、flex
+```html
 <div class="parent">
   <div class="left">
   </div>
   <div class="right">
   </div>
 </div>
+```
+```css
 <style>
   .parent {
    display: flex;
@@ -498,13 +525,15 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
     	flex: 1;
   }
 </style>
-
+```
 低版本浏览器兼容问题
 性能问题，只适合小范围布局
 我们在学会一列定宽，一列自适应的布局后也可以方便的实现 多列定宽，一列自适应 多列不定宽加一列自适应
 
 等分布局
+-------
 1)、float
+```html
 <div class="parent">
 	<div class="column">
 	</div>
@@ -515,6 +544,8 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
  	<div class="column">
  	</div>
 </div>
+```
+```css
 <style>
   .parent {
 	margin-left: -20px;
@@ -526,9 +557,10 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
 	box-sizing: border-box;
   }
 </style>
-
+```
 此方法可以完美兼容 IE8 以上版本
 2)、flex
+```html
 <div class="parent">
 	<div class="column">
 	</div>
@@ -539,6 +571,8 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
  	<div class="column">
  	</div>
 </div>
+```
+```css
 <style>
   .parent {
    display: flex;
@@ -550,9 +584,10 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
 	margin-left: 20px;
   }
 </style>
-
+```
 强大简单，有兼容问题
 3)、 table
+```html
 <div class='parent-fix'>
   	<div class="parent">
     		<div class="column">
@@ -565,6 +600,8 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
     		</div>
   	</div>
 </div>
+```
+```css
 <style>
   .parent-fix {
 	margin-left: -20px;
@@ -580,17 +617,21 @@ table 的显示特性为每列的单元格宽度和一定等与表格宽度。 t
 	padding-left: 20px;
   }
 </style>
-
+```
 
 等高布局
+-------
 1)、table
 table 的特性为每列等宽，每行等高可以用于解决此需求
+```html
 <div class="parent">
   <div class="left">
   </div>
   <div class="right">
   </div>
 </div>
+```
+```css
 <style>
   .parent {
     display: table;
@@ -606,14 +647,17 @@ table 的特性为每列等宽，每行等高可以用于解决此需求
     /*宽度为剩余宽度*/
   }
 </style>
-
+```
 2)、flex
+```html
 <div class="parent">
   <div class="left">
   </div>
   <div class="right">
   </div>
 </div>
+```
+```css
 <style>
   .parent {
     display: flex;
@@ -626,15 +670,19 @@ table 的特性为每列等宽，每行等高可以用于解决此需求
     flex: 1;
   }
 </style>
+```
 
 注意这里实际上使用了 align-items: stretch，flex 默认的 align-items 的值为 stretch
 3. float
+```html
 <div class="parent">
   <div class="left">
   </div>
   <div class="right">
   </div>
 </div>
+```
+```css
 <style>
   .parent {
     overflow: hidden;
@@ -653,7 +701,7 @@ table 的特性为每列等宽，每行等高可以用于解决此需求
     overflow: hidden;
   }
 </style>
-
+```
 此方法为伪等高（只有背景显示高度相等），左右真实的高度其实不相等。 兼容性较好。布局实现方式多种多样。主要就使用position、flex 、table（从很久很久以前起，我们就抛弃了table布局页面，但display: table;是异常强大）、float等属性目前flex兼容性较差     
   
 24、flex的基础知识
