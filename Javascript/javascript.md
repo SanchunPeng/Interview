@@ -161,8 +161,8 @@ IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie�
 cookie的构造：       
 cookie的名称不区分大小写，可以设置cookie域，路径，失效时间（没定义的话是会话结束失效），安全标志（SSL）e.g.Set-Cookie:name-value;domain=.wrox.com;path=/;secure，指定在.erox.com域或子域下的所有路径发送https请求时都会带上cookie。都会进行URL编码。    
 
-web storage和cookie的区别：            
-Web Storage的概念和cookie相似，区别是它是为了更大容量存储，在cookie之外存储会话数据的途径设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。     
+web storage和cookie的区别：    
+Web Storage的概念和cookie相似，区别是它是为了更大容量存储，在cookie之外存储会话数据的途径设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。      
 
 Web Storage定义了两种用于存储数据的对象，sessionStorage和localStorage，前者严格用于在一个浏览器会话中存储数据，浏览器关闭后立即删除，后者用户跨会话持久化数据并遵循跨域安全策略。要访问同一个localStorage对象，页面必须来自同一个域名（子域名无效），同一种协议，同一端口。    
 
