@@ -257,56 +257,65 @@ d、性能：某些平台上的引擎问题导致HTML5性能低下。
 e、浏览器兼容性：最大缺点，IE9以下浏览器几乎全军覆没。    
 
 
-21、如何居中div？ 如何居中一个浮动元素？
-水平居中和垂直居中：
-水平居中布局（text-align）：
+23、如何居中div？ 如何居中一个浮动元素？
+--------
+水平居中和垂直居中：    
+水平居中布局（text-align）：   
 1)、margin+定宽：width: 100px;margin: 0 auto;
 2)、table + margin：display: table;margin: 0 auto;
 (display: table 在表现上类似 block 元素，但是宽度为内容宽。)
 3)、inline-block + text-align
+```css
 .child {
-		display: inline-block;
-      }
-      .parent {
-text-align: center;
-	}
+	display: inline-block;
+}
+.parent {
+	text-align: center;
+}
+```
 兼容性佳（甚至可以兼容 IE 6 和 IE 7）
 4)、 absolute + margin-left
+```css
 .parent {
-		position: relative;
-  	}
+	position: relative;
+}
 .child {
-		position: absolute;
-   		left:50%;
-        	width: 100px;
-    		margin-left: -50px;  /* width/2 */
-	}
+	position: absolute;
+   	left:50%;
+        width: 100px;
+    	margin-left: -50px;  /* width/2 */
+}
+```
 宽度固定
 相比于使用transform ，有兼容性更好
 5)、 absolute + transform
-  	.parent {
-    		position: relative;
-  	}
-  	.child {
-  	 	position: absolute;
-   		left: 50%;
-   		transform: translateX(-50%);
-  	}
-
+```css
+.parent {
+    	position: relative;
+}
+.child {
+  	position: absolute;
+   	left: 50%;
+   	transform: translateX(-50%);
+}
+```
 绝对定位脱离文档流，不会对后续元素的布局造成影响。
 transform 为 CSS3 属性，有兼容性问题
 6)、 flex + justify-content
-	.parent {
-		display: flex;
-		justify-content: center;
-	}
+```css
+.parent {
+	display: flex;
+	justify-content: center;
+}
+```
+只需设置父节点属性，无需设置子元素   
+flex有兼容性问题   
 
-只需设置父节点属性，无需设置子元素
-flex有兼容性问题
 垂直居中
-垂直居中：vertical-align:middle;
-父元素高度不确定的文本，图片，块级元素的竖直居中：给父元素设置相同的上下边距实现
-父元素高度确定的单行文本垂直居中：line-height值与父元素的高度值相同
+----
+垂直居中：vertical-align:middle;   
+父元素高度不确定的文本，图片，块级元素的竖直居中：给父元素设置相同的上下边距实现    
+父元素高度确定的单行文本垂直居中：line-height值与父元素的高度值相同    
 
 1)、table-cell + vertical-align
 .parent {
@@ -645,37 +654,43 @@ table 的特性为每列等宽，每行等高可以用于解决此需求
   }
 </style>
 
-此方法为伪等高（只有背景显示高度相等），左右真实的高度其实不相等。 兼容性较好。布局实现方式多种多样。主要就使用position、flex 、table（从很久很久以前起，我们就抛弃了table布局页面，但display: table;是异常强大）、float等属性目前flex兼容性较差 
+此方法为伪等高（只有背景显示高度相等），左右真实的高度其实不相等。 兼容性较好。布局实现方式多种多样。主要就使用position、flex 、table（从很久很久以前起，我们就抛弃了table布局页面，但display: table;是异常强大）、float等属性目前flex兼容性较差     
   
-flex 的核心的概念就是容器和轴。容器包括外层的父容器和内层的子容器，轴包括主轴和交叉轴
-父容器：
-设置子容器沿主轴如何排列：justify-content
-justify-content: flex-start | flex-end | center | space-between | space-around;
-flex-start：起始端对齐；flex-end：末尾端对齐；center：居中对齐；space-around：子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距离是子容器间距的一半；space-between：子容器沿主轴均匀分布，位于首尾两端的子容器与父容器相切。
-设置子容器沿交叉轴如何排列：align-items
- align-items: flex-start | flex-end | center | baseline | stretch;
-有flex-start：起始端对齐；flex-end：末尾段对齐；center：居中对齐；stretch：子容器沿交叉轴方向的尺寸拉伸至与父容器一致。
-设置换行方式：flex-wrap（决定子容器是否换行排列）
-flex-wrap: nowrap | wrap | wrap-reverse;
-nowrap：不换行；wrap：换行（沿着交叉轴的正方向换行）；wrap-reverse：逆序换行（沿着交叉轴的反方向换行）
+24、flex的基础知识
+-----
+flex 的核心的概念就是容器和轴。容器包括外层的父容器和内层的子容器，轴包括主轴和交叉轴    
+父容器：   
+设置子容器沿主轴如何排列：justify-content   
+justify-content: flex-start | flex-end | center | space-between | space-around;   
+flex-start：起始端对齐；flex-end：末尾端对齐；center：居中对齐；space-around：子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距离是子容器间距的一半；space-between：子容器沿主轴均匀分布，位于首尾两端的子容器与父容器相切。   
+
+设置子容器沿交叉轴如何排列：align-items    
+align-items: flex-start | flex-end | center | baseline | stretch;    
+有flex-start：起始端对齐；flex-end：末尾段对齐；center：居中对齐；stretch：子容器沿交叉轴方向的尺寸拉伸至与父容器一致。    
+
+设置换行方式：flex-wrap（决定子容器是否换行排列）   
+flex-wrap: nowrap | wrap | wrap-reverse;    
+nowrap：不换行；wrap：换行（沿着交叉轴的正方向换行）；wrap-reverse：逆序换行（沿着交叉轴的反方向换行）   
 align-content：当子容器多行排列时，设置行与行之间的对齐方式。沿交叉轴对齐，属性值和justify-content相同只是相对交叉轴，如果项目只有一根轴线，该属性不起作用
 
 子容器：
-在主轴上如何伸缩：flex
+在主轴上如何伸缩：flex   
 flex属性是flex-grow（放大比例）, flex-shrink（缩小比例） 和 flex-basis的简写，默认值为0 1 auto，该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
-flex 即弹性，会自动填充剩余空间，子容器的伸缩比例由 flex属性确定。
-单独设置子容器如何沿交叉轴排列：align-self
-如果子容器和父容器同时设置了该值，以子容器为准。该属性允许单个子容器有与其他子容器不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch，其他属性值和align-items的属性值一样
-order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0
+flex 即弹性，会自动填充剩余空间，子容器的伸缩比例由 flex属性确定。   
 
-轴：
-在 flex 布局中，flex-direction 属性决定主轴的方向，交叉轴的方向由主轴确定。
-flex-direction: row | row-reverse | column | column-reverse;
-row，向右，column,向下，row-reverse，向左，column-reverse,向上,主轴沿逆时针方向旋转 90° 就得到了交叉轴
-flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap
+单独设置子容器如何沿交叉轴排列：align-self   
+如果子容器和父容器同时设置了该值，以子容器为准。该属性允许单个子容器有与其他子容器不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch，其他属性值和align-items的属性值一样    
 
-CSS3的flex布局
-flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。
+order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0    
+
+轴：   
+在 flex 布局中，flex-direction 属性决定主轴的方向，交叉轴的方向由主轴确定。   
+flex-direction: row | row-reverse | column | column-reverse;   
+row，向右，column,向下，row-reverse，向左，column-reverse,向上,主轴沿逆时针方向旋转 90° 就得到了交叉轴   
+
+flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap   
+
+flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。   
 （1）   display：flex|inline-flex；flex：相当于block；inline-flex：相当于inline-block
 （2）   flex-direction（流动布局的主轴方向）：row（默认）； row-reverse：行反方向；column：列方向；  column-reverse：列方向相反
 （3）   flex-wrap如果轴线放不下，应该如何换行。nowrap（默认）：不换行；wrap：换行，第一行在上方；wrap-reverse:换行，第一张在下方。
@@ -696,21 +711,16 @@ stretch（默认）：在侧轴方向拉伸每个项目，使每个项目保持�
 （8）项目属性   order(排序，项目按照order值从小到大排列)
   flex-grow(空白空间分配比例)  flex-shrink(项目空间的分配比例)
 
-22、线程与进程的区别
-一个程序至少有一个进程,一个进程至少有一个线程. 
-线程的划分尺度小于进程，使得多线程程序的并发性高。 
-另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。 
-线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。 
-从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。
+24、documen.write和 innerHTML的区别
+------
+document.write只能重绘整个页面    
+innerHTML可以重绘页面的一部分    
 
-23、documen.write和 innerHTML的区别
-document.write只能重绘整个页面
-innerHTML可以重绘页面的一部分
+document.write是直接将内容写入页面的内容流，会导致页面全部重绘，innerHTML将内容写入某个DOM节点，不会导致页面全部重绘。document.write只能重绘整个页面；innerHTML可以重绘页面的一部分    
+document.write是直接写入到页面的内容流，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致页面被重写。    
+innerHTML则是DOM页面元素的一个属性，代表该元素的html内容。你可以精确到某一个具体的元素来进行更改。如果想修改document的内容，则需要修改document.documentElement.innerElement。     
 
-document.write是直接将内容写入页面的内容流，会导致页面全部重绘，innerHTML将内容写入某个DOM节点，不会导致页面全部重绘。document.write只能重绘整个页面；innerHTML可以重绘页面的一部分
-document.write是直接写入到页面的内容流，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致页面被重写。
-innerHTML则是DOM页面元素的一个属性，代表该元素的html内容。你可以精确到某一个具体的元素来进行更改。如果想修改document的内容，则需要修改document.documentElement.innerElement。
-
-页面可见性（Page Visibility）API 可以有哪些用途？
-（1）通过visibilitystate的值得检测页面当前是否可见，以及打开网页的时间
-（2）在页面被切换到其他后台进程时，自动暂停音乐或视频的播放。
+25、页面可见性（Page Visibility）API 可以有哪些用途？
+------
+（1）通过visibilitystate的值得检测页面当前是否可见，以及打开网页的时间    
+（2）在页面被切换到其他后台进程时，自动暂停音乐或视频的播放。    
