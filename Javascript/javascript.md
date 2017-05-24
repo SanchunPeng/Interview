@@ -1,4 +1,4 @@
-什么是Web Workers？为什么我们需要他们？
+1、什么是Web Workers？为什么我们需要他们？
 -------
                 
 循环代码在HTML按钮点击以后执行，这个方法执行是同步的，换句话说这个浏览器必须等到循环完成才能操作，这个会进一步导致浏览器冻结并且没有响应。     
@@ -85,3 +85,33 @@ Web Worker线程的限制是什么？
 -------
        
 Web worker线程不能修改HTML元素，全局变量和Window.Location一类的窗口属性。你可以自由使用Javascript数据类型，XMLHttpRequest调用等。  
+
+2、什么是WebSQL？
+--------
+WebSQL是一个在浏览器客户端的结构关系数据库，这是浏览器内的本地RDBMS(关系型数据库系统)，你可以使用SQL查询      
+WebSql不是HTML5的一个规范吗，许多人把它标记为HTML5，但是他不是HTML5的规范的一部分，这个规范是基于SQLite的    
+我们如何使用WebSQL：     
+第一步我们需要做的是使用如下所示的“OpenDatabase”方法打开数据库，第一个参数是数据库的名字，接下来是版本，然后是简单原文标题，最后是数据库大小；     
+```javascript
+var db=openDatabase('dbCustomer','1.0','Customer app’, 2 * 1024 * 1024);
+```
+为了执行SQL，我们需要使用“transaction”方法，并调用”executeSql”方法来使用SQL
+```javascript
+db.transaction(function (tx) 
+{
+tx.executeSql('CREATE TABLE IF NOT EXISTS tblCust(id unique, customername)');
+tx.executeSql('INSERT INTO tblcust (id, customername) VALUES(1, "shiv")');
+tx.executeSql('INSERT INTO tblcust (id, customername) VALUES (2, "raju")');
+}
+```
+万一你使用“select”查你会得到数据”result”集合，我们可以通过循环展示到HTML的用户界面
+```javascript
+db.transaction(function (tx) {
+   tx.executeSql('SELECT * FROM tblcust', [], function (tx, results) {
+   for (i = 0; i < len; i++){
+     msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+     document.querySelector('#customer).innerHTML +=  msg;
+}
+}, null);
+});
+```
