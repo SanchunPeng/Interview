@@ -64,7 +64,7 @@ Worker 的环境与作用域
   ● navigator 对象：可以获取到 ppName，appVersion，platform，userAgent 等信息；
   ● location 对象（只读）：可以获取到有关当前 URL 的信息；
 
-在 Worker 中加载外部脚本
+如何在 Worker 中加载外部脚本
 --------
          
 可以通过 Worker 环境中的全局函数 importScripts() 加载外部 js 脚本到当前 Worker 脚本中，它接收多个参数，参数都为加载脚本的链接字符串，比如：
