@@ -738,26 +738,17 @@ row，向右，column,向下，row-reverse，向左，column-reverse,向上,主�
 
 flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap   
 
-flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。   
+总结:flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。     
 （1）   display：flex|inline-flex；flex：相当于block；inline-flex：相当于inline-block
-（2）   flex-direction（流动布局的主轴方向）：row（默认）； row-reverse：行反方向；column：列方向；  column-reverse：列方向相反
-（3）   flex-wrap如果轴线放不下，应该如何换行。nowrap（默认）：不换行；wrap：换行，第一行在上方；wrap-reverse:换行，第一张在下方。
-（4）   flex-flow（“flex-direction”和“flex-wrap”属性的缩写），row nowrap为其默认属性值，分别表示flex-direction和flex-wrap属性。
-（5）   justify-content（主轴方向内容对齐方式）；
-flex-srart（默认）：与主轴起始方向对齐；flex-end：向主轴终点方向对齐。
-center：向主轴中点方向对齐。
-space-between：起始位置向主轴起始方向对齐，终点位置向主轴终点方向对齐，其余位置向主轴中点方向对齐。
-space-around：与space-between类似，只是起始位置和终点位置保留一半空白。
-（6）   align-content（多个主轴沿侧轴方向的内容堆栈对齐方式）
-flex-start：多个主轴沿侧轴起始方向对齐；flex-end：多个主轴沿侧轴终点方向对齐。
-center：多个主轴沿侧轴中点方向对齐；space-between：第一个主轴沿主轴起始方向对齐，末尾主轴沿主轴终点方向对齐，其他主轴均匀分布对齐。
-space-around：与space-between类似，只是侧轴起始位置和侧轴终点位置保留一半空白；stretch（默认）：伸缩多个主轴，保持侧轴方向统一距离。
-（7）   align-items（侧轴方向的内容对齐方式）
-flex-srart：与侧轴起始方向对齐；flex-end：向侧轴终点方向对齐。
-center：向侧轴中点方向对齐；baseline：在侧轴上保持基线对齐，以第一个项目的基线为准。
-stretch（默认）：在侧轴方向拉伸每个项目，使每个项目保持相同的起始位置和终点位置。
-（8）项目属性   order(排序，项目按照order值从小到大排列)
-  flex-grow(空白空间分配比例)  flex-shrink(项目空间的分配比例)
+（2）   flex-direction（流动布局的主轴方向）          
+（3）   flex-wrap如果轴线放不下，应该如何换行。        
+（4）   flex-flow（“flex-direction”和“flex-wrap”属性的缩写），row nowrap为其默认属性值，分别表示flex-direction和flex-wrap属性。     
+（5）   justify-content（主轴方向内容对齐方式）；    
+（6）   align-content（多个主轴沿侧轴方向的内容堆栈对齐方式）    
+（7）   align-items（侧轴方向的内容对齐方式）    
+（8）   order(排序，项目按照order值从小到大排列)     
+（9）flex-grow(空白空间分配比例)    
+（10）flex-shrink(项目空间的分配比例)     
 
 24、documen.write和 innerHTML的区别
 ------
