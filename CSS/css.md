@@ -7,14 +7,14 @@ visibility:hidden:视觉上的不可见，但是保留占据的空间，还具�
 
 2、box-sizing ： content-box || border-box || inherit
 -------
-content-box，border和padding不计算入width之内<br/>
-padding-box，padding计算入width内<br/>
-border-box，border和padding计算入width之内，其实就是怪异模式了<br/>
+content-box：border和padding不计算入width之内;<br/>
+padding-box：padding计算入width内;<br/>
+border-box：border和padding计算入width之内，其实就是怪异模式了;<br/>
 当为border-box,则让元素维持在了IE传统模式下的怪异模式，即，设置的元素的width和height都是包括元素的宽度和padding和border。可以运用到布局（因为当其内元素和父元素宽度相等时没有问题但是只要加了一点padding和margin整个布局就崩溃了）和表单元素（表单中除了checkbox和radio外默认都是2px的border）上。<br/>
 
 3、浏览器渲染
 ---------
-DOM:浏览器将HTML解析成树形结构，即DOM.<br/>
+DOM:浏览器将HTML解析成树形结构，即DOM。<br/>
 CSSDOM:将css解析成树形结构，即CSSDOM。<br/>
 Render Tree:DOM 和 CSSDOM合并后生成Render Tree。<br/>
 Layout：计算Render Tree每个节点的具体位置。<br/>
@@ -32,7 +32,7 @@ display 的属性值有：none|inline|block|inline-block|list-item|run-in|table|
 2）inline： display的默认属性。将元素显示为内联元素，元素前后没有换行符。我们知道内联元素是无法设置宽高的，所以一旦将元素的display 属性设为inline，设置属性height和width是没有用的。此时影响它的高度一般是内部元素的高度（font-size）和padding。<br/>
 3）block： 将元素将显示为块级元素，元素前后会带有换行符。设置为block后，元素可以设置width和height了。元素独占一行。<br/>
 4）inline-block：行内块元素。这个属性值融合了inline 和 block 的特性，即是它既是内联元素，又可以设置width和height。<br/>
-5）inherit：规定应该从父元素继承 display 属性的值<br/>
+5）inherit：规定应该从父元素继承 display 属性的值。<br/>
 6）table：此元素会作为块级表格来显示（类似 \<table\>），表格前后带有换行符。<br/>
 内联元素：\<a\>、\<span\>、\<br\>、\<i\>、\<em\>、\<strong\>、\<label\>、\<q\>、\<var\>、\<cite\>、\<code\><br/>
 块级元素：\<div\>、\<p\>、\<h1\>...\<h6\>、\<ol\>、\<ul\>、\<dl\>、\<table\>、\<address\>、\<blockquote\> 、\<form\><br/>
@@ -45,9 +45,9 @@ table-row-group：此元素会作为一个或多个行的分组来显示（类�
 table-header-group：此元素会作为一个或多个行的分组来显示（类似 \<thead\>）。<br/>
 table-footer-group： 此元素会作为一个或多个行的分组来显示（类似 \<tfoot\>）。<br/>
 table-row：此元素会作为一个表格行显示（类似 \<tr\>）。<br/>
-table-column-group：此元素会作为一个或多个列的分组来显示（类似 <colgroup>）。<br/>
+table-column-group：此元素会作为一个或多个列的分组来显示（类似\<colgroup\>）。<br/>
 table-column：此元素会作为一个单元格列显示（类似 \<col\>）<br/>
-table-cell：此元素会作为一个表格单元格显示（类似 \<td\> 和 <th>）<br/>
+table-cell：此元素会作为一个表格单元格显示（类似 \<td\> 和 \<th\>）<br/>
 table-caption：此元素会作为一个表格标题显示（类似 \<caption\>）<br/>
 inherit： 规定应该从父元素继承 display 属性的值。<br/>
 
@@ -121,7 +121,7 @@ inherit<br/>
 A：共同点：<br/>
 1）.改变行内元素的呈现方式，display被置为block；<br/>
 2）.让元素脱离普通流，不占据空间；<br/>
-3）.默认会覆盖到非定位元素上<br/>
+3）.默认会覆盖到非定位元素上;<br/>
 B：不同点：<br/>
 absolute的”根元素“是可以设置的，而fixed的”根元素“固定为浏览器窗口。当你滚动网页，fixed元素与浏览器窗口之间的距离是不变的。<br/>
 
@@ -146,11 +146,13 @@ div#demo {
 注：IE6下将边框设置为transparent并不会透明，会产生阴影，可设置为border-style:dashed dashed solid dashed;<br/>
 
 用CSS3 transfrom旋转45度实现<br/>
+```css
 -webkit-transform: rotate(45deg); <br/>
 -moz-transform: rotate(45deg);<br/>
 -ms-transform: rotate(45deg);<br/>
 -o-transform: rotate(45deg);<br/>
 transform: rotate(45deg);<br/>
+```
 
 11、常用的css hack的技巧 ？
 --------- 
@@ -160,8 +162,8 @@ Html/Css
 --\>
 
 属性级HACK：<br/>
-_:选择IE6及以下。连接线（中划线）（-）亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线（_）更为合适。<br/>
-*:选择IE7及以下。诸如：（+）与（#）之类的均可使用，不过业界对（*）的认知度更高<br/>
+     _：选择IE6及以下。连接线（中划线）（-）亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线更为合适。<br/>
+        *选择IE7及以下。诸如：（+）与（#）之类的均可使用，不过业界对（*）的认知度更高<br/>
 \9：选择IE6+<br/>
 \0：选择IE8+和Opera15以下的浏览器<br/>
 e.g.<br/>
@@ -175,20 +177,20 @@ e.g.<br/>
 ```
 
 选择符级HACK：<br/>
-在选择符前面加*，+构成选择符级HACK<br/>
+在选择符前面加*，+构成选择符级HACK。<br/>
 
 12、li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
 -------
 行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。<br/>
 解决方法：<br/>
-（1）浮动li中float：left<br/>
-（2）在ul中用font-size：0（谷歌不支持）；可以使用letter-space：-3px<br/>
+（1）浮动li中float：left；<br/>
+（2）在ul中用font-size：0（谷歌不支持）；可以使用letter-space：-3px；<br/>
 
 13、CSS里的visibility属性有个collapse属性值是干嘛用的？在不同浏览器下以后什么区别？
 --------
 当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。<br/>
 （1）谷歌浏览器中，使用collapse值和使用hidden没有区别。<br/>
-（2）火狐，opera和IE，使用collapse值和使用display：none没有什么区别<br/>
+（2）火狐，opera和IE，使用collapse值和使用display：none没有什么区别。<br/>
 
 14、position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？
 ----------
@@ -206,14 +208,14 @@ BFC，块级格式化上下文，一个创建了新的BFC的盒子是独立布�
 不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。<br/>
 定位方案：<br/>
 （1）普通流（normal flow）按照html中的先后位置至上而下布局，行内元素水平排列 ，当前行被占满后换行，块级元素会被渲染为完整的新行。<br/>
-（2）浮动（floats）<br/>
+（2）浮动（floats）。<br/>
 元素首先按照普通流位置出现，然后根据浮动的方向尽可能的向左向右偏移，与印刷的文本环绕相似。<br/>
-（3）绝对定位（absolute position）<br/>
+（3）绝对定位（absolute position）。<br/>
 绝对定位中，元素会整体脱离普通流BFC正是属于普通流，因此对兄弟元素也不会造成什么影响。具有 BFC 的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并 且 BFC 具有普通容器没有的一些特性。浮动元素，绝对定位元素，display，overflow会触发BFC。<br/>
 特性：<br/>
-（1）会阻止外边距折叠<br/>
-（2）会包含浮动元素<br/>
-（3）阻止元素被浮动元素覆盖<br/>
+（1）会阻止外边距折叠。<br/>
+（2）会包含浮动元素。<br/>
+（3）阻止元素被浮动元素覆盖。<br/>
 
 16、css定义的权重
 ---------
@@ -230,18 +232,18 @@ BFC，块级格式化上下文，一个创建了新的BFC的盒子是独立布�
 
 17、设置元素浮动后，该元素的display值是多少？请解释一下为什么会出现浮动和什么时候需要清除浮动？清除浮动的方式
 ----------
-设置元素浮动后，display：block<br/>
+设置元素浮动后，display：block。<br/>
 IE出现双边框的原因：浮动元素的浮动方向与margin的方向一致会出现双边框。<br/>
 解决bug：（1）给浮动元素添加一个display：inline（2）给IE6写一个hack，其值为正常值的一半。<br/>
 浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。<br/>
 
 为什么会出现浮动:<br/>
-出现浮动之后，我们可以很好的进行页面布局<br/>
+出现浮动之后，我们可以很好的进行页面布局。<br/>
 
 浮动元素引起的问题：<br/>
-（1）在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或 right）的元素，在这种情况下，容器的高度不能自动伸长撑开以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动<br/>
-（2）与浮动元素同级的非浮动元素会跟随其后<br/>
-（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构<br/>
+（1）在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或 right）的元素，在这种情况下，容器的高度不能自动伸长撑开以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动。<br/>
+（2）与浮动元素同级的非浮动元素会跟随其后。<br/>
+（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构。<br/>
 
 清除浮动的方式：<br/>
 1）使用空标签清除浮动。<br/>
@@ -251,13 +253,13 @@ IE出现双边框的原因：浮动元素的浮动方向与margin的方向一致
    ```
    （缺点：不过这个办法会增加无意义标签使HTML结构看起来不够简洁。）<br/>
 2）使用overflow。<br/>
-   给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。|| overflow:hidden<br/>
+   给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。|| overflow:hidden。<br/>
 3）使用after伪对象清除浮动。<br/>
    该方法只适用于非IE浏览器。具体写法可参照以下示例。使用中需注意以下几点。该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；<br/>
    清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示。<br/>
 4）、父级div定义height；<br/>
 5）、父级div 也一起浮动；<br/>
-6）、父级div 定义display:table<br/>
+6）、父级div 定义display:table；<br/>
 7）、常规的使用一个class；<br/>
 ```css
 .clearfix:before, .clearfix:after {
@@ -283,16 +285,15 @@ IE出现双边框的原因：浮动元素的浮动方向与margin的方向一致
 ```
 解析原理：<br/>
 
-1)display:block 使生成的元素以块级元素显示,占满剩余空间;<br/>
+1)display:block 使生成的元素以块级元素显示,占满剩余空间。<br/>
 2)height:0 避免生成内容破坏原有布局的高度。<br/>
-3)visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;<br/>
-4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙；<br/>
+3)visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互。<br/>
+4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙。<br/>
 5）zoom：1 触发IE hasLayout。<br/>
 通过分析发现，除了clear：both用来闭合浮动的，其他代码无非都是为了隐藏掉content生成的内容，这也就是其他版本的闭合浮动为什么会有font-size：0，line-height：0。<br/>
 
 zoom:1的清楚浮动原理?<br/>
-清除浮动，触发hasLayout；
-Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。<br/>
+清除浮动，触发hasLayout。Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。<br/>
 来龙去脉大概如下：<br/>
 当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。<br/>
 Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。<br/>
@@ -404,9 +405,9 @@ html div tr td {..}
     font-size: 15px;
 }
 ```
-（7）最好使用表示语义的名字。一个好的类名应该是描述他是什么而不是像什么<br/>
-（8）避免！important，可以选择其他选择器<br/>
-（9）尽可能的精简规则，你可以合并不同类里的重复规则<br/>
+（7）最好使用表示语义的名字。一个好的类名应该是描述他是什么而不是像什么。<br/>
+（8）避免！important，可以选择其他选择器。<br/>
+（9）尽可能的精简规则，你可以合并不同类里的重复规则。<br/>
 
 19、浏览器是怎样解析CSS选择器的？
 -------
@@ -422,12 +423,12 @@ html div tr td {..}
 ------
 margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。<br/>
 何时使用margin：<br/>
-（1）需要在border外侧添加空白<br/>
-（2）空白处不需要背景色<br/>
+（1）需要在border外侧添加空白。<br/>
+（2）空白处不需要背景色。<br/>
 （3）上下相连的两个盒子之间的空白，需要相互抵消时。<br/>
 何时使用padding：<br/>
-（1）需要在border内侧添加空白<br/>
-（2）空白处需要背景颜色<br/>
+（1）需要在border内侧添加空白。<br/>
+（2）空白处需要背景颜色。<br/>
 （3）上下相连的两个盒子的空白，希望为两者之和。<br/>
 兼容性的问题：在IE5 IE6中，为float的盒子指定margin时，左侧的margin可能会变成两倍的宽度。通过改变padding或者指定盒子的display：inline解决。<br/>
 
@@ -438,32 +439,31 @@ PS：当按百分比设定一个元素的宽度时，它是相对于父容器的
 
 23、全屏滚动的原理是什么？用到了CSS的那些属性？<br/>
 -----
-（1）原理：方法一是整体的元素一直排列下去，假设有5个需要展示的全屏页面，那么高度是500%，只是展示100%，剩下的可以通过transform进行y轴定位，也可以通过margin-top实现<br/>
+（1）原理：方法一是整体的元素一直排列下去，假设有5个需要展示的全屏页面，那么高度是500%，只是展示100%，剩下的可以通过transform进行y轴定位，也可以通过margin-top实现。<br/>
 （2）overflow：hidden；transition：all 1000ms ease；<br/>
 
 24、什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？
 ------
 （1）响应式网站设计(Responsive Web design)的理念是：集中创建页面的图片排版大小，可以智能地根据用户行为以及使用的设备环境（系统平台、屏幕尺寸、屏幕定向等）进行相对应的布局。<br/>
-（2）基本原理: 媒体查询 @media<br/>
-（3）兼容IE可以使用JS辅助一下来解决<br/>
+（2）基本原理: 媒体查询 @media。<br/>
+（3）兼容IE可以使用JS辅助一下来解决。<br/>
 
 25、视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）
 -------
 视差滚动（Parallax Scrolling）就是这样的效果之一。这种技术通过在网页向下滚动的时候，控制背景的移动速度比前景的移动速度慢来创建出令人惊叹的3D效果。<br/>
 原理：<br/>
 （1）CSS3实现<br/>
-优点：开发时间短、性能和开发效率比较好，缺点是不能兼容到低版本的浏览器<br/>
+优点：开发时间短、性能和开发效率比较好，缺点是不能兼容到低版本的浏览器。<br/>
 （2）jquery实现<br/>
 通过控制不同层滚动速度，计算每一层的时间，控制滚动效果。<br/>
-优点：能兼容到各个版本的，效果可控性好<br/>
-缺点：开发起来对制作者要求高<br/>
+优点：能兼容到各个版本的，效果可控性好。<br/>
+缺点：开发起来对制作者要求高。<br/>
 （3）插件实现方式<br/>
-例如：parallax-scrolling，兼容性十分好<br/>
+例如：parallax-scrolling，兼容性十分好。<br/>
 
 26、::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
 -------
-单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法.<br/>
-比如:first-line、:first-letter、:before、:after等，<br/>
+单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法。比如:first-line、:first-letter、:before、:after等。<br/>
 在css2之前用的是单冒号，之后css3使用时双冒号。目前除了IE外不兼容双冒号，其他的浏览器兼容双冒号，建议还是使用单冒号。<br/>
 ::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在与dom之中，只存在在页面之中。同理，after是在主体内容之后显示的。想让插入的内容出现在其它内容前，使用::before，之后使用::after；在代码顺序上，::after生成的内容也比::before生成的内容靠后。如果按堆栈视角，::after生成的内容会在::before生成的内容之上<br/>
 
@@ -476,7 +476,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     color: rgb(0, 0, 0);
 }
 ```
-这黄色背景是chrome会默认给自动填充的input表单加上input：-webkit-autofill私有属性.<br/>
+这黄色背景是chrome会默认给自动填充的input表单加上input：-webkit-autofill私有属性。<br/>
 ```css
 input：-webkit-autofill{
     background-color : #FAFFBD ;
@@ -485,18 +485,18 @@ input：-webkit-autofill{
 }
 ```
 第一种情况：input文本框是纯色背景的<br/>
-可以对input：-webkit-autofill使用足够大的纯色内阴影来覆盖input输入框的黄色背景<br/>
+可以对input：-webkit-autofill使用足够大的纯色内阴影来覆盖input输入框的黄色背景。<br/>
 ```css
 input:-webkit-autofill{
     -webkit-box-shadow:0 0 0px 1000px white inset;
     border：1px solid #ccc ！important;
 }
 ```
-除了chrome默认定义的background-color，background-image，color不能用!important提升其优先级 ，所以只能用覆盖了。其他的属性均可使用!important提升其优先级<br/>
+除了chrome默认定义的background-color，background-image，color不能用!important提升其优先级 ，所以只能用覆盖了。其他的属性均可使用!important提升其优先级。<br/>
 第二种情况：input文本框使用背景图片<br/>
-1)、图片不复杂可以使用第一种情况解决，纯色内阴影覆盖<br/>
+1)、图片不复杂可以使用第一种情况解决，纯色内阴影覆盖。<br/>
 2)、使用js实现;存在一个问题是使用js方法会导致提交表单的时候无法将value值传过去。<br/>
-3)、使用form标签上的关闭自动填充功能：autocomplete="off"<br/>
+3)、使用form标签上的关闭自动填充功能：autocomplete="off"。<br/>
 
 28、让页面里的字体变清晰，变细用CSS怎么做？（-webkit-font-smoothing: antialiased;）
 -----
@@ -518,7 +518,7 @@ input:-webkit-autofill{
     -webkit-text-size-adjust:none; font-size:9px; 
 } 
 ```
-方法二：现在可以使用css3里的一个属性：transform：scale（）<br/>
+方法二：现在可以使用css3里的一个属性：transform：scale()<br/>
 ```css
 p{
     font-size:10px;
@@ -539,13 +539,13 @@ fixed的元素是相对整个页面固定位置的，你在屏幕上滑动只是
 
 33、如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
 -----
-多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms <br/>
+多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms。 <br/>
 
 34、overflow: scroll时不能平滑滚动的问题怎么处理？
 -----
 （1）高度尺寸不确定的时候，使用：overflow-y：scroll;<br/>
 （2）高度尺寸确定的，要么没有滚动条，要么直接出现，不会出现跳动。<br/>
-（3）css3计算calc和vw单位巧妙实现滚动条出现页面不跳动：<br/>
+（3）css3计算calc和vw单位巧妙实现滚动条出现页面不跳动。<br/>
 ```css
 .wrap-outer {
 margin-left: calc(100vw - 100%);
@@ -557,9 +557,9 @@ margin-left: calc(100vw - 100%);
 padding-left: calc(100vw - 100%);
 }
 ```
-首先，.wrap-outer指的是居中定宽主体的父级，如果没有，创建一个，然后，calc是css3的计算<br/>
-100vw是浏览器的内部宽度，而100%是可用宽度，不含滚动条<br/>
-calc（100vw-100%）是浏览器的滚动条的宽度<br/>
+首先，.wrap-outer指的是居中定宽主体的父级，如果没有，创建一个，然后，calc是css3的计算。<br/>
+100vw是浏览器的内部宽度，而100%是可用宽度，不含滚动条。<br/>
+calc（100vw-100%）是浏览器的滚动条的宽度。<br/>
 
 35、有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
 -----
@@ -579,15 +579,15 @@ calc（100vw-100%）是浏览器的滚动条的宽度<br/>
 
 36、png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
 -----
-（1）png是便携式网络图片（Portable Network Graphics）是一种无损数据压缩位图文件格式.<br/>
+（1）png是便携式网络图片（Portable Network Graphics）是一种无损数据压缩位图文件格式。<br/>
  优点是：压缩比高，色彩好。 大多数地方都可以用。<br/>
-（2）jpg是一种针对相片使用的一种失真压缩方法，是一种破坏性的压缩，在色调及颜色平滑变化做的 <br/>
-不错。在www上，被用来储存和传输照片的格式。<br/>
-（3）gif是一种位图文件格式，以8位色重现真色彩的图像。可以实现动画效果时候<br/>
-webp格式<br/>
+（2）jpg是一种针对相片使用的一种失真压缩方法，是一种破坏性的压缩，在色调及颜色平滑变化做的。在www上，被用来储存和传输照片的格式。<br/>
+（3）gif是一种位图文件格式，以8位色重现真色彩的图像。可以实现动画效果时候。<br/>
+（4）webp格式<br/>
 是谷歌在2010年推出的图片格式，压缩率只有jpg的2/3，大小比png小了45%，缺点是压缩的时间更久了。兼容性不好，目前谷歌和opera支持。<br/>
 
-37、什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）<br/>
+37、什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
+-------
 如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量,所以不如隔离开。<br/>
 因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，提高了webserver的http请求的解析速度。<br/>
 Cookie隔离问题，同一个网页,多个RemoteWebDriver会共享同一个Cookie。比如想要并行登陆并执行操作，这样是不行的。<br/>
@@ -669,7 +669,7 @@ Flash提供了ExternalInterface接口与JavaScript通信，ExternalInterface有�
 
 47、有效的javascript变量定义规则
 -----
-第一个字符必须是一个字母、下划线（_）或一个美元符号（$）；其他字符可以是字母、下划线、美元符号或数字。<br/>
+第一个字符必须是一个字母、下划线或一个美元符号（$）；其他字符可以是字母、下划线、美元符号或数字。<br/>
 javascript系统方法<br/>
 parseFloat方法：该方法将一个字符串转换成对应的小数<br/>
 escape方法： 该方法返回对一个字符串编码后的结果字符串<br/>
