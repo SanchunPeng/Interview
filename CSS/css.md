@@ -24,7 +24,7 @@ Painting：将layout后的节点内容呈现在屏幕上；<br/>
 Repaint——(重绘)是在一个元素的外观被改变，但没有改变布局的情况下发生。如果只是改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性，将只会引起浏览器repaint。<br/>
 Reflow——（回流）：浏览器发现某个部分发生了点变化影响了布局，需要倒回去重新渲染，这个回退的过程就叫回流。意味着元件的几何尺寸变了，我们需要重新验证并计算 Render Tree。<br/>
 
-3、display有哪些值？说明他们的作用。
+4、display有哪些值？说明他们的作用。
 ---------
 display 的属性值有：none|inline|block|inline-block|list-item|run-in|table|inline-table|table-row-group|table-header-group|table-footer-group|table-row|table-column-group|table-column|table-cell|table-caption|inherit
 其中常用的的有none、inline、block、inline-block。分别的意思是：<br/>
@@ -33,7 +33,7 @@ display 的属性值有：none|inline|block|inline-block|list-item|run-in|table|
 3）block： 将元素将显示为块级元素，元素前后会带有换行符。设置为block后，元素可以设置width和height了。元素独占一行。<br/>
 4）inline-block：行内块元素。这个属性值融合了inline 和 block 的特性，即是它既是内联元素，又可以设置width和height。<br/>
 5）inherit：规定应该从父元素继承 display 属性的值<br/>
-6）table：此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。<br/>
+6）table：此元素会作为块级表格来显示（类似 \<table\>），表格前后带有换行符。<br/>
 内联元素：\<a\>、\<span\>、\<br\>、\<i\>、\<em\>、\<strong\>、\<label\>、\<q\>、\<var\>、\<cite\>、\<code\><br/>
 块级元素：\<div\>、\<p\>、\<h1\>...\<h6\>、\<ol\>、\<ul\>、\<dl\>、\<table\>、\<address\>、\<blockquote\> 、\<form\><br/>
 内联块状元素：\<img\>、\<input\><br/>
