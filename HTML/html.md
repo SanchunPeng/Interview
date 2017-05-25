@@ -739,16 +739,16 @@ row，向右，column,向下，row-reverse，向左，column-reverse,向上,主�
 flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap   
 
 总结:flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。     
-（1）   display：flex|inline-flex；flex：相当于block；inline-flex：相当于inline-block
-（2）   flex-direction（流动布局的主轴方向）          
-（3）   flex-wrap如果轴线放不下，应该如何换行。        
+（1）   display：flex|inline-flex；flex：相当于block；inline-flex：相当于inline-block      
+（2）   flex-direction（流动布局的主轴方向）    
+（3）   flex-wrap如果轴线放不下，应该如何换行。    
 （4）   flex-flow（“flex-direction”和“flex-wrap”属性的缩写），row nowrap为其默认属性值，分别表示flex-direction和flex-wrap属性。     
 （5）   justify-content（主轴方向内容对齐方式）；    
 （6）   align-content（多个主轴沿侧轴方向的内容堆栈对齐方式）    
 （7）   align-items（侧轴方向的内容对齐方式）    
 （8）   order(排序，项目按照order值从小到大排列)     
-（9）flex-grow(空白空间分配比例)    
-（10）flex-shrink(项目空间的分配比例)     
+（9）   flex-grow(空白空间分配比例)    
+（10）  flex-shrink(项目空间的分配比例)     
 
 24、documen.write和 innerHTML的区别
 ------
