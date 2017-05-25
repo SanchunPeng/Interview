@@ -2,8 +2,8 @@
 =======
 1、css的display：none和visibility:hidden区别
 ---------
-*display:none使用后，元素的宽度，高度都会丢失，视为不存在不加载；元素原来占据的空间位置不保留；产生回流和重绘；<br/>
-*visibility:hidden:视觉上的不可见，但是保留占据的空间，还具有宽度和高度；<br/>
+display:none使用后，元素的宽度，高度都会丢失，视为不存在不加载；元素原来占据的空间位置不保留；产生回流和重绘；<br/>
+visibility:hidden:视觉上的不可见，但是保留占据的空间，还具有宽度和高度；<br/>
 
 2、box-sizing ： content-box || border-box || inherit
 -------
@@ -29,7 +29,7 @@ Reflow——（回流）：浏览器发现某个部分发生了点变化影响�
 display 的属性值有：none|inline|block|inline-block|list-item|run-in|table|inline-table|table-row-group|table-header-group|table-footer-group|table-row|table-column-group|table-column|table-cell|table-caption|inherit
 其中常用的的有none、inline、block、inline-block。分别的意思是：<br/>
 1）none： 元素不会显示，而且该元素现实的空间也不会保留。但有另外一个 visibility: hidden， 是保留元素的空间的。<br/>
-2）inline： display的默认属性。将元素显示为内联元素，元素前后没有换行符。我们知道内联元素是无法设置宽高的，所以一旦将元素的display 属性设为 inline， 设置属性height和width是没有用的。此时影响它的高度一般是内部元素的高度（font-size）和padding。<br/>
+2）inline： display的默认属性。将元素显示为内联元素，元素前后没有换行符。我们知道内联元素是无法设置宽高的，所以一旦将元素的display 属性设为inline，设置属性height和width是没有用的。此时影响它的高度一般是内部元素的高度（font-size）和padding。<br/>
 3）block： 将元素将显示为块级元素，元素前后会带有换行符。设置为block后，元素可以设置width和height了。元素独占一行。<br/>
 4）inline-block：行内块元素。这个属性值融合了inline 和 block 的特性，即是它既是内联元素，又可以设置width和height。<br/>
 5）inherit：规定应该从父元素继承 display 属性的值<br/>
@@ -40,15 +40,15 @@ display 的属性值有：none|inline|block|inline-block|list-item|run-in|table|
 其他display的属性值不是很常用，其具体的含义如下：<br/>
 list-item：此元素会作为列表显示，块类型元素一样显示。<br/>
 run-in：此元素会根据上下文作为块级元素或内联元素显示。<br/>
-inline-table：此元素会作为内联表格来显示（类似 <table>），表格前后没有换行符。<br/>
-table-row-group：此元素会作为一个或多个行的分组来显示（类似 <tbody>）。<br/>
-table-header-group：此元素会作为一个或多个行的分组来显示（类似 <thead>）。<br/>
-table-footer-group： 此元素会作为一个或多个行的分组来显示（类似 <tfoot>）。<br/>
-table-row：此元素会作为一个表格行显示（类似 <tr>）。<br/>
+inline-table：此元素会作为内联表格来显示（类似 \<table\>），表格前后没有换行符。<br/>
+table-row-group：此元素会作为一个或多个行的分组来显示（类似 \<tbody\>）。<br/>
+table-header-group：此元素会作为一个或多个行的分组来显示（类似 \<thead\>）。<br/>
+table-footer-group： 此元素会作为一个或多个行的分组来显示（类似 \<tfoot\>）。<br/>
+table-row：此元素会作为一个表格行显示（类似 \<tr\>）。<br/>
 table-column-group：此元素会作为一个或多个列的分组来显示（类似 <colgroup>）。<br/>
-table-column：此元素会作为一个单元格列显示（类似 <col>）<br/>
-table-cell：此元素会作为一个表格单元格显示（类似 <td> 和 <th>）<br/>
-table-caption：此元素会作为一个表格标题显示（类似 <caption>）<br/>
+table-column：此元素会作为一个单元格列显示（类似 \<col\>）<br/>
+table-cell：此元素会作为一个表格单元格显示（类似 \<td\> 和 <th>）<br/>
+table-caption：此元素会作为一个表格标题显示（类似 \<caption\>）<br/>
 inherit： 规定应该从父元素继承 display 属性的值。<br/>
 
 display:inline-block 什么时候会显示间隙？(携程)<br/>
@@ -68,7 +68,7 @@ display:inline-block 什么时候会显示间隙？(携程)<br/>
 4）相邻选择器（h1 + p）<br/>
 5）子选择器（ul > li）<br/>
 6）后代选择器（li a）<br/>
-7）通配符选择器（* ）<br/>
+7）通配符选择器<br/>
 8）属性选择器（ a[rel = "external"]）<br/>
 9）伪类选择器（a: hover, li: nth - child）<br/>
 可继承的样式： font-size font-family color, UL LI DL DD DT text-indent（一些font类和text类都可以继承）<br/>
@@ -81,19 +81,19 @@ display:inline-block 什么时候会显示间隙？(携程)<br/>
 6、CSS3新特性以及新增伪类举例：
 ---------
 新增各种CSS选择器  （: not(.input)：所有 class 不是“input”的节点）<br/>
-圆角           （border-radius:8px）<br/>
-多列布局        （multi-column layout）<br/>
-阴影和反射        （box-Shadow\Reflect）<br/>
-文字特效      （text-shadow、）<br/>
+圆角           （border-radius:8px） <br/>
+多列布局        （multi-column layout） <br/>
+阴影和反射        （box-Shadow\Reflect） <br/>
+文字特效      （text-shadow、） <br/>
 文字渲染      （Text-decoration）<br/>
 线性渐变      （gradient）<br/>
 旋转          （transform）<br/>
 transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg)  Animation rgba;//旋转，缩放，定位，倾斜，动画 多背景 
 增加了更多的 css 选择器 <br/>
 
-p:first-of-type   选择该p元素是其父元素的首个 <p> 元素；<br/>
-p:last-of-type   选择该p元素是其父元素的最后 <p> 元素；<br/>
-p:only-of-type  选择该p元素是其父元素唯一的 <p> 元素，还是可以有其他的元素，只要p元素只有一个；<br/>
+p:first-of-type   选择该p元素是其父元素的首个 \<p\> 元素；<br/>
+p:last-of-type   选择该p元素是其父元素的最后 \<p\> 元素；<br/>
+p:only-of-type  选择该p元素是其父元素唯一的 \<p\> 元素，还是可以有其他的元素，只要p元素只有一个；<br/>
 p:only-child    选择该p元素是其父元素的唯一子元素；<br/>
 p:nth-child(n)  选择属于其父元素的第n个p子元素(排序的时候是和其他子元素一起的排序中选取第几个元素，不是单独p元素排序)；p:nth-child(odd) 匹配所以奇数行;p:nth-child(even) 匹配所有偶数行，元素的第一个子元素索引为“1”。p:nth-child(3n+1)三层循环中的第一行，可以是数字，关键词或公式：使用公式 (an + b)。描述：表示周期的长度，n 是计数器（从 0 开始），b 是偏移值。<br/>
 :after          在元素之后添加内容,也可以用来做清除浮动。<br/>
@@ -128,7 +128,7 @@ absolute的”根元素“是可以设置的，而fixed的”根元素“固定�
 9、请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？
 ---------
  一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。<br/>
-该布局模型的目的是提供一种更加高效的方式来对容器中的条目进行布局、对齐和分配空间。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；而 inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开发人员自由操作。<br/>
+该布局模型的目的是提供一种更加高效的方式来对容器中的条目进行布局、对齐和分配空间。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；而inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开发人员自由操作。<br/>
 试用场景：弹性布局适合于移动前端开发，在Android和ios上也完美支持<br/>
 
 10、用纯CSS创建一个三角形的原理是什么？
@@ -166,12 +166,12 @@ _：选择IE6及以下。连接线（中划线）（-）亦可使用，为了避
 \0：选择IE8+和Opera15以下的浏览器<br/>
 e.g.<br/>
 ```css
-      .bb{
-           background-color:#f1ee18;/*所有识别*/
-          .background-color:#00deff\9; /*IE6、7、8识别*/
-          *background-color:#a200ff;/*IE6、7识别*/（+和#也可）
-          _background-color:#1e0bd1;/*IE6识别*/
-      }
+.bb{
+    background-color:#f1ee18;/*所有识别*/
+    .background-color:#00deff\9; /*IE6、7、8识别*/
+    *background-color:#a200ff;/*IE6、7识别*/（+和#也可）
+    _background-color:#1e0bd1;/*IE6识别*/
+}
 ```
 
 选择符级HACK：<br/>
@@ -260,26 +260,26 @@ IE出现双边框的原因：浮动元素的浮动方向与margin的方向一致
 6）、父级div 定义display:table<br/>
 7）、常规的使用一个class；<br/>
 ```css
-    .clearfix:before, .clearfix:after {
-        content: ".";
-        display: table;
-    }
-    .clearfix:after {
-        clear: both;
-    }
-    .clearfix {
-        *zoom: 1;
-    }
+.clearfix:before, .clearfix:after {
+   content: ".";
+   display: table;
+}
+.clearfix:after {
+   clear: both;
+}
+.clearfix {
+   *zoom: 1;
+}
 ```
 8）、SASS编译的时候，在浮动元素的父级div定义伪类:after
 ```css
-  &:after,&:before{
-        content: ".";
-        visibility: hidden;
-        display: block;
-        height: 0;
-        clear: both;
-  }
+&:after,&:before{
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
 ```
 解析原理：<br/>
 1) display:block 使生成的元素以块级元素显示,占满剩余空间;<br/>
@@ -291,8 +291,7 @@ IE出现双边框的原因：浮动元素的浮动方向与margin的方向一致
 
 zoom:1的清楚浮动原理?<br/>
 清除浮动，触发hasLayout；
-Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。<br/>
-譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。<br/>
+Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。<br/>
 来龙去脉大概如下：<br/>
 当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。<br/>
 Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。<br/>
@@ -305,11 +304,11 @@ Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏�
 ```css
 $color:red
 .test{
-color：$color;
+   color：$color;
 }
 /*执行结果：*/
 .test{
-color：red;
+   color：red;
 }
 ```
 (1)Sass 语法
@@ -325,13 +324,13 @@ color: $primary-color
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 body {
-font: 100% $font-stack;
-color: $primary-color;
+   font: 100% $font-stack;
+   color: $primary-color;
 }
 /*编译出来的 CSS*/
 body {
-font: 100% Helvetica, sans-serif;
-color: #333;
+   font: 100% Helvetica, sans-serif;
+   color: #333;
 }
 ```
 
@@ -363,19 +362,19 @@ html div tr td {..}
 ```css
 /*糟糕*/
 .someclass {
-padding-top: 20px;
-padding-bottom: 20px;
-padding-left: 10px;
-padding-right: 10px;
-background: #000;
-background-image: url(../imgs/carrot.png);
-background-position: bottom;
-background-repeat: repeat-x;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #000;
+    background-image: url(../imgs/carrot.png);
+    background-position: bottom;
+    background-repeat: repeat-x;
 }
 /*好的*/
 .someclass {
-padding: 20px 10px 20px 10px;
-background: #000 url(../imgs/carrot.png) repeat-x bottom;
+    padding: 20px 10px 20px 10px;
+    background: #000 url(../imgs/carrot.png) repeat-x bottom;
 }
 ```
 （5）避免不必要的命名空间
@@ -388,20 +387,20 @@ background: #000 url(../imgs/carrot.png) repeat-x bottom;
 （6）避免不必要的重复
 ```css
 .someclass {
-color: red;
-background: blue;
-font-size: 15px;
+    color: red;
+    background: blue;
+    font-size: 15px;
 }
 .otherclass {
-color: red;
-background: blue;
-font-size: 15px;
+    color: red;
+    background: blue;
+    font-size: 15px;
 }
 /*好的*/
 .someclass, .otherclass {
-color: red;
-background: blue;
-font-size: 15px;
+    color: red;
+    background: blue;
+    font-size: 15px;
 }
 ```
 （7）最好使用表示语义的名字。一个好的类名应该是描述他是什么而不是像什么<br/>
@@ -462,45 +461,37 @@ PS：当按百分比设定一个元素的宽度时，它是相对于父容器的
 
 26、::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
 -------
-单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）<br/>
-双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法.<br/>
+单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法.<br/>
 比如:first-line、:first-letter、:before、:after等，<br/>
-而新的在CSS3中引入的伪元素则不允许再支持旧的单冒号的写法。<br/>
-想让插入的内容出现在其它内容前，使用::before，否者，使用::after；<br/>
-在代码顺序上，::after生成的内容也比::before生成的内容靠后。<br/>
-如果按堆栈视角，::after生成的内容会在::before生成的内容之上<br/>
-
-（1）单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素<br/>
 在css2之前用的是单冒号，之后css3使用时双冒号。目前除了IE外不兼容双冒号，其他的浏览器兼容双冒号，建议还是使用单冒号。<br/>
-（2）::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在与dom之中，只存在在页面之中。同理，after是在主体内容之后显示的。<br/>
+::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在与dom之中，只存在在页面之中。同理，after是在主体内容之后显示的。想让插入的内容出现在其它内容前，使用::before，之后使用::after；在代码顺序上，::after生成的内容也比::before生成的内容靠后。如果按堆栈视角，::after生成的内容会在::before生成的内容之上<br/>
 
 27、如何修改chrome记住密码后自动填充表单的黄色背景 ？
 ------
 ```css
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-  background-color: rgb(250, 255, 189); /* #FAFFBD; */
-  background-image: none;
-  color: rgb(0, 0, 0);
+    background-color: rgb(250, 255, 189); /* #FAFFBD; */
+    background-image: none;
+    color: rgb(0, 0, 0);
 }
 ```
 这黄色背景是chrome会默认给自动填充的input表单加上input：-webkit-autofill私有属性.<br/>
 ```css
 input：-webkit-autofill{
-background-color : #FAFFBD ;
-background-image : none ;
-color : #000 
+    background-color : #FAFFBD ;
+    background-image : none ;
+    color : #000 
 }
 ```
 第一种情况：input文本框是纯色背景的<br/>
 可以对input：-webkit-autofill使用足够大的纯色内阴影来覆盖input输入框的黄色背景<br/>
 ```css
 input:-webkit-autofill{
--webkit-box-shadow:0 0 0px 1000px white inset;
-border：1px solid #ccc ！important;
+    -webkit-box-shadow:0 0 0px 1000px white inset;
+    border：1px solid #ccc ！important;
 }
 ```
-除了chrome默认定义的background-color，background-image，color不能用!important提升其优先级 ，所以只能用覆盖了。<br/>
-以外，其他的属性均可使用!important提升其优先级<br/>
+除了chrome默认定义的background-color，background-image，color不能用!important提升其优先级 ，所以只能用覆盖了。其他的属性均可使用!important提升其优先级<br/>
 第二种情况：input文本框使用背景图片<br/>
 1)、图片不复杂可以使用第一种情况解决，纯色内阴影覆盖<br/>
 2)、使用js实现;存在一个问题是使用js方法会导致提交表单的时候无法将value值传过去。<br/>
@@ -513,8 +504,7 @@ border：1px solid #ccc ！important;
 
 29、你对line-height是如何理解的？
 -----
-行高是指一行文字的高度，具体说是两行文字间基线的距离。<br/>
-css中起高度作用的因该是height和line-height，一个没有定义height属性，最终其表现作用一定是 line-height。<br/>
+行高是指一行文字的高度，具体说是两行文字间基线的距离。css中起高度作用的因该是height和line-height，一个没有定义height属性，最终其表现作用一定是 line-height。<br/>
 单行文本垂直居中：把line-height值设置为height一样大小的值可以实现单行文字的垂直居中，其实也可以把height删除。<br/>
 多行文本垂直居中：需要设置display属性为inline-block。<br/>
 
@@ -524,14 +514,14 @@ css中起高度作用的因该是height和line-height，一个没有定义height
 方法一：首先取消浏览器自动调整功能。<br/>
 ```css
 .classstyle{ 
-  -webkit-text-size-adjust:none; font-size:9px; 
+    -webkit-text-size-adjust:none; font-size:9px; 
 } 
 ```
 方法二：现在可以使用css3里的一个属性：transform：scale（）<br/>
 ```css
 p{
-font-size:10px;
--webkit-transform:scale(0.8);
+    font-size:10px;
+    -webkit-transform:scale(0.8);
 }//0.8是缩放比例
 ```
 
@@ -548,7 +538,7 @@ fixed的元素是相对整个页面固定位置的，你在屏幕上滑动只是
 
 33、如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
 -----
-多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms<br/>
+多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms <br/>
 
 34、overflow: scroll时不能平滑滚动的问题怎么处理？
 -----
@@ -566,8 +556,7 @@ margin-left: calc(100vw - 100%);
 padding-left: calc(100vw - 100%);
 }
 ```
-首先，.wrap-outer指的是居中定宽主体的父级，如果没有，创建一个<br/>
-然后，calc是css3的计算<br/>
+首先，.wrap-outer指的是居中定宽主体的父级，如果没有，创建一个，然后，calc是css3的计算<br/>
 100vw是浏览器的内部宽度，而100%是可用宽度，不含滚动条<br/>
 calc（100vw-100%）是浏览器的滚动条的宽度<br/>
 
@@ -599,8 +588,7 @@ webp格式<br/>
 
 37、什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）<br/>
 如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量,所以不如隔离开。<br/>
-因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，
-提高了webserver的http请求的解析速度。<br/>
+因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，提高了webserver的http请求的解析速度。<br/>
 Cookie隔离问题，同一个网页,多个RemoteWebDriver会共享同一个Cookie。比如想要并行登陆并执行操作，这样是不行的。<br/>
 
 38、style标签写在body后与body前有什么区别？
@@ -609,8 +597,8 @@ Cookie隔离问题，同一个网页,多个RemoteWebDriver会共享同一个Cook
 
 39、什么是CSS 预处理器 / 后处理器？
 -----
-- 预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。<br/>
-- 后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
+预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。<br/>
+后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
 
 40、像素渲染流水线
 -----
@@ -627,8 +615,7 @@ Cookie隔离问题，同一个网页,多个RemoteWebDriver会共享同一个Cook
 41、重构、回流
 -----
 浏览器的重构指的是改变每个元素外观时所触发的浏览器行为，比如颜色，背景等样式发生了改变而进行的重新构造新外观的过程。重构不会引发页面的重新布局，不一定伴随着回流。<br/> 
-回流指的是浏览器为了重新渲染页面的需要而进行的重新计算元素的几何大小和位置的，他的开销是非常大的，回流可以理解为渲染树需要重新进行计算，一般最好触发元素的重构，避免元素的回流；比如通过通过添加类来添加css样式，而不是直接在DOM上设置，当需要操作某一块元素时候，最好使其脱离文档流，这样就不会引起回流了，比如设置position：absolute或者fixed，或者display：none，等操作结束后在
-显示。<br/>
+回流指的是浏览器为了重新渲染页面的需要而进行的重新计算元素的几何大小和位置的，他的开销是非常大的，回流可以理解为渲染树需要重新进行计算，一般最好触发元素的重构，避免元素的回流；比如通过通过添加类来添加css样式，而不是直接在DOM上设置，当需要操作某一块元素时候，最好使其脱离文档流，这样就不会引起回流了，比如设置position：absolute或者fixed，或者display：none，等操作结束后再显示。<br/>
 
 42、为什么要初始化 CSS 样式
 -----
@@ -690,7 +677,7 @@ NaN,即非数值（Not a Number）是一个特殊的数值，这个数值用来�
 
 48、JavaScript中 call和apply的描述
 -----
-call（）方法和apply（）方法的作用相同，他们的区别在于接收参数的方式不同。在使用call（）方 法时，传递给函数的参数必须逐个列举出来。使用apply（）时，传递给函数的是参数数组。<br/>
+call()方法和apply()方法的作用相同，他们的区别在于接收参数的方式不同。在使用call()方 法时，传递给函数的参数必须逐个列举出来。使用apply()时，传递给函数的是参数数组。<br/>
 ```javascript
 function add(c, d){ 
 return this.a + this.b + c + d; 
