@@ -185,6 +185,16 @@ localStorage：
 本地存储和事务存储之间的区别:    
 本地存储数据持续永久，但是会话在浏览器打开时有效知道浏览器关闭时会话变量重置    
 
+cookie，localStorage和sessionStorage有什么区别？
+------
+共同点：都是保存在浏览器端，且同源的。<br/>
+区别：<br/>
+1）cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。<br/>
+2）cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。<br/>
+3）存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。<br/>
+4）数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。<br/>
+5）作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。<br/>
+
 6、HTML5的离线储存怎么使用，工作原理能不能解释一下？
 --------
 离线检测：       
@@ -256,14 +266,48 @@ home.aspx
 4）框架结构有时会让人感到迷惑，页面很混乱，没有语义。
 使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。   
 
-7、什么是闭包？闭包有什么好处？使用闭包要注意什么？
+7、什么是闭包？闭包有什么好处？为什么要用它？使用闭包要注意什么？
 ----------
-闭包：函数嵌套函数，内部函数可以引用外部函数的参数和变量，变量和参数不会被垃圾回收机制所回收<br/>
+闭包：闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和参数传递到外部。该变量和参数不会被垃圾回收机制所回收<br/>
 好处 ：<br/>
 1）希望一个变量长期驻扎在内存之中<br/>
 2）避免全局变量的污染<br/>
 3）私有成员的存在<br/>
-注意：可能会造成内存泄漏<br/>
+注意：参数和变量不会被垃圾回收机制回收，使用闭包后变量就在内存中，所以也不宜使用太多的闭包。可能会造成内存泄漏<br/>
+
+//li节点的onclick事件都能正确的弹出当前被点击的li索引
+```html
+ <ul id="testUL">
+    <li> index = 0</li>
+    <li> index = 1</li>
+    <li> index = 2</li>
+    <li> index = 3</li>
+</ul>
+```
+```javascript
+<script type="text/javascript">
+    var nodes = document.getElementsByTagName("li");
+    for(i = 0;i<nodes.length;i++){
+        nodes[i].onclick = function(){
+            console.log(i+1);//不用闭包的话，值每次都是4
+        }(i);
+    }
+</script>
+```
+执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在，使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源，因为say667()的内部函数的执行需要依赖say667()中的变量<br/>
+```javascript
+function say667() {
+    // Local variable that ends up within closure
+    var num = 666;
+    var sayAlert = function() {
+        alert(num);
+    }
+    num++;
+    return sayAlert;
+}
+var sayAlert = say667();
+sayAlert()//执行结果应该弹出的667
+```
 
 闭包的原理和应用
 --------
@@ -422,224 +466,220 @@ function fibonacii(n){
 }
 ```
 
-8，在js中通过typeof能弹出的数据类型有哪些
+8、JavaScript原型，原型链 ? 有什么特点？
+------
+每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。<br/>
+关系：instance.constructor.prototype = instance.__proto__（对象的__proto__属性和创建这个对象的构造函数的prototype属性是一个东西）<br/>
+
+特点：<br/>
+JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。而且创建子类型的实例时不能向超类型的构造函数中传递参数。<br/>
+当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。<br/>
+```javascript
+function Func(){}
+Func.prototype.name = "Sean";
+Func.prototype.getInfo = function() {
+    return this.name;
+}
+var person = new Func();//现在可以参考var person = Object.create(oldObject);
+console.log(person.getInfo());//它拥有了Func的属性和方法
+//"Sean"
+console.log(Func.prototype);
+// Func { name="Sean", getInfo=function()}
+```
+Javascript作用链域?
+------
+全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。<br/>
+当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局函数，这种组织形式就是作用域链。<br/>
+
+9、javascript是面向对象的，怎么体现javascript的继承关系？
+------
+实现继承主要是依靠原型链来实现的<br/>
+1）属性
+```javascript
+ 父级构造函数.apply(this,arguments);       
+ SuperType.apply(this,arguments);   实现父级构造函数的操作
+```
+2）方法
+```javascript
+person1.constructor == Person
+Person.prototype.constructor == Person
+子级构造函数.prototype=new 父级构造();       SubType.prototype=new SuperType();
+子级构造函数.prototype.constructor=子级构造;   SubType.prototype.constructor=SubType;
+```
+Javascript如何实现继承？
+-------
+1）、构造继承<br/>
+2）、原型继承<br/>
+3）、实例继承<br/>
+4）、拷贝继承<br/>
+原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。<br/>
+```javascript
+function Parent(){
+   this.name = 'wang';
+}
+function Child(){
+   this.age = 28;
+}
+Child.prototype = new Parent();//继承了Parent，通过原型
+var demo = new Child();
+alert(demo.age);
+alert(demo.name);//得到被继承的属性
+}
+```
+
+10、javascript创建对象的几种方式？
+------
+javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。<br/>
+1）、对象字面量的方式<br/>
+```javascript
+person={
+  firstname:"Mark",
+  lastname:"Yun",
+  age:25,
+  eyecolor:"black"
+};
+```
+2）、用function来模拟无参的构造函数
+```javascript
+function Person(){}
+var person=new Person();//定义一个function，如果使用new"实例化",该function可以看作是一个Class
+person.name="Mark";
+person.age="25";
+person.work=function(){
+    alert(person.name+" hello...");
+}
+person.work();
+```
+3）、用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）
+```javascript
+function Pet(name,age,hobby){
+   this.name=name;//this作用域：当前对象
+   this.age=age;
+   this.hobby=hobby;
+   this.eat=function(){
+      alert("我叫"+this.name+",我喜欢"+this.hobby+",是个程序员");
+   }
+}
+var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
+maidou.eat();//调用eat方法
+```
+4）、用工厂方式来创建（内置对象）
+```javscript
+var wcDog =new Object();
+wcDog.name="旺财";
+wcDog.age=3;
+wcDog.work=function(){
+   alert("我是"+wcDog.name+",汪汪汪......");
+}
+wcDog.work();
+```
+5）、用原型方式来创建
+```javascript
+function Dog(){
+}
+Dog.prototype.name="旺财";
+Dog.prototype.eat=function(){
+   alert(this.name+"是个吃货");
+}
+var wangcai =new Dog();
+wangcai.eat();
+```
+6）、用混合方式来创建
+```javascript
+function Car(name,price){
+   this.name=name;
+   this.price=price; 
+}
+Car.prototype.sell=function(){
+   alert("我是"+this.name+"，我现在卖"+this.price+"万元");
+}
+var camry =new Car("凯美瑞",27);
+camry.sell(); 
+```
+
+11、call方法，apply方法
+------
+语法：call(thisObj，Object)<br/>
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br/>
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。<br/>
+apply方法：<br/>
+语法：apply(thisObj，[argArray])<br/>
+定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br/>
+说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
+
+12、说几条写JavaScript的基本规范？
+-----
+1）.不要在同一行声明多个变量。<br/>
+2）.请使用 ===/!==来比较true/false或者数值<br/>
+3）.使用对象字面量替代new Array这种形式<br/>
+4）.不要使用全局函数。<br/>
+5）.Switch语句必须带有default分支<br/>
+6）.函数不应该有时候有返回值，有时候没有返回值。<br/>
+7）.For循环必须使用大括号<br/>
+8）.If语句必须使用大括号<br/>
+9）.for-in循环中的变量应该使用var关键字明确限定作用域，从而避免作用域污染。<br/>
+
+13，在js中通过typeof能弹出的数据类型有哪些
 -------
 number，string，boolean，function，object，undefined记住typeof null是'object'<br/>
 
-js数据类型和区分<br/>
+js数据类型和区分:<br/>
 基本数据类型：String,boolean,Number,Undefined, Null<br/>
 引用数据类型：Object(Array,Date,RegExp,Function)<br/>
+Object 是 JavaScript 中所有对象的父对象
+数据封装类对象：Object、Array、Boolean、Number 和 String
+其他对象：Function、Arguments、Math、Date、RegExp、Error
 区分基本数据类型：typeof;Undefined只能用typeof检测 typeof a=='undefined' typeof null是'object'<br/>
 typeof 返回的类型都是字符串形式，可以判断function 的类型<br/>
 区分引用数据类型：instanceof<br/>
 区分各数据类型： Object.prototype.toString.call()<br/>
+
 js 数组中提供了以下几个方法可以让我们很方便实现堆栈：<br/>
-shift:从数组中把第一个元素删除，并返回这个元素的值。<br/><br/>
+shift:从数组中把第一个元素删除，并返回这个元素的值。<br/>
 unshift: 在数组的开头添加一个或更多元素，并返回新的长度<br/>
 push:在数组的中末尾添加元素，并返回新的长度<br/>
 pop:从数组中把最后一个元素删除，并返回这个元素的值。<br/>
 
-3、
+JavaScript有几种类型的值？你能画一下他们的内存图吗？
+-------
+栈：原始数据类型（Undefined，Null，Boolean，Number、String）<br/>
+堆：引用数据类型（对象、数组和函数）<br/>
+两种类型的区别是：存储位置不同；<br/>
+原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；<br/>
+引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定,如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。<br/>
 
-4、cookie，localStorage和sessionStorage有什么区别？
-共同点：都是保存在浏览器端，且同源的。
-区别：
-1）cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
-2）cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。
-3）存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
-4）数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
-5）作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
+14、谈谈This对象的理解。
+------
+this总是指向函数的直接调用者（而非间接调用者）；<br/>
+如果有new关键字，this指向new出来的那个对象；<br/>
+在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；<br/>
 
-5、.javascript是面向对象的，怎么体现javascript的继承关系？
-实现继承主要是依靠原型链来实现的
+15、eval是做什么的？
+-----
+它的功能是把对应的字符串解析成JS代码并运行；<br/>
+应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。<br/>
+由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');<br/>
 
-1）属性
-    父级构造函数.apply(this,arguments);       SuperType.apply(this,arguments);   实现父级构造函数的操作
-2）方法
-person1.constructor == Person
-     Person.prototype.constructor == Person
-    子级构造函数.prototype=new 父级构造();       SubType.prototype=new SuperType();
-    子级构造函数.prototype.constructor=子级构造;   SubType.prototype.constructor=SubType;
-
-6、call方法，apply方法
-语法：call(thisObj，Object)
-定义：调用一个对象的一个方法，以另一个对象替换当前对象。
-说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。
-apply方法：
-语法：apply(thisObj，[argArray])
-定义：应用某一对象的一个方法，用另一个对象替换当前对象。
-说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
-
-7、介绍js有哪些内置对象？
-Object 是 JavaScript 中所有对象的父对象
-数据封装类对象：Object、Array、Boolean、Number 和 String
-其他对象：Function、Arguments、Math、Date、RegExp、Error
-
-
-
-
-3、说几条写JavaScript的基本规范？
-1）.不要在同一行声明多个变量。
-2）.请使用 ===/!==来比较true/false或者数值
-3）.使用对象字面量替代new Array这种形式
-4）.不要使用全局函数。
-5）.Switch语句必须带有default分支
-6）.函数不应该有时候有返回值，有时候没有返回值。
-7）.For循环必须使用大括号
-8）.If语句必须使用大括号
-9）.for-in循环中的变量应该使用var关键字明确限定作用域，从而避免作用域污染。
-
-
-4、JavaScript原型，原型链 ? 有什么特点？
-每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。
-关系：instance.constructor.prototype = instance.__proto__（对象的__proto__属性和创建这个对象的构造函数的prototype属性是一个东西）
-特点：
-JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。而且创建子类型的实例时不能向超类型的构造函数中传递参数。
-当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。
-    function Func(){}
-    Func.prototype.name = "Sean";
-    Func.prototype.getInfo = function() {
-      return this.name;
-    }
-    var person = new Func();//现在可以参考var person = Object.create(oldObject);
-    console.log(person.getInfo());//它拥有了Func的属性和方法
-    //"Sean"
-    console.log(Func.prototype);
-    // Func { name="Sean", getInfo=function()}
-
-
-5、JavaScript有几种类型的值？你能画一下他们的内存图吗？
-栈：原始数据类型（Undefined，Null，Boolean，Number、String） 
-堆：引用数据类型（对象、数组和函数）
-两种类型的区别是：存储位置不同；
-原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
-引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定,如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其
-在栈中的地址，取得地址后从堆中获得实体
-
-
-6、Javascript如何实现继承？
-1）、构造继承
-2）、原型继承
-3）、实例继承
-4）、拷贝继承
-原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
- function Parent(){
-        this.name = 'wang';
-    }
- function Child(){
-        this.age = 28;
-    }
-    Child.prototype = new Parent();//继承了Parent，通过原型
-    var demo = new Child();
-    alert(demo.age);
-    alert(demo.name);//得到被继承的属性
-  }
-
-
-8、javascript创建对象的几种方式？
-javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。
-1）、对象字面量的方式   
-    person={
-firstname:"Mark",
-lastname:"Yun",
-age:25,
-eyecolor:"black"
-};
-
-2）、用function来模拟无参的构造函数
-    function Person(){}
-    var person=new Person();//定义一个function，如果使用new"实例化",该function可以看作是一个Class
-    person.name="Mark";
-    person.age="25";
-    person.work=function(){
-    alert(person.name+" hello...");
-    }
-    person.work();
-
-3）、用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）
-    function Pet(name,age,hobby){
-       this.name=name;//this作用域：当前对象
-       this.age=age;
-       this.hobby=hobby;
-       this.eat=function(){
-          alert("我叫"+this.name+",我喜欢"+this.hobby+",是个程序员");
-       }
-    }
-    var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
-    maidou.eat();//调用eat方法
-
-4）、用工厂方式来创建（内置对象）
-     var wcDog =new Object();
-     wcDog.name="旺财";
-     wcDog.age=3;
-     wcDog.work=function(){
-       alert("我是"+wcDog.name+",汪汪汪......");
-     }
-     wcDog.work();
-
-5）、用原型方式来创建
-    function Dog(){
-     }
-     Dog.prototype.name="旺财";
-     Dog.prototype.eat=function(){
-     alert(this.name+"是个吃货");
-     }
-     var wangcai =new Dog();
-     wangcai.eat();
-
-6）、用混合方式来创建
-    function Car(name,price){
-      this.name=name;
-      this.price=price; 
-    }
-     Car.prototype.sell=function(){
-       alert("我是"+this.name+"，我现在卖"+this.price+"万元");
-      }
-    var camry =new Car("凯美瑞",27);
-    camry.sell(); 
-
-
-9、Javascript作用链域?
-全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。
-当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，
-直至全局函数，这种组织形式就是作用域链。
-
-
-10、谈谈This对象的理解。
-this总是指向函数的直接调用者（而非间接调用者）；
-如果有new关键字，this指向new出来的那个对象；
-在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；
-
-
-
-
-11、eval是做什么的？
-它的功能是把对应的字符串解析成JS代码并运行；
-应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
-由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');
-
-
-12、什么是window对象? 什么是document对象?
+16、什么是window对象? 什么是document对象?
+------
 window对象代表浏览器中打开的一个窗口。document对象代表整个html文档。实际上，document对象是window对象的对象属性。
 
-13、null，undefined 的区别？
-null        表示一个对象被定义了，值为“空值”；
-undefined   表示不存在这个值。
-typeof undefined
-    //"undefined"
-    undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined； 
-    例如变量被声明了，但没有赋值时，就等于undefined
-typeof null
-    //"object"
-    null : 是一个对象(空对象, 没有任何属性和方法)；
-    例如作为函数的参数，表示该函数的参数不是对象；
-注意：
-    在验证null时，一定要使用　=== ，因为 == 无法区别 null 和　undefined
+17、null，undefined 的区别？
+------
+null：示一个对象被定义了，值为“空值”；<br/>
+undefined：表示不存在这个值。<br/>
+typeof undefine//"undefined"<br/>
+undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；例如变量被声明了，但没有赋值时，就等于undefined。<br/>
+typeof null//"object"<br/>
+null : 是一个对象(空对象, 没有任何属性和方法)；<br/>
+例如作为函数的参数，表示该函数的参数不是对象；<br/>
+注意：<br/>
+在验证null时，一定要使用　=== ，因为 == 无法区别 null 和　undefined<br/>
 
-
-14、写一个通用的事件侦听器函数。
-    // event(事件)工具集，来源：github.com/markyun
-    markyun.Event = {
+18、写一个通用的事件侦听器函数。
+--------
+```javascript
+     markyun.Event = {
         // 页面加载完成后
         readyEvent : function(fn) {
             if (fn==null) {
@@ -715,158 +755,104 @@ typeof null
             return ev;
         }
     };
+```
 
-
-15、["1", "2", "3"].map(parseInt) 答案是多少？
- [1, NaN, NaN] 
-
-parseInt() 函数能解析一个字符串，并返回一个整数，需要两个参数 (val, radix)，
-其中 radix 表示要解析的数字的基数。【该值介于 2 ~ 36 之间，并且字符串中的数字不能大于radix才能正确返回数字结果值】;
-但此处 map 传了 3 个 (element, index, array),我们重写parseInt函数测试一下是否符合上面的规则。
+19、["1", "2", "3"].map(parseInt) 答案是多少？
+-------
+[1, NaN, NaN] <br/>
+parseInt() 函数能解析一个字符串，并返回一个整数，需要两个参数 (val, radix),其中 radix 表示要解析的数字的基数。【该值介于 2 ~ 36 之间，并且字符串中的数字不能大于radix才能正确返回数字结果值;但此处 map 传了 3 个 (element, index, array),我们重写parseInt函数测试一下是否符合上面的规则。<br/>
+```javascript
 function parseInt(str, radix) {   
     return str+'-'+radix;   
 };  
 var a=["1", "2", "3"];  
 a.map(parseInt);  // ["1-0", "2-1", "3-2"] 不能大于radix
-因为二进制里面，没有数字3,导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN
-所以["1", "2", "3"].map(parseInt) 答案也就是：[1, NaN, NaN]
+```
+因为二进制里面，没有数字3,导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN。所以["1", "2", "3"].map(parseInt) 答案也就是：[1, NaN, NaN]<br/>
 
-
-16、事件是？IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
+20、事件是？IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
+-----
  1）. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。
  2）. 事件处理机制：IE是事件冒泡、Firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件；
  3）. ev.stopPropagation();（旧ie的方法 ev.cancelBubble = true;）
 
+21、javascript 代码中的"use strict";是什么意思 ? 使用它区别是什么？
+-----
+use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。<br/>
+默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;<br/>
+全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；<br/>
+消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;<br/>
+提高编译器效率，增加运行速度；<br/>
+为未来新版本的Javascript标准化做铺垫。<br/>
 
-17、什么是闭包（closure），为什么要用它？
-闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
-闭包的特性：
-1）.函数内再嵌套函数
-2）.内部函数可以引用外层的参数和变量
-3）.参数和变量不会被垃圾回收机制回收，使用闭包后变量就在内存中，所以也不宜使用太多的闭包
-//li节点的onclick事件都能正确的弹出当前被点击的li索引
- <ul id="testUL">
-    <li> index = 0</li>
-    <li> index = 1</li>
-    <li> index = 2</li>
-    <li> index = 3</li>
-</ul>
-<script type="text/javascript">
-    var nodes = document.getElementsByTagName("li");
-    for(i = 0;i<nodes.length;i+= 1){
-        nodes[i].onclick = function(){
-            console.log(i+1);//不用闭包的话，值每次都是4
-        }(i);
-    }
-</script>
-执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在，使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源，因为say667()的内部函数的执行需要依赖say667()中的变量
-  function say667() {
-    // Local variable that ends up within closure
-    var num = 666;
-    var sayAlert = function() {
-        alert(num);
-    }
-    num++;
-    return sayAlert;
+21、如何判断一个对象是否属于某个类？
+------
+使用instanceof （待完善）
+```javascript
+if(a instanceof Person){
+    alert('yes');
 }
- var sayAlert = say667();
- sayAlert()//执行结果应该弹出的667
+```
 
-
-18、javascript 代码中的"use strict";是什么意思 ? 使用它区别是什么？
-use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。
-默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;
-全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；
-消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;
-提高编译器效率，增加运行速度；
-为未来新版本的Javascript标准化做铺垫。
-
-
-19、如何判断一个对象是否属于某个类？
-  使用instanceof （待完善）
-   if(a instanceof Person){
-       alert('yes');
-   }
-
-
-20、new操作符具体干了什么呢?
- 1）、声明一个中间对象；
- 2）、将该中间对象的原型指向构造函数的原型；
- 3）、调用该构造函数，将构造函数的上下文对象this，指向该中间对象；
- 4）、返回该中间对象，即返回实例对象。
+22、new操作符具体干了什么呢?
+------
+ 1）、声明一个中间对象；<br/>
+ 2）、将该中间对象的原型指向构造函数的原型；<br/>
+ 3）、调用该构造函数，将构造函数的上下文对象this，指向该中间对象；<br/>
+ 4）、返回该中间对象，即返回实例对象。<br/>
+```javascript
 var obj  = {};
 obj.__proto__ = fn.prototype;
 fn.call(obj);//如果构造函数明确指定了返回对象时，那么new的执行结果就是该返回对象，否则就是返回的实例对象
+```
 
+23、Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
+-------
+hasOwnProperty<br/>
+javaScript中hasOwnProperty函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。<br/>
+使用方法：<br/>
+object.hasOwnProperty(proName),其中参数object是必选项。一个对象的实例。proName是必选项。一个属性名称的字符串值。如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
 
-21、用原生JavaScript的实现过什么功能吗？
+24、JSON 的了解？
+------
+JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。是键值对，是一个对象。<br/>
+它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小<br/>
+如：{"age":"12", "name":"back"}<br/>
+JSON字符串转换为JSON对象:<br/>
+var obj =eval('('+ str +')');<br/>
+var obj = str.parseJSON();<br/>
+var obj = JSON.parse(str);<br/>
 
-22、Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
-hasOwnProperty
-javaScript中hasOwnProperty函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。
-使用方法：
-object.hasOwnProperty(proName)
-其中参数object是必选项。一个对象的实例。
-proName是必选项。一个属性名称的字符串值。
-如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
-
-
-23、JSON 的了解？
-JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。是键值对，是一个对象。
-它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小
-如：{"age":"12", "name":"back"}
-JSON字符串转换为JSON对象:
-var obj =eval('('+ str +')');
-var obj = str.parseJSON();
-var obj = JSON.parse(str);
-
-JSON对象转换为JSON字符串：
-var last=obj.toJSONString();
-var last=JSON.stringify(obj);
-
-
-24、[].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)}) 能解释一下这段代码的意思吗？
-获取页面中所有的元素，然后遍历每个元素，为元素的style属性增加一个随机的颜色边框。
+JSON对象转换为JSON字符串：<br/>
+var last=obj.toJSONString();<br/>
+var last=JSON.stringify(obj);<br/>
 
 25、js延迟加载的方式有哪些？
+--------
 defer和async、动态创建DOM方式（用得最多）、按需异步载入js
 
-7、ajax原理是什么？
-(1)创建对象
-var xhr = new XMLHttpRequest();
-(2)打开请求
-xhr.open('GET', 'example.txt', true);
-(3)发送请求
-xhr.send(); 发送请求到服务器
-(4)接收响应
-xhr.onreadystatechange =function(){}
- (1)当readystate值从一个值变为另一个值时，都会触发readystatechange事件。
- (2)当readystate==4时，表示已经接收到全部响应数据。
- (3)当status ==200时，表示服务器成功返回页面和数据。
- (4)如果(2)和(3)内容同时满足，则可以通过xhr.responseText，获得服务器返回的内容
+26、Ajax 是什么?ajax原理是什么？ajax 的交互模型?同步和异步的区别?如何解决跨域问题?
+------
+ajax的全称：Asynchronous Javascript And XML。<br/>
+异步传输+js+xml。<br/>
+所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。<br/>
+原理：<br/>
+(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象<br/>
+var xhr = new XMLHttpRequest();<br/>
+(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息<br/>
+xhr.open('GET', 'example.txt', true);<br/>
+(3)设置响应HTTP请求状态变化的函数<br/>
+xhr.onreadystatechange =function(){}<br/>
+ 1)当readystate值从一个值变为另一个值时，都会触发readystatechange事件。<br/>
+ 2)当readystate==4时，表示已经接收到全部响应数据。<br/>
+ 3)当status ==200时，表示服务器成功返回页面和数据。<br/>
+(4)发送HTTP请求<br/>
+xhr.send(); 发送请求到服务器<br/>
+(5)获取异步调用返回的数据<br/>
+xhr.responseText<br/>
+(6)使用JavaScript和DOM实现局部刷新<br/>
 
-
-26、Ajax 是什么? 如何创建一个Ajax？
-ajax的全称：Asynchronous Javascript And XML。
-异步传输+js+xml。
-所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。
-(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象
-(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息
-(3)设置响应HTTP请求状态变化的函数
-(4)发送HTTP请求
-(5)获取异步调用返回的数据
-(6)使用JavaScript和DOM实现局部刷新
-
-27、Ajax 解决浏览器缓存问题？
-确保ajax 或连接不走缓存路径：
-1）、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
-2）、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
-3）、在URL后面加上一个随机数： "fresh=" + Math.random();。
-4）、在URL后面加上时间搓："nowtime=" + new Date().getTime();。
-5）、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
-
-ajax 是什么?ajax 的交互模型?同步和异步的区别?如何解决跨域问题?
-  1）通过异步模式，提升了用户体验
+1）通过异步模式，提升了用户体验
   2） 优化了浏览器和服务器之间的传输，减少不必要的数据往返，减少了带宽占用
   3） Ajax在客户端运行，承担了一部分本来由服务器承担的工作，减少了大用户量下的服务器负载。
  Ajax的最大的特点是什么。
@@ -886,6 +872,18 @@ ajax技术就如同对企业数据建立了一个直接通道。这使得开发�
 4）破坏了程序的异常机制。
 5）不容易调试。
 跨域： jsonp、 iframe、window.name、window.postMessage、服务器上设置代理页面
+
+27、Ajax 解决浏览器缓存问题？
+------
+确保ajax 或连接不走缓存路径：<br/>
+1）、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。<br/>
+2）、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。<br/>
+3）、在URL后面加上一个随机数： "fresh=" + Math.random();。<br/>
+4）、在URL后面加上时间搓："nowtime=" + new Date().getTime();。<br/>
+5）、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。<br/>
+
+ajax 是什么?
+  
 
 
 26.简述同步和异步的区别
