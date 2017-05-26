@@ -960,6 +960,7 @@ Requirejs基于AMD规范，每个模块用define定义，如果这个模块还�
 对CommonJs和AMD，CMD的理解：<br/>
 都是为了使js代码模块化的规范，以前的时候如果一个js模块调用另一个模块，需要在html中进行link，而且必须有严格的引入顺序，但是这样又有可能造成阻塞，使页面失去响应。<br/>
 CommonJS规定一个文件是一个模块，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。内置的require（路径以/开头是绝对路径，以./开头是相对本文件所在位置的路径,不以“./“或”/“开头，则表示加载的是一个默认提供的核心模块（位于Node的系统安装目录中），或者一个位于各级node_modules目录的已安装模块（全局安装或局部安装））命令用于加载模块文件。当使用require调用该模块时，就获得了exports对象。<br/>
+
 每个模块内部，都有一个module对象，代表当前模块。它有以下属性。<br/>
   ● module.id 模块的识别符，通常是带有绝对路径的模块文件名。<br/>
   ● module.filename 模块的文件名，带有绝对路径。<br/>
@@ -967,13 +968,15 @@ CommonJS规定一个文件是一个模块，每个模块内部，module变量代
   ● module.parent 返回一个对象，表示调用该模块的模块。<br/>
   ● module.children 返回一个数组，表示该模块要用到的其他模块。<br/>
   ● module.exports 表示模块对外输出的值。<br/>
+
 CommonJs是同步加载 JS 脚本，Node.js 使用了这一规范。这一规范和我们之前的做法比较类似，是同步加载 JS 脚本。这么做在服务端毫无问题，因为文件都存在磁盘上，然而浏览器的特性决定了 JS 脚本需要异步加载，否则就会失去响应，因此 CommonJS 规范无法直接在浏览器中使用。<br/>
+
 CommonJS模块的特点如下:<br/>
   ● 所有代码都运行在模块作用域，不会污染全局作用域。<br/>
   ● 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。<br/>
   ● 模块加载的顺序，按照其在代码中出现的顺序。<br/>
   
-    在Node中使用exports=module.exports，可以对exports进行返回值的设定，但是不能对exports和module.exports进行赋值，而且也不能使用exports输出，只能使用module.exports输出module.exports = function (x){ console.log(x);};。当使用require调用自身模块时就会执行自身的module.exports<br/>
+在Node中使用exports=module.exports，可以对exports进行返回值的设定，但是不能对exports和module.exports进行赋值，而且也不能使用exports输出，只能使用module.exports输出module.exports = function (x){ console.log(x);};。当使用require调用自身模块时就会执行自身的module.exports<br/>
 CommonJS模块的加载机制是，输入的是被输出的值的拷贝。<br/>
 AMD规范：前置加载，所有前置模块异步加载结束后，才进行调用callback。require.js实现了这个规范。<br/>
 缓存：所有缓存的模块保存在require.cache之中，如果想删除模块的缓存，可以像下面这样写。<br/>
