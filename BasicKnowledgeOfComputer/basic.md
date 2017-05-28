@@ -45,7 +45,7 @@ HTTP使用TCP三次握手建立连接，客户端和服务器需要交换3个包
 5、TCP 的三次握手和四次挥手
 -------
 TCP报文格式图：
-
+![github](https://github.com/SanchunPeng/Interview/blob/master/img/tcp.png)
   （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。
   （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。
   （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：
