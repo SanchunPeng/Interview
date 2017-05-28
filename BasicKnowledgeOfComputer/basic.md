@@ -44,23 +44,25 @@ HTTP使用TCP三次握手建立连接，客户端和服务器需要交换3个包
 
 5、TCP 的三次握手和四次挥手
 -------
-TCP报文格式图：
+TCP报文格式图：<br/>
 ![github](https://github.com/SanchunPeng/Interview/blob/master/img/tcp.png)
-  （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。
-  （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。
-  （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：
-  （A）URG：紧急指针（urgent pointer）有效。
-  （B）ACK：确认序号有效。
-  （C）PSH：接收方应该尽快将这个报文交给应用层（传送）。
-  （D）RST：重置连接。
-  （E）SYN：发起一个新连接。
-  （F）FIN：释放一个连接。
-为什么需要“三次握手”（客户端和服务端总共发送3个包以确认连接的建立）：为了防止已失效的连接请求报文段突然又传送到了服务端，防止server端一直等待，浪费资源。
+（1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。<br/>
+（2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。<br/>
+（3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：<br/>
+（A）URG：紧急指针（urgent pointer）有效。<br/>
+（B）ACK：确认序号有效。<br/>
+（C）PSH：接收方应该尽快将这个报文交给应用层（传送）。<br/>
+（D）RST：重置连接。<br/>
+（E）SYN：发起一个新连接。<br/>
+（F）FIN：释放一个连接。<br/>
 
-  （1）第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。
-  （2）第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack (number )=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。
-  （3）第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。
-为什么需要“四次挥手”：
+### 为什么需要“三次握手”（客户端和服务端总共发送3个包以确认连接的建立）：
+为了防止已失效的连接请求报文段突然又传送到了服务端，防止server端一直等待，浪费资源。<br/>
+
+（1）第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。<br/>
+（2）第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack (number )=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。<br/>
+（3）第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。<br/>
+### 为什么需要“四次挥手”：
 
 
 
