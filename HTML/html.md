@@ -272,8 +272,8 @@ e、浏览器兼容性：最大缺点，IE9以下浏览器几乎全军覆没。
 
 23、如何居中div？ 如何居中一个浮动元素？
 --------
-水平居中和垂直居中：    
-水平居中布局（text-align）：   
+水平居中和垂直居中：    
+## 水平居中布局（text-align）：
 1)、margin+定宽：width: 100px;margin: 0 auto;   
 2)、table + margin：display: table;margin: 0 auto;   
 (display: table 在表现上类似 block 元素，但是宽度为内容宽。)   
