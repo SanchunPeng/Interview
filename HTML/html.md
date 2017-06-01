@@ -720,42 +720,43 @@ table 的特性为每列等宽，每行等高可以用于解决此需求
 24、flex的基础知识
 -----
 flex 的核心的概念就是容器和轴。容器包括外层的父容器和内层的子容器，轴包括主轴和交叉轴       
-##### 父容器：      
-###### 设置子容器沿主轴如何排列：justify-content      
+#### 父容器：      
+##### 设置子容器沿主轴如何排列：justify-content      
 justify-content: flex-start | flex-end | center | space-between | space-around;   
 flex-start：起始端对齐；flex-end：末尾端对齐；center：居中对齐；space-around：子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距离是子容器间距的一半；space-between：子容器沿主轴均匀分布，位于首尾两端的子容器与父容器相切。   
 
-###### 设置子容器沿交叉轴如何排列：align-items    
+##### 设置子容器沿交叉轴如何排列：align-items    
 align-items: flex-start | flex-end | center | baseline | stretch;    
 有flex-start：起始端对齐；flex-end：末尾段对齐；center：居中对齐；stretch：子容器沿交叉轴方向的尺寸拉伸至与父容器一致。    
 
-###### 设置换行方式：flex-wrap（决定子容器是否换行排列）   
+##### 设置换行方式：flex-wrap（决定子容器是否换行排列）   
 flex-wrap: nowrap | wrap | wrap-reverse;    
 nowrap：不换行；wrap：换行（沿着交叉轴的正方向换行）；wrap-reverse：逆序换行（沿着交叉轴的反方向换行）   
 
-###### align-content：当子容器多行排列时，设置行与行之间的对齐方式。
+##### align-content：当子容器多行排列时，设置行与行之间的对齐方式。
 沿交叉轴对齐，属性值和justify-content相同只是相对交叉轴，如果项目只有一根轴线，该属性不起作用
 
-##### 子容器：
-###### 在主轴上如何伸缩：flex   
+#### 子容器：
+##### 在主轴上如何伸缩：flex   
 flex属性是flex-grow（放大比例）, flex-shrink（缩小比例） 和 flex-basis的简写，默认值为0 1 auto，该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
 flex 即弹性，会自动填充剩余空间，子容器的伸缩比例由 flex属性确定。   
 
-###### 单独设置子容器如何沿交叉轴排列：align-self   
+##### 单独设置子容器如何沿交叉轴排列：align-self   
 如果子容器和父容器同时设置了该值，以子容器为准。该属性允许单个子容器有与其他子容器不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch，其他属性值和align-items的属性值一样    
 
-###### order属性定义项目的排列顺序
+##### order属性定义项目的排列顺序
 数值越小，排列越靠前，默认为0    
 
-##### 轴：   
-###### flex-direction 属性决定主轴的方向，交叉轴的方向由主轴确定。   
+#### 轴：   
+##### flex-direction 属性决定主轴的方向，交叉轴的方向由主轴确定。   
 flex-direction: row | row-reverse | column | column-reverse;   
 row，向右，column,向下，row-reverse，向左，column-reverse,向上,主轴沿逆时针方向旋转 90° 就得到了交叉轴   
 
-###### flex-flow属性是flex-direction属性和flex-wrap属性的简写形式
+##### flex-flow属性是flex-direction属性和flex-wrap属性的简写形式
 默认值为row nowrap   
 
-总结:flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。    
+#### 总结:
+flex的作用是能够按照设置好的规则来排列容器内的项目，而不必去计算每一个项目的宽度和边距。甚至是在容器的大小发生改变的时候，都可以重新计算，以至于更符合预期的排版。    
 （1）   display：flex|inline-flex；flex：相当于block；inline-flex：相当于inline-block      
 （2）   flex-direction（流动布局的主轴方向）    
 （3）   flex-wrap如果轴线放不下，应该如何换行。    
