@@ -14,7 +14,7 @@
 \<meta name="viewport" content="width=device-width, initial-scale=1.0"\>    
 * 定时让网页在3秒内跳转到mozilla首页(http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。)         
 \<meta http-equiv="refresh" content="3" url=https://www.mozilla.org"\>
-* 如果安装了GCF (Google Chrome Frame)，则使用GCF来渲染页面 ("chrome=1"), 如果没有安装GCF，则使用最高版本的IE内核进行渲染 ("IE=edge")。X-UA-Compatible(浏览器采取何种版本渲染当前页面)
+* 如果安装了GCF (Google Chrome Frame)，则使用GCF来渲染页面 ("chrome=1"), 如果没有安装GCF，则使用最高版本的IE内核进行渲染 ("IE=edge")。X-UA-Compatible(浏览器采取何种版本渲染当前页面)<br/>
 \<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"\>
 * 浏览器的内核控制
 \<meta name="renderer" content="webkit|ie-comp|ie-stand"\>
