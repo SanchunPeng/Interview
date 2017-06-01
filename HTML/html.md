@@ -38,7 +38,7 @@ html5要适应各种分辨率的移动设备，应该使用rem这样的尺寸单
     .m-navlist{font-size:18px}    
 }     
 
-3.HTML5 为什么只需要写 <!DOCTYPE HTML>？
+3.HTML5 为什么只需要写\<!DOCTYPE HTML\>？
 -------
 Html5不基于SGML，因此不需要对DTD进行引用，但是需要DOCTYPE来规范浏览器的行为（让浏览器按照他们应该的方式来运行）而HTML4.01基于SGML，所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。XHTML创建于XML，他被使用在HTML4.0中。      
 
