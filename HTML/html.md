@@ -202,12 +202,14 @@ HTML5中的Datalist元素有助于提供文本框自动完成特性。
 17、HTML5中什么是输出元素?
 ----
 当你需要计算两个输入的和值到一个标签中的时候你需要输出元素。显示a+b  
-\<form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)"\>
-  \<input name="a" type="number"\> +
-  \<input name="b" type="number"\> =
-  \<output name="o" /\>
-\</form\>
-\<output name="o" for="a b"\>\</output\>
+```html
+<form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)">
+  <input name="a" type="number"> +
+  <input name="b" type="number"> =
+  <output name="o" />
+</form>
+<output name="o" for="a b"></output>
+```
 
 18、如何区分 HTML 和 HTML5？
 ------
@@ -234,7 +236,7 @@ HTML5：在语义上却有很大的优势。提供了一些新的标签，比如
 （1）、\<!DOCTYPE\>声明位于位于HTML文档中的第一行，处于 \<html\> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。    
 （2）、标准模式（严格模式）的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式（在混杂模式中）中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作。    
 
-你知道多少种Doctype文档类型？  
+###### 你知道多少种Doctype文档类型？  
 该标签可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。   
 HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset   
 XHTML 1.0 规定了三种 XML 文档类型：Strict、Transitional 以及 Frameset。    
