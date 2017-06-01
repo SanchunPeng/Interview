@@ -176,11 +176,11 @@ command：用来处理命令按钮。
 5）游戏：绘画canvas、webgl、     
 6）存储：localstorage、sessonstorage、websql、indexedDB（使用对象进行存储数据，indexedDB.open()打开或新建某个数据库，     database=indexedDB.open("mydatabase").result。对象存储空间-表，对象-表中的记录，使用keyPath指定键，使用add()，put()向对象存储空间中存储对象，当存储的对象相同时add报错。put则是更新，可以使用database.transaction("users")(即操作users表)进行读取和修改数据。）         
 
-\<audio\> 标签定义声音，比如音乐或其他音频流。 
-\<canvas\> 标签定义图形，比如图表和其他图像。\<canvas\> 标签只是图形容器，您必须使用脚本来绘制图形。 
-\<article\>标签定义外部的内容。比如来自一个外部的新闻提供者的一篇新的文章，或者来自blog 的文本，或者是来自论坛的文本。亦或是来自其他外部源内容。
-\<menu\> 标签定义命令的列表或菜单。\<menu\> 标签用于上下文菜单、工具栏以及用于列出表单控件和命令。 
-command 元素表示用户能够调用的命令。\<command\> 标签可以定义命令按钮，比如单选按钮、复选框或 按钮。只有当 command 元素位于 menu 元素内时，该元素才 可见的。否则不会显示这个元素，但是 可以用它规定键盘快捷键。  
+\<audio\> 标签定义声音，比如音乐或其他音频流。 <br/>
+\<canvas\> 标签定义图形，比如图表和其他图像。\<canvas\> 标签只是图形容器，您必须使用脚本来绘制图形。 <br/>
+\<article\>标签定义外部的内容。比如来自一个外部的新闻提供者的一篇新的文章，或者来自blog 的文本，或者是来自论坛的文本。亦或是来自其他外部源内容。<br/>
+\<menu\> 标签定义命令的列表或菜单。\<menu\> 标签用于上下文菜单、工具栏以及用于列出表单控件和命令。 <br/>
+command 元素表示用户能够调用的命令。\<command\> 标签可以定义命令按钮，比如单选按钮、复选框或 按钮。只有当 command 元素位于 menu 元素内时，该元素才 可见的。否则不会显示这个元素，但是 可以用它规定键盘快捷键。 <br/>
 
 ###### 移除元素：   
 1）显现层元素：basefont，big，center，font，s，strike，tt，u    
@@ -189,9 +189,11 @@ command 元素表示用户能够调用的命令。\<command\> 标签可以定义
 ###### 处理兼容问题有两种方式：   
 1）IE6/IE7/IE8支持通过document.createElement方法产生的标签，利用这一特性让这些浏览器支持HTML5新标签。浏览器支持新标签后，还需要添加标签默认的样式；   
 2）使用是html5shim框架    
-\<!--[if lt IE 9]\>
-  \<script\> src="http://html5shim.googlecode.com/svn/trunk/html5.js"\</script\>
- \<![endif]--\>
+```javascript
+<!--[if lt IE 9]>
+  <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+<![endif]-->
+```
 另外，DOCTYPE声明的方式是区分HTML和HTML5标志的一个重要因素，此外，还可以根据新增的结构元素header等，功能元素audio等来加以区分。   
 
 ###### HTML5中的datalist是什么？   
