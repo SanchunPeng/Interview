@@ -364,21 +364,21 @@ setTimeout 的第一个参数使用字符串而非函数的话，会引发内存
 ##### 8）、了解用户视线金三角
 　  好的用户体验也是需要遵循用户浏览视线金三角的，通过了解用户浏览视线金三角，可以让SEO在今后可以善于去利用站内的权重来合理分配进行优化。
 ##### 9）、了解外部链接、反向链接、站外链接概念
-　  外部链接：就是我们经常说的“外链”，也可以理解为反向链接或者导入链接，外部链接就除了网站外的站点指向你网站的url，包括首页和内页，但不带NOFOLLOW标签的，能让搜索引擎抓取到的。外部链接是决定你的网站pr权重最为重要的因素。
-　   反向链接:抽象的表示就是A网站上有一个链接指向B网站，那么A网站上的链接就是B网站的反向链接
-　   站外链接:就是所有来自站外的链接指向我们的目标网站都属于站外链接。
+　  外部链接：就是我们经常说的“外链”，也可以理解为反向链接或者导入链接，外部链接就除了网站外的站点指向你网站的url，包括首页和内页，但不带NOFOLLOW标签的，能让搜索引擎抓取到的。外部链接是决定你的网站pr权重最为重要的因素。<br/>
+　   反向链接:抽象的表示就是A网站上有一个链接指向B网站，那么A网站上的链接就是B网站的反向链接。<br/>
+　   站外链接:就是所有来自站外的链接指向我们的目标网站都属于站外链接。<br/>
 ##### 10）、了解seo行业中的pv、uv、ip概念
-　　IP：指独立IP数。即IP地址，一个电脑可能一天换多个IP。
-　　UV：指独立访客，即访问您网站的一台电脑客户端为一个访客;每天网站的独立访问，一个IP下可以有多个电脑，那么这多台电脑的独立访问就算是多次的uv。
-　　PV：指页面浏览量，所有的页面被浏览的总次数，每个页面的点击都计算一次。
+　　IP：指独立IP数。即IP地址，一个电脑可能一天换多个IP。<br/>
+　　UV：指独立访客，即访问您网站的一台电脑客户端为一个访客;每天网站的独立访问，一个IP下可以有多个电脑，那么这多台电脑的独立访问就算是多次的uv。<br/>
+　　PV：指页面浏览量，所有的页面被浏览的总次数，每个页面的点击都计算一次。<br/>
 ##### 11）、不要和链接工厂交换链接，交换链接尽量避免各种陷阱
-　链接工厂，是整个网站或网站中的一部分页面没有实质性的内容，单纯的为了交换链接互相传递pr来提高这个网页的PR值而存在，站点本身是没有其他内容或者极少内容，它是一种典型的seo作弊行为的网站，与链接养殖场相互链接的网站比较容易被百度蜘蛛k掉并拒绝收录的危险。
-　　例如pr劫持，垃圾网站、门页网站、站群、网页劫持站点、链接养殖场等站点的就属于友情链接陷阱的站点。
+　链接工厂，是整个网站或网站中的一部分页面没有实质性的内容，单纯的为了交换链接互相传递pr来提高这个网页的PR值而存在，站点本身是没有其他内容或者极少内容，它是一种典型的seo作弊行为的网站，与链接养殖场相互链接的网站比较容易被百度蜘蛛k掉并拒绝收录的危险。<br/>
+　　例如pr劫持，垃圾网站、门页网站、站群、网页劫持站点、链接养殖场等站点的就属于友情链接陷阱的站点。<br/>
 ##### 12）、使用面包屑导航或者树状导航
 　　面包屑导航(或称为面包屑路径)是一种显示用户在网站或网络应用中的位置的一层层指引的导航。在互联网中，面包屑为用户提供一种追踪返回最初访问页面的方式，可以清晰的为客户指引进入网站内部也和首页之间的路线。最简化的方式是，面包屑就是水平排列的被大于号">"隔开的文本链接;这个符号指示该页面相对于链接到它的页面的深度(级别)。
 ##### 13）、尽量使用绝对链接来做站内优化，而非相对链接
-　　相对链接，相对路径指的是不包含网站首页域名的网址，而是使用返回某个文件的命令来让网站进入某个页面或者返回首页;而绝对链接是包含首页域名的完整的网址。
-　　在设计网站的时候，栏目页面链接都是采用相对链接的，相对链接代码简洁、使用方便，可以减少多余代码，但相对链接也容易导致断链死链接的存在。所以最好的解决方法是使用绝对链接，使用绝对链接可以避免上面提到的所有的潜在问题，是让链接真正正常工作的最好的方法。
+　　相对链接，相对路径指的是不包含网站首页域名的网址，而是使用返回某个文件的命令来让网站进入某个页面或者返回首页;而绝对链接是包含首页域名的完整的网址。<br/>
+　　在设计网站的时候，栏目页面链接都是采用相对链接的，相对链接代码简洁、使用方便，可以减少多余代码，但相对链接也容易导致断链死链接的存在。所以最好的解决方法是使用绝对链接，使用绝对链接可以避免上面提到的所有的潜在问题，是让链接真正正常工作的最好的方法。<br/>
 ##### 14）、关键词密度应该设置为多少，如何提高关键词密度
 　　目标关键词超过了2%即可，但是如果从网站运营的角度出发，更多的是应该围绕用户体验建站。
 ##### 15）、了解nofollow标签
@@ -399,65 +399,64 @@ setTimeout 的第一个参数使用字符串而非函数的话，会引发内存
 --------
 block-level box:display属性为 block, list-item, table 的元素，会生成 block-levelbox。并且参与 block fomatting context；
 inline-level box:display属性为 inline, inline-block, inline-table 的元素，会生成inline-level box。并且参与 inline formatting context；
-BFC(Block formatting context)直译为"块级格式化上下文"。它是一个独立的渲染区域，只有Block-level box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。在页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。
-BFC布局规则：
-内部的Box会在垂直方向，一个接一个地放置。
-Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
-每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
-BFC的区域不会与float box重叠。
-BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
-计算BFC的高度时，浮动元素也参与计算
-哪些元素会生成BFC：
-根元素
-float属性不为none
-position为absolute或fixed
-display为inline-block, table-cell, table-caption, flex, inline-flex
-overflow不为visible
-应用：自适应的两栏布局，清除内部浮动，防止margin重叠
+BFC(Block formatting context)直译为"块级格式化上下文"。它是一个独立的渲染区域，只有Block-level box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。在页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。<br/>
+##### BFC布局规则：
+内部的Box会在垂直方向，一个接一个地放置。<br/>
+Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠。<br/>
+每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。<br/>
+BFC的区域不会与float box重叠。<br/>
+BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。<br/>
+计算BFC的高度时，浮动元素也参与计算。<br/>
+##### 哪些元素会生成BFC：
+根元素float属性不为none。<br/>
+position为absolute或fixed。<br/>
+display为inline-block, table-cell, table-caption, flex, inline-flex。<br/>
+overflow不为visible。<br/>
+##### 应用：
+自适应的两栏布局，清除内部浮动，防止margin重叠<br/>
 
-
-22.cookie，localStroage,sessionStroage
-共同点：都是保存在浏览器端，且同源的。
-区别：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；
-cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
-作用域不同:sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
-sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。
-因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。
-
-23.prototype与__proto__
-prototype是函数的内置属性，__proto__是对象的内置属性。
-每一个函数都有一个prototype(原型)属性, 可以返回对象的原型对象的引用。prototype是通过调用构造函数来创建的那个对象的原型(属性)对象。
-函数(对象)有prototype属性->对应了一个原型对象->每个原型对象都有一个constructor属性->包含一个指向prototype属性所在函数的指针
-prototype:每一个函数对象都有一个显示的prototype属性,它代表了对象的原型，指向原型对象。
-    __proto__:内部原型(IE6/7/8/9不支持),每个对象实例都有一个名为__proto__的内部隐藏属性，指向于它所对应的原型对象,
-继承： 原型对象等于另一类型的实例。此时的原型对象包含一个指向另一原型的指针(__proto__)
+18.prototype与__proto__
+-------
+prototype是函数的内置属性，__proto__是对象的内置属性。每一个函数都有一个prototype(原型)属性, 可以返回对象的原型对象的引用。prototype是通过调用构造函数来创建的那个对象的原型(属性)对象。<br/>
+函数(对象)有prototype属性->对应了一个原型对象->每个原型对象都有一个constructor属性->包含一个指向prototype属性所在函数的指针。<br/>
+##### prototype:
+每一个函数对象都有一个显示的prototype属性,它代表了对象的原型，指向原型对象。<br/>
+##### __proto__:
+内部原型(IE6/7/8/9不支持),每个对象实例都有一个名为__proto__的内部隐藏属性，指向于它所对应的原型对象。<br/>
+##### 继承：
+原型对象等于另一类型的实例。此时的原型对象包含一个指向另一原型的指针(__proto__)。<br/>
  
-24.src与href的区别
-href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。link a
-src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。
+19.src与href的区别
+-------
+href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接：link a<br/>
+src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。<br/>
 
-25.什么是CSS Hack?
+20.什么是CSS Hack?
+--------
 一般来说是针对不同的浏览器写不同的CSS,就是 CSS Hack。
 IE浏览器Hack一般又分为三种，条件Hack、属性级Hack、选择符Hack
+```css
 // 1、条件Hack
-   <!--[if IE]>
+<!--[if IE]>
       <style>
            .test{color:red;}
       </style>
-   <![endif]-->
-   // 2、属性Hack
-    .test{
+<![endif]-->
+// 2、属性Hack
+.test{
     color:#090\9; /*For IE8+ */
     +color:#f00;/* For IE6,7,8*/
     *color:#f00;  /* For IE7 and earlier */
     _color:#ff0;  /* For IE6 and earlier */
-    }
-   // 3、选择符Hack
-    * html .test{color:#090;}       /* For IE6 and earlier */
-    * + html .test{color:#ff0;}     /* For IE7 */
+}
+// 3、选择符Hack
+* html .test{color:#090;}       /* For IE6 and earlier */
+* + html .test{color:#ff0;}     /* For IE7 */
+```
 
-
-实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制。
+21、实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制。
+---------
+```javascript
 Object.prototype.clone = function(){
    var o =this.constructor === Array ? [] : {};
    for(var e in this){
@@ -480,20 +479,27 @@ return buf;
 return buf;
 } else { returnObj;//普通变量 }
 }
+```
 
-29.一个页面上有大量的图片（大型电商网站），加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验。
-图片懒加载：在页面上的未可视区域可以添加一个滚动条事件，判断图片位置与浏览器顶端的距离与页面的距离，如果前者小于后者，优先加载。
-如果为幻灯片、相册等，可以使用图片预加载技术，将当前展示图片的前一张和后一张优先下载。
-如果图片为css图片，可以使用CSSsprite，SVGsprite，Iconfont、Base64等技术。
-如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。
-如果图片展示区域小于图片的真实大小，则因在服务器端根据业务需要先行进行图片压缩，图片压缩后大小与展示一致。
-30.在Javascript中什么是伪数组？如何将伪数组转化为标准数组？
+22.一个页面上有大量的图片（大型电商网站），加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验。
+---------
+1）、图片懒加载：在页面上的未可视区域可以添加一个滚动条事件，判断图片位置与浏览器顶端的距离与页面的距离，如果前者小于后者，优先加载。<br/>
+2）、如果为幻灯片、相册等，可以使用图片预加载技术，将当前展示图片的前一张和后一张优先下载。<br/>
+3）、如果图片为css图片，可以使用CSSsprite，SVGsprite，Iconfont、Base64等技术。<br/>
+4）、如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。<br/>
+5）、如果图片展示区域小于图片的真实大小，则因在服务器端根据业务需要先行进行图片压缩，图片压缩后大小与展示一致。<br/>
+
+23.在Javascript中什么是伪数组？如何将伪数组转化为标准数组？
+--------
 伪数组（类数组）：无法直接调用数组方法或期望length属性有什么特殊的行为，但仍可以对真正数组遍历方法来遍历它们。典型的是函数的argument参数，还有像调用getElementsByTagName,document.childNodes之类的,它们都返回NodeList对象都属于伪数组。可以使用Array.prototype.slice.call(fakeArray)将数组转化为真正的Array对象。
-31.Javascript中callee和caller的作用？
-caller是返回一个对函数的引用，该函数调用了当前函数；
-callee是返回正在被执行的function函数，也就是所指定的function对象的正文。
 
-32.统计字符串中字母个数或统计最多字母数。
+24.Javascript中callee和caller的作用？
+--------
+caller是返回一个对函数的引用，该函数调用了当前函数；<br/>
+callee是返回正在被执行的function函数，也就是所指定的function对象的正文。<br/>
+
+25.统计字符串中字母个数或统计最多字母数。
+```javascript
 var str = 'asdfssaaasasasasaa';
 var json = {};
 for (var i = 0; i < str.length; i++) {
@@ -512,35 +518,48 @@ for(var i in json){
         }
 }
 alert('出现次数最多的是:'+iIndex+'出现'+iMax+'次');
+```
 
-33.字符串反转，如将 '12345678' 变成 '87654321'
-/思路：先将字符串转换为数组 split()，利用数组的反序函数 reverse()颠倒数组，再利用 jion() 转换为字符串
+26.字符串反转，如将 '12345678' 变成 '87654321'
+-------
+思路：先将字符串转换为数组 split()，利用数组的反序函数 reverse()颠倒数组，再利用 jion() 转换为字符串<br/>
+```javscript
 var str = '12345678';
 str =str.split('').reverse().join('');
-34.将数字 12345678 转化成 RMB形式如： 12,345,678
-//思路：先将数字转为字符， str= str + '' ;
-//利用反转函数，每三位字符加一个 ','最后一位不加； re()是自定义的反转函数，最后再反转回去！
+```
+
+27.将数字 12345678 转化成 RMB形式如： 12,345,678
+---------
+//思路：先将数字转为字符， str= str + '' ;<br/>
+//利用反转函数，每三位字符加一个 ','最后一位不加； re()是自定义的反转函数，最后再反转回去！<br/>
+```javascript
 for(var i = 1; i <= re(str).length; i++){
     tmp += re(str)[i -1];
     if(i % 3 == 0&& i != re(str).length){
         tmp += ',';
     }
 }
-35.BOM对象有哪些，列举window对象？
-   1、window对象 ，是JS的最顶层对象，其他的BOM对象都是window对象的属性；
- 	2、document对象，文档对象；
-   3、location对象，浏览器当前URL信息；
-   4、navigator对象，浏览器本身信息；
-   5、screen对象，客户端屏幕信息；
-        6、history对象，浏览器访问历史信息；
+```
 
-36.简述readonly与disabled的区别
-1、Readonly只针对input(text / password)和textarea有效，而disabled对于所有的表单元素都有效，
-2、但是表单元素在使用了disabled后，当我们将表单以POST或GET的方式提交的话，这个元素的值不会被传递出去，而readonly会将该值传递出去（readonly接受值更改可以回传，disable接受改但不回传数据）。
+28.BOM对象有哪些，列举window对象？
+-------
+1）、window对象 ，是JS的最顶层对象，其他的BOM对象都是window对象的属性；<br/>
+2）、document对象，文档对象；<br/>
+3）、location对象，浏览器当前URL信息；<br/>
+4）、navigator对象，浏览器本身信息；<br/>
+5）、screen对象，客户端屏幕信息；<br/><br/>
+6）、history对象，浏览器访问历史信息；<br/>
 
-37.css有个content属性吗？有什么作用？有什么应用？
-css的content属性专门应用在 before/after 伪元素上，用来插入生成内容。最常见的应用是利用伪类清除浮动。
-//一种常见利用伪类清除浮动的代码
+29.简述readonly与disabled的区别
+-------
+1）、Readonly只针对input(text/password)和textarea有效，而disabled对于所有的表单元素都有效。<br/>
+2）、但是表单元素在使用了disabled后，当我们将表单以POST或GET的方式提交的话，这个元素的值不会被传递出去，而readonly会将该值传递出去（readonly接受值更改可以回传，disable接受改但不回传数据）。<br/>
+
+30.css有个content属性吗？有什么作用？有什么应用？
+-------
+css的content属性专门应用在 before/after 伪元素上，用来插入生成内容。最常见的应用是利用伪类清除浮动。<br/>
+//一种常见利用伪类清除浮动的代码<br/>
+```css
 .clearfix:after {
     content:".";//这里利用到了content属性
     display:block;
@@ -548,59 +567,79 @@ css的content属性专门应用在 before/after 伪元素上，用来插入生�
     visibility:hidden;
     clear:both; }
 .clearfix {    *zoom:1;    }
-after伪元素通过 content 在元素的后面生成了内容为一个点的块级素，再利用clear:both清除浮动。
-　那么问题继续还有，知道css计数器（序列数字字符自动递增）吗？如何通过css content属性实现css计数器？
-css计数器是通过设置counter-reset 、counter-increment 两个属性 、及counter()/counters()一个方法配合after / before 伪类实现。
+```
+after伪元素通过content在元素的后面生成了内容为一个点的块级素，再利用clear:both清除浮动。<br/>
+那么问题继续还有，知道css计数器（序列数字字符自动递增）吗？如何通过css content属性实现css计数器？<br/>
+css计数器是通过设置counter-reset 、counter-increment 两个属性 、及counter()/counters()一个方法配合after/before 伪类实现。<br/>
 
-38.一次完整的HTTP事务是怎样的一个过程？
+31.一次完整的HTTP事务是怎样的一个过程？
+--------
 基本流程：
-a. 域名解析
-b. 发起TCP的3次握手
-c. 建立TCP连接后发起http请求
-d. 服务器端响应http请求，浏览器得到html代码
-e. 浏览器解析html代码，并请求html代码中的资源
-f. 浏览器对页面进行渲染呈现给用户
+a. 域名解析<br/>
+b. 发起TCP的3次握手<br/>
+c. 建立TCP连接后发起http请求<br/>
+d. 服务器端响应http请求，浏览器得到html代码<br/>
+e. 浏览器解析html代码，并请求html代码中的资源<br/>
+f. 浏览器对页面进行渲染呈现给用户<br/>
 
-41.写一个function，清除字符串前后的空格。
+32.写一个function，清除字符串前后的空格。
+------
+```javascript
 if (!String.prototype.trim) {
  String.prototype.trim= function() {
  returnthis.replace(/^\s+/, "").replace(/\s+$/,"");
  }
 }
+```
 
-42.事件类型
-UI事件：load，unload，select,resize,scroll
-焦点事件:blur, focus
-鼠标事件:click, dbclick, mousedown, mouseleave
-滚轮事件:mousewheel
-文本事件:textinput
-键盘事件: keydown, keypress, keyup
+32.事件类型
+------
+UI事件：load，unload，select,resize,scroll<br/>
+焦点事件:blur, focus<br/>
+鼠标事件:click, dbclick, mousedown, mouseleave<br/>
+滚轮事件:mousewheel<br/>
+文本事件:textinput<br/>
+键盘事件: keydown, keypress, keyup<br/>
 
-43.js的浅拷贝和深拷贝
-浅复制：浅复制是复制引用，复制后的引用都是指向同一个对象的实例，彼此之间的操作会互相影响
-深复制：深复制不是简单的复制引用，而是在堆中重新分配内存，并且把源对象实例的所有属性都进行新建复制，以保证深复制的对象的引用图不包含任何原有对象或对象图上的任何对象，复制后的对象与原来的对象是完全隔离的
-concat和slice常用来做深度拷贝
-（1）数组的浅拷贝和深拷贝
-1）var arr =["One","Two","Three"];     var arrto = arr;
-如果只是将数组的名字赋值给其他变量，改变其中一个，也会改变另一个。这种方式就是浅拷贝。
+33.js的浅拷贝和深拷贝
+-------
+浅复制：浅复制是复制引用，复制后的引用都是指向同一个对象的实例，彼此之间的操作会互相影响。<br/>
+深复制：深复制不是简单的复制引用，而是在堆中重新分配内存，并且把源对象实例的所有属性都进行新建复制，以保证深复制的对象的引用图不包含任何原有对象或对象图上的任何对象，复制后的对象与原来的对象是完全隔离的。<br/>
+concat和slice常用来做深度拷贝。<br/>
+#### （1）数组的浅拷贝和深拷贝
+1）
+```javascript
+var arr =["One","Two","Three"];     
+var arrto = arr;
+```
+如果只是将数组的名字赋值给其他变量，改变其中一个，也会改变另一个。这种方式就是浅拷贝。<br/>
 2）js的slice方法：array对象的slice函数，返回一个数组的一段。（仍为数组）
+```javascript
 var arr =["One","Two","Three"];
 var arrtoo = arr.slice(0); //从0开始，默认的结束时到最后
 arrtoo[1] = "set Map";
 document.writeln(arr + "<br />");//Export:数组的原始值：One,Two,Three
 document.writeln(arrtoo + "<br />");//Export:数组的新值：One,set Map,Three
+```
 3）concat() 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+```javascript
 var arr =["One","Two","Three"];
 var arrtooo = arr.concat();
 arrtooo[1] = "set Map To";
 document.writeln(arr); // One,Two,Three
 document.writeln(arrtooo); // One,set Map To,Three
-4）function deepCopy(arry1,arry2){
+```
+4）
+```javascript
+function deepCopy(arry1,arry2){
     for(var i = 0,l=arry1.length;i<l;i++){
         arry2[i] =arry1[i];
-    }  }
-（2）对象的浅拷贝和深拷贝
+    }  
+}
+```
+#### （2）对象的浅拷贝和深拷贝
 1）JSON对象parse方法可以将JSON字符串反序列化成JS对象，stringify方法可以将JS对象序列化成JSON字符串，借助这两个方法，也可以实现对象的深复制。
+```javascript
 varsource = {
     name:"source",
     child:{
@@ -614,123 +653,40 @@ console.log(target.name);   //target
 target.child.name= "target child";  //改变target的child
 console.log(source.child.name);  //child
 console.log(target.child.name);  //target child
+```
 2）把对象的属性遍历一遍，赋给一个新的对象。
+```javascript
 vardeepCopy= function(source) {
-var result={};
-for (var key insource) {
-      result[key] = typeof source[key]===’object’?deepCopy(source[key]): source[key];
-   }   return result;   }
+    var result={};
+    for (var key insource) {
+      	 result[key] = typeof source[key]===’object’?deepCopy(source[key]): source[key];
+    }   
+    return result;   
+ }
+```
 
-
-44.常用的布局，什么是响应式布局？
-1.  固宽布局：各个模块是固定宽度
+34.常用的布局，什么是响应式布局？
+--------
+##### 1）、固宽布局：各个模块是固定宽度
 特点：设计简单，不会受到图片等固定宽度内容的影响。对比高分辨率的用户，固定宽度会留下很多空白，屏幕小出现滚动条。
-2.  流动布局使用百分比的方式自适应不同的分辨率
-特点：对用户友好，能够部分自适应用户的设置。网页周围的空白区域在所有分辨率和显示器下都是相同，视觉上美观。设计者需要进行不同的测试，准备不同的对应素材
-3.  弹性布局使用em作为单位，em是相对单位，随用户字体大小变化而改变
-特点：页面中所有元素可以随着用户的偏好缩放，需要花更多的事件测试，让布局适合所有的用户
-4.  栅格化布局，也分为固定式栅格，流式栅格
-在网页设计中，我们把宽度为“W”的页面分割成n个网格单元“a”，每个单元与单元之间的间隙设为“i”,此时我们把“a+i”定义“A”。他们之间的关系如下：W =（a*n）+（n-1）*I，由于a+i=A，因此可得：(A×n) – i = W。注：最左右边没有边距(margin-left,marign-right)。
-       特点：可以提高网页的规范性和可用性。在栅格系统下，页面模块的尺寸标准化。整个网站的各个页面布局一致，增加页面的相似度。
-5.  响应式布局
-允许页面宽度自动调整，利用媒体查询根据不同的宽度设置不同的样式，液态布局，自适应媒体（图片，视频）。
-（1）   运行页面宽度自动调整：在网页头部加入一张viewport元标签
-<metaname=”viewport” content=”width=device-width,initial-scale=1.0”>
-网页的宽度默认等于屏幕宽度，原始缩放比例是1，即网页初始大小占屏幕面积的100%
-（2）   利用媒体查询设置不同的样式
-<linkrel=”stylesheet” type=”text/css” href=”site.css” media=”screen”/>
-<linkrel=”stylesheet” type=”text/css”href=”print.css” media=”print”>
-screen:使用于计算机彩色屏幕
-print：使用与打印预览模式下查看的内容或打印机打印的内容
+##### 2）、流动布局使用百分比的方式自适应不同的分辨率
+特点：对用户友好，能够部分自适应用户的设置。网页周围的空白区域在所有分辨率和显示器下都是相同，视觉上美观。设计者需要进行不同的测试，准备不同的对应素材。
+##### 3）、弹性布局使用em作为单位，em是相对单位，随用户字体大小变化而改变
+特点：页面中所有元素可以随着用户的偏好缩放，需要花更多的事件测试，让布局适合所有的用户。
+##### 4）、 栅格化布局，也分为固定式栅格，流式栅格
+在网页设计中，我们把宽度为“W”的页面分割成n个网格单元“a”，每个单元与单元之间的间隙设为“i”,此时我们把“a+i”定义“A”。他们之间的关系如下：W =（a\*n）+（n-1）\*I，由于a+i=A，因此可得：(A×n) – i = W。注：最左右边没有边距(margin-left,marign-right)。<br/>
+特点：可以提高网页的规范性和可用性。在栅格系统下，页面模块的尺寸标准化。整个网站的各个页面布局一致，增加页面的相似度。<br/>
+##### 5）、响应式布局
+允许页面宽度自动调整，利用媒体查询根据不同的宽度设置不同的样式，液态布局，自适应媒体（图片，视频）。<br/>
+（1）运行页面宽度自动调整：在网页头部加入一张viewport元标签<br/>
+\<meta name=”viewport” content=”width=device-width,initial-scale=1.0”\><br/>
+网页的宽度默认等于屏幕宽度，原始缩放比例是1，即网页初始大小占屏幕面积的100%<br/>
+（2）利用媒体查询设置不同的样式<br/>
+\<link rel=”stylesheet” type=”text/css” href=”site.css” media=”screen”/\><br/>
+\<link rel=”stylesheet” type=”text/css”href=”print.css” media=”print”\><br/>
+screen:使用于计算机彩色屏幕。<br/>
+print：使用与打印预览模式下查看的内容或打印机打印的内容。<br/>
 
-45.Ajax工作原理，同步和异步
-Ajax就是通过JavaScript创建XMLHttpRequest对象，再由JavaScript调用XMLHttpRequest对象的方法完成异步通信；然后，再由JavaScript通过DOM的属性和方法，完成页面的不完全刷新。
-   AJAX全称为“Asynchronous JavaScript and XML”（异步JavaScript和XML）
-由事件触发，创建一个XMLHttpRequest对象，把HTTP方法（Get/Post）和目标URL以及请求返回后的回调函数设置到XMLHttpRequest对象，通过XMLHttpRequest向服务器发送请求，请求发送后继续响应用户的界面交互，只有等到请求真正从服务器返回的时候才调用callback()函数，对响应数据进行处理。
-同步：脚本会停留并等待服务器发送回复然后再继续
-异步：脚本允许页面继续其进程并处理可能的回复
-（1）XMLHttpRequest简介
-XMLHttpRequest，是我们得以实现异步通讯的的根本。
-用XMLHttpRequest进行异步通讯，首先必须用JavaScript创建一个XMLHttpRequest对象实例。创建XMLHttpRequest对象实例的代码清单如下所示：
-var xmlHttp;
-functioncreateXMLHttpRequest(){
-   if(window.ActiveXObject){
- xmlHttp = newActiveXObject("Microsoft.XMLHTTP");
-} elseif(window.XMLHttpRequest){
- xmlHttp = new XMLHttpRequest();
-}
-}
-（2）利用XMLHttpRequest对象发送简单请求
-1）  创建XMLHttpRequest对象实例。
-2）  设定XMLHttpRequest对象的回调函数，利用onreadystatechange属性。
-3）  设定请求属性：设定HTTP方法（GET或POST）；设定目标URL。利用open()方法。
-4）  将请求发送给服务器。利用send()方法。
-（3）利用DOM对服务器响应进行处理
-前面已经设置了回调函数，回调函数正是用来处理服务器响应信息的。在服务器对我们的请求信息作出响应后，我们就得实现页面的无缝更新（就是无闪烁的更新信息）。通过DOM，我们可以把页面上的数据和结构抽象成一个树型表示，进而可以通过DOM中定义的属性和方法对文档进行操作，如遍历、编辑等。这样，服务器相应信息就可以通过DOM的方法和属性，动态的更新到页面的相应节点。从而使用户感觉不到刷新过程的存在，提高了交互性。
-（4）实例
-实例包含两个文件：Request.htm和Response.xml。通过Request.htm向服务器发送请求，而Response.xml模仿了从服务器返回的响应。两个文件清单如下：
-<!--Request.htm----------------------------------------------------------->
-<html>
-    <head>
-        <title>Ajax应用实例</title>
-        <scripttype="text/javaScript">
-            var xmlHttp;
-varrequestType="";
-functioncreateXMLHttpRequest(){
-    if(window.ActiveXObject){
-        xmlHttp = newActiveXObject("Microsoft.XMLHTTP");
-    }
-    else if(window.XMLHttpRequest){
-        xmlHttp = new XMLHttpRequest();
-    }
-}
-functionstartRequest(theRequestType){
-requestType= theRequestType;
-    createXMLHttpRequest();
-    xmlHttp.onreadystatechange =handleStateChange;
-   xmlHttp.open("GET","Response.xml",true);
-    xmlHttp.send(null);
-}
-functionmyCallback(){
-    if(xmlHttp.readyState==4){
-        if(xmlHttp.status==200){
-            if(requestType=="all")
-                listAll();
-            elseif(requestType=="north")
-                listNorth();
-        }
-    }
-}
- (1).AJAX的优点
-<1>.无刷新更新数据。
-AJAX最大优点就是能在不刷新整个页面的前提下与服务器通信维护数据。这使得Web应用程序更为迅捷地响应用户交互，并避免了在网络上发送那些没有改变的信息，减少用户等待时间，带来非常好的用户体验。
-<2>.异步与服务器通信。
-AJAX使用异步方式与服务器通信，不需要打断用户的操作，具有更加迅速的响应能力。优化了Browser和Server之间的沟通，减少不必要的数据传输、时间及降低网络上数据流量。
-<3>.前端和后端负载平衡。
-AJAX可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担，提升站点性能。
-<4>.基于标准被广泛支持。
-<5>.界面与应用分离。
-Ajax使WEB中的界面与应用分离（也可以说是数据与呈现分离），有利于分工合作、减少非技术人员对页面的修改造成的WEB应用程序错误、提高效率、也更加适用于现在的发布系统。
-(2).AJAX的缺点
-<1>.AJAX干掉了Back和History功能，即对浏览器机制的破坏。
-在动态更新页面的情况下，用户无法回到前一个页面状态，因为浏览器仅能记忆历史记录中的静态页面。一个被完整读入的页面与一个已经被动态修改过的页面之间的差别非常微妙；用户通常会希望单击后退按钮能够取消他们的前一次操作，但是在Ajax应用程序中，这将无法实现。
-<2>.AJAX的安全问题。
-Ajax技术就如同对企业数据建立了一个直接通道。这使得开发者在不经意间会暴露比以前更多的数据和服务器逻辑。Ajax的逻辑可以对客户端的安全扫描技术隐藏起来，允许黑客从远端服务器上建立新的攻击。还有Ajax也难以避免一些已知的安全弱点，诸如跨站点脚步攻击、SQL注入攻击和基于Credentials的安全漏洞等等。
-<3>.对搜索引擎支持较弱。
-对搜索引擎的支持比较弱。如果使用不当，AJAX会增大网络数据的流量，从而降低整个系统的性能。
-<4>.破坏程序的异常处理机制。
-<5>.违背URL和资源定位的初衷。
-<6>.AJAX不能很好支持移动设备。
-<7>.客户端过肥，太多客户端代码造成开发上的成本。编写复杂、容易出错；冗余代码比较多，破坏了Web的原有标准。
-5.AJAX注意点及适用和不适用场景
-(1).注意点
-Ajax开发时，网络延迟——即用户发出请求到服务器发出响应之间的间隔——需要慎重考虑。不给予用户明确的回应，没有恰当的预读数据，或者对XMLHttpRequest的不恰当处理，都会使用户感到延迟，这是用户不希望看到的，也是他们无法理解的。通常的解决方案是，使用一个可视化的组件来告诉用户系统正在进行后台操作并且正在读取数据和内容。
-(2).Ajax适用场景
-<1>.表单驱动的交互<2>.深层次的树的导航<3>.快速的用户与用户间的交流响应
-<4>.类似投票、yes/no等无关痛痒的场景<5>.对数据进行过滤和操纵相关数据的场景
-<6>.普通的文本输入提示和自动完成的场景
-(3).Ajax不适用场景
-<1>.部分简单的表单<2>.搜索<3>.基本的导航<4>.替换大量的文本<5>.对呈现的操纵
 
 46.Javascript异步编程的4种方法
 当线程中没有执行任何同步代码的前提下才会执行异步代码，setTimeout是异步代码，所以setTimeout只能等js空闲才会执行。
