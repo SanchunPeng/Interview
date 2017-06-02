@@ -687,80 +687,67 @@ vardeepCopy= function(source) {
 screen:使用于计算机彩色屏幕。<br/>
 print：使用与打印预览模式下查看的内容或打印机打印的内容。<br/>
 
-
-46.Javascript异步编程的4种方法
-当线程中没有执行任何同步代码的前提下才会执行异步代码，setTimeout是异步代码，所以setTimeout只能等js空闲才会执行。
-一、 回调函数
+35.Javascript异步编程的4种方法
+-------
+当线程中没有执行任何同步代码的前提下才会执行异步代码，setTimeout是异步代码，所以setTimeout只能等js空闲才会执行。<br/>
+#### 一、 回调函数
+```javascript
 function f1(callback){  //假设f1是一个很耗时的函数，把f2写成f1的回调函数
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　callback();
-　　　　}, 1000);   　　}
-执行代码就变成下面这样：　　f1(f2);
-采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。
-二、 事件监听
-采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。
-首先，为f1绑定一个事件：　　f1.on('done', f2);
-当f1发生done事件，就执行f2。然后，对f1进行改写：
-　　function f1(){
+　　　　}, 1000);   　　
+ }
+ ```
+执行代码就变成下面这样：f1(f2);<br/>
+采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。<br/>
+#### 二、 事件监听
+采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。<br/>
+首先，为f1绑定一个事件：f1.on('done', f2);当f1发生done事件，就执行f2。然后，对f1进行改写：<br/>
+```javascript
+function f1(){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　f1.trigger('done');
-　　　　}, 1000);  　　}
-f1.trigger('done')表示，执行完成后，立即触发done事件，从而开始执行f2。
-这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以"去耦合"（Decoupling），有利于实现模块化。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。
-三、 发布/订阅
-我们假定，存在一个"信号中心"，某个任务执行完成，就向信号中心"发布"（publish）一个信号，其他任务可以向信号中心"订阅"（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做"发布/订阅模式"（publish-subscribe pattern），又称"观察者模式"（observer pattern）。
-首先，f2向"信号中心"jQuery订阅"done"信号：　jQuery.subscribe("done",f2);
-然后，f1进行如下改写：
-　　function f1(){
+　　　　}, 1000);  　
+}
+```
+f1.trigger('done')表示，执行完成后，立即触发done事件，从而开始执行f2。<br/>
+这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以"去耦合"（Decoupling），有利于实现模块化。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。<br/>
+#### 三、 发布/订阅
+我们假定，存在一个"信号中心"，某个任务执行完成，就向信号中心"发布"（publish）一个信号，其他任务可以向信号中心"订阅"（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做"发布/订阅模式"（publish-subscribe pattern），又称"观察者模式"（observer pattern）。<br/>
+首先，f2向"信号中心"jQuery订阅"done"信号：jQuery.subscribe("done",f2);然后，f1进行如下改写：<br/>
+```javascript
+function f1(){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　jQuery.publish("done");
-　　　　}, 1000);   　　}
-jQuery.publish("done")的意思是，f1执行完成后，"信号中心"jQuery发布"done"信号，从而引发f2的执行。
-此外，f2完成执行后，也可以取消订阅（unsubscribe）。
-　　jQuery.unsubscribe("done", f2);
+　　　　}, 1000);   　　
+}
+```
+jQuery.publish("done")的意思是，f1执行完成后，"信号中心"jQuery发布"done"信号，从而引发f2的执行。此外，f2完成执行后，也可以取消订阅（unsubscribe）。<br/>
+jQuery.unsubscribe("done", f2);
 这种方法的性质与"事件监听"类似，但是明显优于后者。因为我们可以通过查看"消息中心"，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
-四、Promises对象
-每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：　　f1().then(f2);
-f1要进行如下改写（这里使用的是jQuery的实现）：
-　　function f1(){
+#### 四、Promises对象
+每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：f1().then(f2);f1要进行如下改写（这里使用的是jQuery的实现）：<br/>
+```javascript
+function f1(){
 　　　　var dfd = $.Deferred();
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　dfd.resolve();
 　　　　}, 500);
 　　　　return dfd.promise;
-　　}
-这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。
-比如，指定多个回调函数：　　f1().then(f2).then(f3);
-再比如，指定发生错误时的回调函数：　　f1().then(f2).fail(f3);
-而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。
+}
+```
+这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能<br/>
+比如，指定多个回调函数：f1().then(f2).then(f3);<br/>
+再比如，指定发生错误时的回调函数：f1().then(f2).fail(f3);<br/>
+而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。<br/>
 
-47.图片轮播
-<script>
-            window.onload=function() {
-                var list =document.getElementById("list");
-                var liList =document.getElementsByTagName("li"); //所有图片
-                var len = liList.length; //个数
-                var liwidth =liList[0].clientWidth; //每张图片的宽度
-                var totalWidth = (len - 1) * liwidth* (-1); //图片总宽度
-                var varyLeft = list.offsetLeft;//ul初始left值
-                var speed = 3; //每次移动距离                
-                function move() {
-                   if (varyLeft < totalWidth){//左移完最后一张后，瞬间切换到第二张a，第二张a和最后一张a'相同
-                       list.style.left ="-300px";
-                       varyLeft = -300;
-                   }                 
-                   varyLeft -= speed;//每次移动
-                   list.style.left = varyLeft +"px";
-                }
-                var timer = setInterval(move,30);//每个40毫秒左移一次      
-            }
-        </script>
-
- JavaScript实现DOM树的遍历
+36.JavaScript实现DOM树的遍历
+------
+```javascript
 function traversal(node){  
    if(node && node.nodeType ===1){  //对node的处理
      console.log(node.tagName);
@@ -771,7 +758,8 @@ function traversal(node){
      if(item.nodeType === 1){      
        traversal(item);  //递归先序遍历子节点
      }
-   }   }
+   }   
+}
 functiontraverseNodes(node){   
          if(node.nodeType == 1){  //判断是否是元素节点 
            display(node);                
@@ -792,7 +780,9 @@ functiontraverseNodes(node){
            display(node); 
        } 
 } 
-DOM的广度和深度遍历
+```
+#### DOM的广度和深度遍历
+```javascript
 Tree.prototype.BFSearch =  function(node,callback){ 
    var queue=[]; 
    while(node!=null){         
@@ -817,9 +807,10 @@ Tree.prototype.DFSearch =  function(node,callback){
      node = stack.pop();//弹出栈的子节点顺序就是原来的正确顺序(因为栈是先入后出的)       
    }    
 }; 
+```
 
-2.    javascript实现链表的操作
-
+#### javascript实现链表的操作
+```javascript
 //Node类和LList类
 function Node(element){
     this.element=element;
@@ -858,8 +849,9 @@ var preNode=this.findPrevious(item);
      preNode.next=preNode.next.next;
     }
 }  
+```
 
-3.  javascript实现import动态导入节点：
+#### javascript实现import动态导入节点：
 1）
 var $import =function(){
     return function(rId, res, callback){
@@ -894,58 +886,64 @@ var $import =function(){
                             }
                         });    }   }
                 head.appendChild(linkScript);
-            } }  };  }();
-2）var JCore ={//构造核心对象
+            } 
+	 }  
+    };  
+}();
+2）
+```javascript
+var JCore ={//构造核心对象
 version:1.0,
 $import:function(importFile){
-var file =importFile.toString();
-varIsRelativePath = (file.indexOf("$")==0 ||file.indexOf("/")==-1);//相对路径(相对于JCore)
-var path=file;
-if(IsRelativePath){//计算路径,$开头表示使用当前脚本路径，/开头则是完整路径
-if(file.indexOf("$")==0)
-file =file.substr(1);
-path =JCore.$dir+file;
-}
-varnewElement=null,i=0;
-var ext =path.substr(path.lastIndexOf(".")+1);
-if(ext.toLowerCase()=="js"){
-var scriptTags =document.getElementsByTagName_r("script");
-for(var i=0;ilength;i++) {
-if(scriptTags[i].src && scriptTags[i].src.indexOf(path)!=-1)
-return;
-}
-newElement=document.createElement_x("script");
-newElement.type="text/javascript";
-newElement.src=path;
-}
-elseif(ext.toLowerCase()=="css"){
-var linkTags = document.getElementsByTagName_r("link");
-for(var i=0;ilength;i++) {
-if(linkTags[i].href && linkTags[i].href.indexOf(path)!=-1)
-return;
-}
-newElement=document.createElement_x("link");
-newElement.type="text/css";
-newElement.rel="Stylesheet";
-newElement.href=path;
-}
-else
-return;
-var head=document.getElementsByTagName_r("head")[0];
-head.appendChild(newElement);
+	var file =importFile.toString();
+	varIsRelativePath = (file.indexOf("$")==0 ||file.indexOf("/")==-1);//相对路径(相对于JCore)
+	var path=file;
+	if(IsRelativePath){//计算路径,$开头表示使用当前脚本路径，/开头则是完整路径
+		if(file.indexOf("$")==0)
+			file =file.substr(1);
+		path =JCore.$dir+file;
+	}
+	varnewElement=null,i=0;
+	var ext =path.substr(path.lastIndexOf(".")+1);
+	if(ext.toLowerCase()=="js"){
+		var scriptTags =document.getElementsByTagName_r("script");
+		for(var i=0;ilength;i++) {
+			if(scriptTags[i].src && scriptTags[i].src.indexOf(path)!=-1)
+			return;
+		}
+		newElement=document.createElement_x("script");
+		newElement.type="text/javascript";
+		newElement.src=path;
+	}
+	else if(ext.toLowerCase()=="css"){	
+		var linkTags = document.getElementsByTagName_r("link");
+		for(var i=0;ilength;i++) {
+			if(linkTags[i].href && linkTags[i].href.indexOf(path)!=-1)
+			return;
+		}
+		newElement=document.createElement_x("link");
+		newElement.type="text/css";
+		newElement.rel="Stylesheet";
+		newElement.href=path;
+	}else
+		return;
+	var head=document.getElementsByTagName_r("head")[0];
+	head.appendChild(newElement);
 },
 $dir :function(){
-var scriptTags = document.getElementsByTagName_r("script");
-for(var i=0;ilength;i++) {
-if(scriptTags[i].src &&scriptTags[i].src.match(/JCore/.js$/)) {
-path = scriptTags[i].src.replace(/JCore/.js$/,"");
-return path;
-}  }
-return "";
+	var scriptTags = document.getElementsByTagName_r("script");
+	for(var i=0;ilength;i++) {
+		if(scriptTags[i].src &&scriptTags[i].src.match(/JCore/.js$/)) {
+			path = scriptTags[i].src.replace(/JCore/.js$/,"");
+			return path;
+		}  
+	}
+	return "";
 }()
 }
-
-4.    javascript实现分页函数：
+```
+#### javascript实现分页函数：
+```javascript
 function goPage(pno,psize){
     var itable =document.getElementById("idData");
     var num = itable.rows.length;//表格所有行数(所有记录数)   
@@ -983,17 +981,23 @@ tempStr += "<a href=\"#\"onClick=\"goPage("+(totalPage)+","+psize+")\">尾页</a
     }else{
         tempStr += "下一页>";
         tempStr += "尾页";   
-    }
-5.    String()与toString()的区别：
-     (1)null和undefined有String()转换成字符串，而toString()不能；
-     (2)toString()能设定数值数据转换的进制数，而String()不能；
-     (3)其他情况下：toString(val) === String(val)
-6.    下面这个ul，如何点击每一列的时候alert其index?（闭包）
+  }
+```
+
+#### String()与toString()的区别：
+(1)null和undefined有String()转换成字符串，而toString()不能；<br/>
+(2)toString()能设定数值数据转换的进制数，而String()不能；<br/>
+(3)其他情况下：toString(val) === String(val)<br/>
+
+#### 下面这个ul，如何点击每一列的时候alert其index?（闭包）
+```html
 <ul id=”test”>
 <li>这是第一条</li>
 <li>这是第二条</li>
 <li>这是第三条</li>
 </ul>
+```
+```javascript
 // 方法一：
 var lis=document.getElementById('test').getElementsByTagName('li');
 for(var i=0;i<3;i++)
@@ -1012,9 +1016,11 @@ for(var i=0;i<3;i++){
        }
    })(i);
 }
+```
 
-7.    javascript实现快排
+#### javascript实现快排
 选择中间的元素作为基准，其他的元素和基准比较，形成两个子集，不断重复，直到所有子集剩下一个元素为止；
+ ```javacript
    var quickSort = function(arr) {
     　　if(arr.length <= 1) { return arr; }
     　　varpivotIndex = Math.floor(arr.length / 2);
@@ -1030,8 +1036,10 @@ for(var i=0;i<3;i++){
     　　}
     　　returnquickSort(left).concat([pivot], quickSort(right));
    };
+```
 
-8.    javascript实现冒泡排序
+#### javascript实现冒泡排序
+ ```javacript
 bubbleSort: function(array) {
    var i = 0,
    len = array.length,
@@ -1047,8 +1055,10 @@ bubbleSort: function(array) {
     }
    return array;
 },
+```
 
-9.    插入排序：
+#### 插入排序：
+ ```javacript
 function insertSort(arr){
    for(var i =1,j;i<arr.lenght;i++){
        j=i;
@@ -1064,8 +1074,10 @@ function insertSort(arr){
     }
    return arr;
 }
+```
 
-10. 选择排序:
+#### 选择排序:
+ ```javacript
 function selectSort(arr){
    var len=arr.length;
    var temp;
@@ -1081,8 +1093,10 @@ function selectSort(arr){
      }
     returnarr;
   }
+```
 
-11. 希尔排序：
+#### 希尔排序：
+ ```javacript
 function shallSort(array) {
  varincrement = array.length;
  var i
@@ -1105,8 +1119,9 @@ function shallSort(array) {
  while (increment > 1)
  return array;
 }
-
-12. 堆排序：
+```
+#### 堆排序：
+ ```javacript
 Array.method('createHeap', function(low,high){
    var i=low, j=2*i, tmp=this[i];
    while(j<=high){
@@ -1131,8 +1146,10 @@ Array.method('heapSort', function(){
     }
    return this;
 });
+```
 
-13. 归并排序：
+#### 归并排序：
+ ```javacript
 function mergeSort(items) {
    if (items.length < 2) {
        return items;
@@ -1156,8 +1173,9 @@ function mergeSort(items) {
        return result.concat(left.slice(il)) .concat(right.slice(ir));
     }
 }
-
-14. javascript实现二分查找
+```
+#### javascript实现二分查找
+ ```javacript
 function binarySearch(data, dest){ 
    var h = data.length - 1, 
        l = 0; 
@@ -1174,103 +1192,39 @@ function binarySearch(data, dest){
    }     
    return false; 
 } 
+```
 
-15. XML 和 JSON 有过了解吧？能说一下分别介绍一下他们吗？ JSON 有什么优势？
-XML：扩展标记语言 (ExtensibleMarkup Language, XML) ，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。 XML使用DTD(document type definition)文档类型定义来组织数据;格式统一，跨平台和语言，早已成为业界公认的标准。
-XML是标准通用标记语言 (SGML) 的子集，非常适合 Web 传输。XML 提供统一的方法来描述和交换独立于应用程序或供应商的结构化数据。
-1）应用广泛，可扩展性强，被广泛应用各种场合
-2）读取、解析没有JSON快
-3）可读性强，可描述复杂结构
-4）XML文件庞大，文件格式复杂，传输占带宽
-JSON：(JavaScript ObjectNotation) 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。 JSON采用完全独立于语言的文本格式。
-JSON建构于两种结构：“名称/值”对
-1）结构简单，都是键值对。
-2）读取、解析速度快，很多语言支持
-3）数据格式比较简单，易于读写，格式都是压缩的，占用带宽小；
-4）描述复杂结构能力较弱
-XML: <Student>张三</Student>  转为JSON:  { "Student": "张三" }
-16. 斐波那契数
-function fib(n){ 
-   if(n==1||n==2){ 
-       return 1; 
-   } 
-   return arguments.callee (n-1)+ arguments.callee (n-2); 
-} 
+37.XML 和 JSON 有过了解吧？能说一下分别介绍一下他们吗？ JSON 有什么优势？
+-------
+XML：扩展标记语言 (ExtensibleMarkup Language, XML) ，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。 XML使用DTD(document type definition)文档类型定义来组织数据;格式统一，跨平台和语言，早已成为业界公认的标准。<br/>
+XML是标准通用标记语言 (SGML) 的子集，非常适合 Web 传输。XML 提供统一的方法来描述和交换独立于应用程序或供应商的结构化数据。<br/>
+1）应用广泛，可扩展性强，被广泛应用各种场合<br/>
+2）读取、解析没有JSON快<br/>
+3）可读性强，可描述复杂结构<br/>
+4）XML文件庞大，文件格式复杂，传输占带宽<br/>
+JSON：(JavaScript ObjectNotation) 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。 JSON采用完全独立于语言的文本格式。<br/>
+JSON建构于两种结构：“名称/值”对<br/>
+1）结构简单，都是键值对。<br/>
+2）读取、解析速度快，很多语言支持<br/>
+3）数据格式比较简单，易于读写，格式都是压缩的，占用带宽小；<br/>
+4）描述复杂结构能力较弱<br/>
+XML: \<Student\>张三\</Student\>  转为JSON:  { "Student": "张三" }
 
-17. String(), toString()的区别
-数值，布尔值，对象和字符串值都有toString()方法，但是null和undefined没有这个方法。
-一般情况下没有参数，但是可以传递一个参数，输出数值的基数。
-String()可以将任何类型的值转化为字符串，如果值有toString()的方法，则调用该方法并返回相应的结果。如果值是null，则返回null。如果值是undefined，则返回undefined。
-
-
-18. 左边固定，右边自适应
-
-1）#left{
- float:left;
- width:200px;
- background-color:blue;
-  }
- #right{
- overflow:hidden;
- background-color:gray;
-  }
-2）#left{
- float:left;
- width:200px;
- background-color:blue;
-  }
- #right{
- margin-left:200px;
- background-color:red;
-  }
-3）#left{
- position:absolute;
- top:0px;
- left:0px;
- width:200px;
- background-color:blue;
-  }
- #right{
- margin-left:200px;
- background-color:red;
-  }
-4）#left{
- position:absolute;
-  top:0px;
- left:0px;
- width:200px;
- background-color:blue;
-  }
- #right{
- position:absolute;
- top:0px;
- left:200px;
- width:100%;
- background-color:gray;
-  }
-右边固定，左边自适应：
-1）#left{
- float:left;
- width:100%;
- background-color:blue;
- margin-left:-200px;
- }
- #right{
- float:right;
- width:200px;
- background-color:gray;
-}
-
- 希望获取到页面中所有的checkbox怎么做？
+38、希望获取到页面中所有的checkbox怎么做？
+-------
+```javascript
 var domList = document.getElementsByTagName(‘input’)
 var checkBoxList = [];
 var len = domList.length;　　//缓存到局部变量
 while (len--) {　　//使用while的效率会比for循环更高
 　　if (domList[len].type == ‘checkbox’) {
     　　checkBoxList.push(domList[len]);
-　　}   } 
+　　}   
+ } 
+```
 
-跨浏览器的事件绑定和解绑程序
+39、跨浏览器的事件绑定和解绑程序
+```javascript
 addHandler:function(element,type,handler){
  if(element.addEventListener){   //removeEventListener
     element.addEventListener(type,handler,false);
@@ -1280,92 +1234,13 @@ addHandler:function(element,type,handler){
   element[“on”+type]=handler;      //element[“on”+type]=null;
 }
 }
+```
 
-
-一、一个页面上两个div左右铺满整个浏览器，要保证左边的div一直为100px，右边的div跟随浏览器大小变化（比如浏览器为500，右边div为400，浏览器为900，右边div为800），请写出大概的css代码。
-
-1.使用flex
-
-//html
-<div class='box'><div class='left'></div> <div class='right'></div></div>
-
-//css
-.box {
-    width: 400px;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 1px solid #c3c3c3;
-}
-.left {
-    flex-basis：100px;
-    -webkit-flex-basis: 100px;
-    /* Safari 6.1+ */
-    background-color: red;
-    height: 100%;
-}
-.right {
-    background-color: blue;
-    flex-grow: 1;
-}
-
-2.浮动布局
-
-<div id="left">Left sidebar</div>
-<div id="content">Main Content</div>
-
-<style type="text/css">
-* {
-    margin: 0;
-    padding: 0;
-}
-#left {
-    float: left;
-    width: 220px;
-    background-color: green;
-}
-#content {
-    background-color: orange;
-    margin-left: 220px;
-    /*==等于左边栏宽度==*/
-}
-</style>
-
-二、请写出一些前端性能优化的方式，越多越好
-
-1.减少dom操作
-2.部署前，图片压缩，代码压缩
-3.优化js代码结构，减少冗余代码
-4.减少http请求，合理设置 HTTP缓存
-5.使用内容分发cdn加速
-6.静态资源缓存
-7.图片延迟加载
-
-三、一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）
-
-输入地址
-1.浏览器查找域名的 IP 地址
-2.这一步包括 DNS 具体的查找过程，包括：浏览器缓存->系统缓存->路由器缓存…
-3.浏览器向 web 服务器发送一个 HTTP 请求
-4.服务器的永久重定向响应（从 http://example.com 到 http://www.example.com）
-5.浏览器跟踪重定向地址
-6.服务器处理请求
-7.服务器返回一个 HTTP 响应
-8.浏览器显示 HTML
-9.浏览器发送请求获取嵌入在 HTML 中的资源（如图片、音频、视频、CSS、JS等等）
-10.浏览器发送异步请求
-
-四、请大概描述下页面访问cookie的限制条件
-
-  1. 跨域问题
-  2. 设置了HttpOnly
-
-五、描述浏览器重绘和回流，哪些方法能够改善由于dom操作产生的回流
-
-1.直接改变className，如果动态改变样式，则使用cssText
-
-// 不好的写法
+40、描述浏览器重绘和回流，哪些方法能够改善由于dom操作产生的回流
+-------
+1).直接改变className，如果动态改变样式，则使用cssText<br/>
+// 不好的写法<br/>
+```javascript
 var left = 1;
 var top = 1;
 el.style.left = left + "px";
@@ -1375,65 +1250,48 @@ el.className += " className1";
 el.style.cssText += ";
 left: " + left + "px;
 top: " + top + "px;";
+```
+2).让要操作的元素进行”离线处理”，处理完后一起更新<br/>
+a) 使用DocumentFragment进行缓存操作,引发一次回流和重绘；<br/>
+b) 使用display:none技术，只引发两次回流和重绘；<br/>
+c) 使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘<br/>
 
-2.让要操作的元素进行”离线处理”，处理完后一起更新
+41、vue生命周期钩子
+------
+1).beforcreate<br/>
+2).created<br/>
+3).beformount<br/>
+4).mounted<br/>
+5).beforeUpdate<br/>
+6).updated<br/>
+7).actived<br/>
+8).deatived<br/>
+9).beforeDestroy<br/>
+10).destroyed<br/>
 
-a) 使用DocumentFragment进行缓存操作,引发一次回流和重绘；
-b) 使用display:none技术，只引发两次回流和重绘；
-c) 使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘
 
-六、vue生命周期钩子
-
-1.beforcreate
-2.created
-3.beformount
-4.mounted
-5.beforeUpdate
-6.updated
-7.actived
-8.deatived
-9.beforeDestroy
-10.destroyed
-
-七、js跨域请求的方式，能写几种是几种
-
-1、通过jsonp跨域
-2、通过修改document.domain来跨子域
-3、使用window.name来进行跨域
-4、使用HTML5中新引进的window.postMessage方法来跨域传送数据（ie 67 不支持）
-5、CORS 需要服务器设置header ：Access-Control-Allow-Origin。
 6、nginx反向代理 这个方法一般很少有人提及，但是他可以不用目标服务器配合，不过需要你搭建一个中转nginx服务器，用于转发请求
 
-八、对前端工程化的理解
 
-  ● 开发规范
-  ● 模块化开发
-  ● 组件化开发
-  ● 组件仓库
-  ● 性能优化
-  ● 项目部署
-  ● 开发流程
-  ● 开发工具
+42, js深度复制的方式
+------
+1).使用jq的$.extend(true, target, obj)<br/>
+2).newobj = Object.create(sourceObj)，// 但是这个是有个问题就是 newobj的更改不会影响到 sourceobj但是 sourceobj的更改会影响到newObj<br/>
+3).newobj = JSON.parse(JSON.stringify(sourceObj))<br/>
 
-九, js深度复制的方式
+43、js设计模式
+-------
+总体来说设计模式分为三大类：<br/>
+  ● 创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。<br/>
+  ● 结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。<br/>
+  ● 行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模<br/>
 
-1.使用jq的$.extend(true, target, obj)
-2.newobj = Object.create(sourceObj)，// 但是这个是有个问题就是 newobj的更改不会影响到 sourceobj但是 sourceobj的更改会影响到newObj
-3.newobj = JSON.parse(JSON.stringify(sourceObj))
-
-十、js设计模式
-
-总体来说设计模式分为三大类：
-
-  ● 创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。
-  ● 结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。
-  ● 行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模
-
-十一、图片预览
-
+44、图片预览
+```html
 <input type="file" name="file" onchange="showPreview(this)" />
 <img id="portrait" src="" width="70" height="75">
-
+```
+```javascript
 function showPreview(source) {
   var file = source.files[0];
   if(window.FileReader) {
@@ -1444,11 +1302,12 @@ function showPreview(source) {
       fr.readAsDataURL(file);
   }
 }
+```
 
-十二、扁平化多维数组
-
+44、扁平化多维数组
+-------
 1、老方法
-
+```javascript
 var result = []
 function unfold(arr){
      for(var i=0;i< arr.length;i++){
@@ -1461,42 +1320,28 @@ function unfold(arr){
 }
 var arr = [1,3,4,5,[6,[0,1,5],9],[2,5,[1,5]],[5]];
 unfold(arr)
-
+```
 2、使用tostring
-
+```javascript
 var c=[1,3,4,5,[6,[0,1,5],9],[2,5,[1,5]],[5]];
 var b = c.toString().split(',')
-
+```
 3、使用es6的reduce函数
-
+```javascript
 var arr=[1,3,4,5,[6,[0,1,5],9],[2,5,[1,5]],[5]];
 const flatten = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 var result = flatten(arr)
+```
 
-十三、iframe有那些缺点？
+44、iframe有那些缺点？
+--------
+  ● iframe会阻塞主页面的Onload事件；<br/>
+  ● 搜索引擎的检索程序无法解读这种页面，不利于SEO;<br/>
+  ● iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。<br/>
+  ● 使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。<br/>
 
-  ● iframe会阻塞主页面的Onload事件；
-  ● 搜索引擎的检索程序无法解读这种页面，不利于SEO;
-  ● iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
-  ● 使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。
-
-
-4.简述几个css hack?
-（1）图片间隙
-在div 中插入图片，图片会将div 下方撑大3px。hack1：将<div>与<img>写在同一行。hack2：
-给<img>添加display：block；
-dt li 中的图片间隙。hack：给<img>添加display：block；
-（2）默认高度，IE6 以下版本中，部分块元素，拥有默认高度（低于18px）
-hack1：给元素添加：font-size：0；
-hack2：声明：overflow：hidden；
-表单行高不一致
-hack1：给表单添加声明：float：left；height： ；border： 0；
-鼠标指针
-hack：若统一某一元素鼠标指针为手型：cursor：pointer；
-当li 内的a 转化块元素时，给a 设置float，IE 里面会出现阶梯状
-hack1：给a 加display：inline-block；
-hack2：给li 加float：left；
-8.transform？animation？区别?animation-duration
+45.transform？animation？区别?animation-duration
+---------
 Transform:它和width、left 一样，定义了元素很多静态样式实现变形、旋转、缩放、
 移位及透视等功能，通过一系列功能的组合我们可以实现很炫酷的静态效果（非动画)。
 Animation:作用于元素本身而不是样式属性,属于关键帧动画的范畴，它本身被用来替代
