@@ -24,8 +24,8 @@ for (var i = 0; i < 5; i++) {
 console.log(new Date, i);
 ```
 约定，用箭头表示其前后的两次输出之间有 1 秒的时间间隔，而逗号表示其前后的两次输出之间的时间间隔可以忽略。<br/>
-输出结果为：5 -> 5,5,5,5,5，即第1个5直接输出，1秒之后，输出5个5<br/>
-解释：执行到for循环时，遇到setTimeout，就将任务分发到对应的宏任务队列中。每循环一次就将任务放到任务队列中一次，for循环执行结束，执行到最后一句console.log(new Date, i);整个script代码执行结束，接下来执行任务队列，因为var定义的i的作用域在for上一层，所以此时i都是5<br/>
+输出结果为：5 -> 5,5,5,5,5，即第1个5直接输出，1秒之后，输出5个5。<br/>
+解释：执行到for循环时，遇到setTimeout，就将任务分发到对应的宏任务队列中。每循环一次就将任务放到任务队列中一次，for循环执行结束，执行到最后一句console.log(new Date, i);整个script代码执行结束，接下来执行任务队列，因为var定义的i的作用域在for上一层，所以此时i都是5。<br/>
 
 ###### 但是如果期望代码的输出变成：5 -> 0,1,2,3,4，该怎么改造代码
 使用闭包：对循环体稍做改变，让负责输出的那段代码能拿到每次循环的i值即可。<br/>
@@ -116,113 +116,104 @@ const sleep = (timeountMS) => new Promise((resolve) => {
 
 2、js,html,css的加载顺序
 ----------
-1).js放在head中会立即执行，阻塞后续的资源下载与执行。因为js有可能会修改dom，如果不阻塞后续的资源下载，dom的操作顺序不可控。<br/>
-2).js的执行依赖前面的样式。即只有前面的样式全部下载完成后才会执行js，但是此时外链css和外链js是并行下载的。<br/>
-3).外链的js如果含有defer="true"属性，将会并行加载js，到页面全部加载完成后才会执行，会按顺序执行。defer属性的作用是，告诉浏览器，等到DOM加载完成后，再执行指定脚本。<br/>
-4).外链的js如果含有async="true"属性，将不会依赖于任何js和css的执行，此js下载完成后立刻执行，不保证按照书写的顺序执行。因为async="true"属性会告诉浏览器，js不会修改dom和样式，故不必依赖其它的js和css。<br/>　
+1）.js放在head中会立即执行，阻塞后续的资源下载与执行。因为js有可能会修改dom，如果不阻塞后续的资源下载，dom的操作顺序不可控。<br/>
+2）.js的执行依赖前面的样式。即只有前面的样式全部下载完成后才会执行js，但是此时外链css和外链js是并行下载的。<br/>
+3）.外链的js如果含有defer="true"属性，将会并行加载js，到页面全部加载完成后才会执行，会按顺序执行。defer属性的作用是，告诉浏览器，等到DOM加载完成后，再执行指定脚本。<br/>
+4）.外链的js如果含有async="true"属性，将不会依赖于任何js和css的执行，此js下载完成后立刻执行，不保证按照书写的顺序执行。因为async="true"属性会告诉浏览器，js不会修改dom和样式，故不必依赖其它的js和css。<br/>　
 async属性可以保证脚本下载的同时，浏览器继续渲染。需要注意的是，一旦采用这个属性，就无法保证脚本的执行顺序。哪个脚本先下载结束，就先执行那个脚本。另外，使用async属性的脚本文件中，不应该使用document.write方法。<br/>
 一般来说，如果脚本之间没有依赖关系，就使用async属性，如果脚本之间有依赖关系，就使用defer属性。如果同时使用async和defer属性，后者不起作用，浏览器行为由async属性决定。<br/>
 
 
-1、浏览器兼容问题
-浏览器间内核的差异是产生兼容性问题的根本原因。
-1)不同浏览器的标签默认的外补丁和内补丁不同
-问题症状：随便写几个标签，不加样式控制的情况下，各个浏览器的margin 和padding差异较大。
-解决方案：CSS里加 *{margin:0;padding:0;}
-备注：几乎所有的项目开始都是有一个main.xml里面包含一些标签的初始设置a,div,ul,li,h1,p,....{margin:0;padding:0}。
-2)图片默认有间距
-问题症状：几个img标签放在一起的时候，有些浏览器会有默认的间距，加了问题一中提到的通配符也不起作用。
-解决方案：使用float属性为img布局
-备注：因为img标签是行内属性标签，所以只要不超出容器宽度，img标签都会排在一行里，但是部分浏览器的img标签之间会有个间距。使用float是正道。
-3)标签最低高度设置min-height不兼容
-问题症状：因为min-height本身就是一个不兼容的CSS属性，所以设置min-height时不能很好的被各个浏览器兼容
+3、浏览器兼容问题
+---------
+浏览器间内核的差异是产生兼容性问题的根本原因。<br/>
+##### 1)不同浏览器的标签默认的外补丁和内补丁不同
+问题症状：随便写几个标签，不加样式控制的情况下，各个浏览器的margin 和padding差异较大。<br/>
+解决方案：CSS里加\*{margin:0;padding:0;}<br/>
+备注：几乎所有的项目开始都是有一个main.xml里面包含一些标签的初始设置a,div,ul,li,h1,p,....{margin:0;padding:0}。<br/>
+##### 2)图片默认有间距
+问题症状：几个img标签放在一起的时候，有些浏览器会有默认的间距，加了问题一中提到的通配符也不起作用。<br/>
+解决方案：使用float属性为img布局。<br/>
+备注：因为img标签是行内属性标签，所以只要不超出容器宽度，img标签都会排在一行里，但是部分浏览器的img标签之间会有个间距。使用float是正道。<br/>
+##### 3)标签最低高度设置min-height不兼容
+问题症状：因为min-height本身就是一个不兼容的CSS属性，所以设置min-height时不能很好的被各个浏览器兼容<br/>
 解决方案：如果我们要设置一个标签的最小高度200px，需要进行的设置为：{min-height:200px; height:auto !important; height:200px; overflow:visible;}
-IE6中的间距，双倍边距等bug
-备注：在B/S系统前端开时，有很多情况下我们又这种需求。当内容小于一个值（如300px）时。容器的高度为300px；当内容高度大于这个值时，容器高度被撑高，而不是出现滚动条。这时候我们就会面临这个兼容性问题。
-4）块属性标签float后，又有横行的margin情况下，在IE6显示margin比设置的大（即双倍边距bug）
-问题症状：常见症状是IE6中后面的一块被顶到下一行
-解决方案：在float的标签样式控制中加入 display:inline;将其转化为行内属性
-5）设置较小高度标签（一般小于10px），在IE6，IE7，遨游中高度超出自己设置高度
-问题症状：IE6、7和遨游里这个标签的高度不受控制，超出自己设置的高度
-解决方案：给超出高度的标签设置overflow:hidden;或者设置行高line-height 小于你设置的高度。
-备注：这种情况一般出现在我们设置小圆角背景的标签里。出现这个问题的原因是IE8之前的浏览器都会给标签一个最小默认的行高的高度。即使你的标签是空的，这个标签的高度还是会达到默认的行高。
-6）行内属性标签，设置display:block后采用float布局，又有横行的margin的情况，IE6间距bug
-问题症状：IE6里的间距比超过设置的间距
+IE6中的间距，双倍边距等bug。<br/>
+备注：在B/S系统前端开时，有很多情况下我们又这种需求。当内容小于一个值（如300px）时。容器的高度为300px；当内容高度大于这个值时，容器高度被撑高，而不是出现滚动条。这时候我们就会面临这个兼容性问题。<br/>
+##### 4）块属性标签float后，又有横行的margin情况下，在IE6显示margin比设置的大（即双倍边距bug）
+问题症状：常见症状是IE6中后面的一块被顶到下一行。<br/>
+解决方案：在float的标签样式控制中加入\_display:inline;将其转化为行内属性。<br/>
+##### 5）设置较小高度标签（一般小于10px），在IE6，IE7，遨游中高度超出自己设置高度
+问题症状：IE6、7和遨游里这个标签的高度不受控制，超出自己设置的高度。<br/>
+解决方案：给超出高度的标签设置overflow:hidden;或者设置行高line-height小于你设置的高度。<br/>
+备注：这种情况一般出现在我们设置小圆角背景的标签里。出现这个问题的原因是IE8之前的浏览器都会给标签一个最小默认的行高的高度。即使你的标签是空的，这个标签的高度还是会达到默认的行高。<br/>
+##### 6）行内属性标签，设置display:block后采用float布局，又有横行的margin的情况，IE6间距bug
+问题症状：IE6里的间距比超过设置的间距。<br/>
 解决方案：在display:block;后面加入display:inline;display:table;
-备注：行内属性标签，为了设置宽高，我们需要设置display:block;(除了input标签比较特殊)。在用float布局并有横向的margin后，在IE6下，他就具有了块属性float后的横向margin的bug。不过因为它本身就是行内属性标签，所以我们再加上display:inline的话，它的高宽就不可设了。这时候我们还需要在display:inline后面加入display:table。
-7）附：IE6中的常见BUG与相应的解决办法
-##一、IE6双倍边距bug
+备注：行内属性标签，为了设置宽高，我们需要设置display:block;(除了input标签比较特殊)。在用float布局并有横向的margin后，在IE6下，他就具有了块属性float后的横向margin的bug。不过因为它本身就是行内属性标签，所以我们再加上display:inline的话，它的高宽就不可设了。这时候我们还需要在display:inline后面加入display:table。<br/>
+##### 7）附：IE6中的常见BUG与相应的解决办法
+###### 一、IE6双倍边距bug
 例如“margin-left:10px” 在IE6中，该值就会被解析为20px。
 解决方案：需要在该元素中加入display:inline 或 display:block 明确其元素类型
-##二、IE6中3像素问题及解决办法
+###### 二、IE6中3像素问题及解决办法
 当元素使用float浮动后，元素与相邻的元素之间会产生3px的间隙。诡异的是如果右侧的容器没设置高度时3px的间隙在相邻容器的内部，当设定高度后又跑到容器的相反侧了。
 解决方案：需要使布局在同一行的元素都加上float浮动。
-##三、IE6中奇数宽高的BUG
+###### 三、IE6中奇数宽高的BUG
 IE6中奇数的高宽显示大小与偶数高宽显示大小存在一定的不同。其中要问题是出在奇数高宽上。
 解决方案：需要尽量将外部定位的div高宽写成偶数即可。
-##四、IE6中图片链接的下方有间隙
+###### 四、IE6中图片链接的下方有间隙
 IE6中图片的下方会存在一定的间隙，尤其在图片垂直挨着图片的时候，即可看到这样的间隙。
 解决方案：需要将img标签定义为display:block 或定义vertical-align对应的属性。也可以为img对应的样式写入font-size:0
-##五、IE6下空元素的高度BUG
+###### 五、IE6下空元素的高度BUG
 如果一个元素中没有任何内容，当在样式中为这个元素设置了0-19px之间的高度时。此元素的高度始终为19px。
-解决的方法如下:
-1.在元素的css中加入：overflow:hidden
-2.在元素中插入html注释：<!– >
-3.在元素中插入html的空白符：&nbsp;
-4.在元素的css中加入：font-size:0
-##六、重复文字的BUG
-在某些比较复杂的排版中，有时候浮动元素的最后一些字符会出现在clear清除元素的下面。
-解决方法如下：
-1.确保元素都带有display:inline
-2.在最后一个元素上使用“margin-right:-3px
-3.为浮动元素的最后一个条目加上条件注释，<!–[if !IE]>xxx<![endif]–>
-4.在容器的最后元素使用一个空白的div，为这个div指定不超过容器的宽度。
-##七、IE6中 z-index失效
-具体BUG为，元素的父级元素设置的z-index为1，那么其子级元素再设置z-index时会失效，其层级会继承父级元素的设置，造成某些层级调整上的BUG
-原因：z-index起作用有个小小前提，就是元素的position属性要 是relative，absolute或是fixed。
-解决方案：
-1.position:relative改为position:absolute；
-2.去除浮动；
-3.浮动元素添加position属性（如relative，absolute等）。
-##子元素不会继承透明效果
-css
-.opacity{
-background-color: #000000;
-filter: alpha(opacity=50);
-background-color: rgba(0, 0, 0, 0.5);
-}
-##避免使用负的margin和padding
-**IE6结语：实际上中，很多BUG的解决方法都可以使用display:inline、font-size:0、float解决。因此我们在书写代码时要记住，一旦使用了float浮动，就为元素增加一个display:inline样式，可以有效的避免浮动造成的样式错乱问题。使用空DIV时，为了避免其高度影响布局美观，也可以为其加上font-size:0 这样就很容易避免一些兼容上的问题
-* png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.也可以引用一段脚本处理.
-* 浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。
-* 浮动ie产生的双倍距离（IE6双边距问题：在IE6下，如果对元素设置了浮动，同时又设置了margin-left或margin-right，margin值会加倍。）
-  #box{ float:left; width:10px; margin:0 0 0 100px;} 
- 这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)如果本身是行内元素，在display:block;后面加入display:inline;display:table;
-*  渐进识别的方式，从总体中逐渐排除局部。 
-  首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。 
-  接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。
-  css
+解决的方法如下:<br/>
+1）.在元素的css中加入：overflow:hidden。<br/>
+2）.在元素中插入html注释：\<!– \><br/>
+3）.在元素中插入html的空白符：&nbsp;<br/>
+4）.在元素的css中加入：font-size:0。<br/>
+###### 六、重复文字的BUG
+在某些比较复杂的排版中，有时候浮动元素的最后一些字符会出现在clear清除元素的下面。<br/>
+解决方法如下：<br/>
+1）.确保元素都带有display:inline。<br/>
+2）.在最后一个元素上使用“margin-right:-3px。<br/>
+3）.为浮动元素的最后一个条目加上条件注释，\<!–[if !IE]\>xxx\<![endif]–\><br/>
+4）.在容器的最后元素使用一个空白的div，为这个div指定不超过容器的宽度。<br/>
+###### 七、IE6中 z-index失效
+具体BUG为，元素的父级元素设置的z-index为1，那么其子级元素再设置z-index时会失效，其层级会继承父级元素的设置，造成某些层级调整上的BUG。<br/>
+原因：z-index起作用有个小小前提，就是元素的position属性要是relative，absolute或是fixed。<br/>
+解决方案：<br/>
+1）.position:relative改为position:absolute；<br/>
+2）.去除浮动；<br/>
+3）.浮动元素添加position属性（如relative，absolute等）。<br/>
+###### 八、 png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.也可以引用一段脚本处理.
+###### 九、渐进识别的方式，从总体中逐渐排除局部。 
+  首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。 <br/>
+  接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。<br/>
+ ```css
+ css
       .bb{
        background-color:#f1ee18;/*所有识别*/
       .background-color:#00deff\9; /*IE6、7、8识别*/
       +background-color:#a200ff;/*IE6、7识别*/
       _background-color:#1e0bd1;/*IE6识别*/ 
       } 
-*  IE下,可以使用获取常规属性的方法来获取自定义属性,
-   也可以使用getAttribute()获取自定义属性;
-   Firefox下,只能使用getAttribute()获取自定义属性. 
-   解决方法:统一通过getAttribute()获取自定义属性.
-* IE下,event对象有x,y属性,但是没有pageX,pageY属性; 
-  Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.
-* 解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。
-* Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示, 
-  可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决.
-* 超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
-L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
-* 怪异模式问题：漏写DTD声明，Firefox仍然会按照标准模式来解析网页，但在IE中会触发怪异模式。为避免怪异模式给我们带来不必要的麻烦，最好养成书写DTD声明的好习惯。现在可以使用[html5](http://www.w3.org/TR/html5/single-page.html)推荐的写法：`<doctype html>`
-* 上下margin重合问题
-ie和ff都存在，相邻的两个div的margin-left和margin-right不会重合，但是margin-top和margin-bottom却会发生重合。
-解决方法，养成良好的代码编写习惯，同时采用margin-top或者同时采用margin-bottom。
+ ```
+###### 十、IE下,可以使用获取常规属性的方法来获取自定义属性,
+   也可以使用getAttribute()获取自定义属性。<br/>
+   Firefox下,只能使用getAttribute()获取自定义属性。<br/>
+   解决方法:统一通过getAttribute()获取自定义属性。<br/>
+##### 8）IE下,event对象有x,y属性,但是没有pageX,pageY属性; 
+  Firefox下,event对象有pageX,pageY属性,但是没有x,y属性。<br/>
+解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。<br/>
+##### 9）Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示, 
+  可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决。<br/>
+##### 10）超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
+L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}<br/>
+##### 11）ie和ff都存在，相邻的两个div的margin-left和margin-right不会重合，但是margin-top和margin-bottom却会发生重合。
+解决方法，养成良好的代码编写习惯，同时采用margin-top或者同时采用margin-bottom。<br/>
+#### IE6结语：
+实际上中，很多BUG的解决方法都可以使用display:inline、font-size:0、float解决。因此我们在书写代码时要记住，一旦使用了float浮动，就为元素增加一个display:inline样式，可以有效的避免浮动造成的样式错乱问题。使用空DIV时，为了避免其高度影响布局美观，也可以为其加上font-size:0 这样就很容易避免一些兼容上的问题。<br/>
+
 
 2、前端性能优化
 减少HTTP请求次数：尽量合并图片、CSS、JS：Image Maps： 也是将多幅图拼在一起，然后通过坐标来控制显示导航；CSS Sprites：把多个图片拼成一副图片，然后通过CSS来控制在什么地方具体显示这整张图片的什么位置。
