@@ -853,6 +853,7 @@ var preNode=this.findPrevious(item);
 
 #### javascript实现import动态导入节点：
 1）
+```javascript
 var $import =function(){
     return function(rId, res, callback){
         if(res && 'string' == typeofres){
@@ -890,6 +891,7 @@ var $import =function(){
 	 }  
     };  
 }();
+```
 2）
 ```javascript
 var JCore ={//构造核心对象
@@ -1342,247 +1344,190 @@ var result = flatten(arr)
 
 45.transform？animation？区别?animation-duration
 ---------
-Transform:它和width、left 一样，定义了元素很多静态样式实现变形、旋转、缩放、
-移位及透视等功能，通过一系列功能的组合我们可以实现很炫酷的静态效果（非动画)。
-Animation:作用于元素本身而不是样式属性,属于关键帧动画的范畴，它本身被用来替代
-一些纯粹表现的javascript 代码而实现动画,可以通过keyframe 显式控制当前帧的属性值.
-animation-duration：规定完成动画所花费的时间，以秒或毫秒计。
+##### animation 对应的属性
+写法：animation: name duration timing-function delay iteration-count direction;<br/>
+下面是对应的属性的介绍：<br/>
+animation-name 规定需要绑定到选择器的keyframe 名称。<br/>
+animation-duration 规定完成动画所花费的时间，以秒或毫秒计。<br/>
+animation-timing-function 规定动画的速度曲线。<br/>
+animation-delay 规定在动画开始之前的延迟。<br/>
+animation-iteration-count 规定动画应该播放的次数。<br/>
+animation-direction 规定是否应该轮流反向播放动画。<br/>
+Animation:作用于元素本身而不是样式属性,属于关键帧动画的范畴，它本身被用来替代一些纯粹表现的javascript代码而实现动画,可以通过keyframe 显式控制当前帧的属性值.animation-duration：规定完成动画所花费的时间，以秒或毫秒计。<br/>
+##### trnsition：
+css 的transition 允许css 的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS 的属性值。注意区别transform，transform 是进行2D 转换的如移动，比例化，反过来，旋转，和拉伸元素。<br/>
+Transform:它和width、left 一样，定义了元素很多静态样式实现变形、旋转、缩放、移位及透视等功能，通过一系列功能的组合我们可以实现很炫酷的静态效果（非动画)。<br/>
 
-13.弹性盒子模型?flex|box 区别?
-答：（1）引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的条目进
-行排列、对齐和分配空白空间。即便容器中条目的尺寸未知或是动态变化的，弹性盒布局模
-型也能正常的工作。在该布局模型中，容器会根据布局的需要，调整其中包含的条目的尺寸
-和顺序来最好地填充所有可用的空间。当容器的尺寸由于屏幕大小或窗口尺寸发生变化时，
-其中包含的条目也会被动态地调整。比如当容器尺寸变大时，其中包含的条目会被拉伸以占
-满多余的空白空间；当容器尺寸变小时，条目会被缩小以防止超出容器的范围。弹性盒布局
-是与方向无关的。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；
-而inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开
-发人员自由操作。
-（2）flex 和box 的区别:
-display：box 是老规范，要兼顾古董机子就加上它；
-父级元素有display:box;属性之后。他的子元素里面加上box-flex 属性。可以让子元素按照
-父元素的宽度进行一定比例的分占空间。
-flex 是最新的，董机老机子不支持的；
-父元素设置display:flex 后，子元素宽度会随父元素宽度的改变而改变，而display:box 不会。
-Android UC 浏览器只支持display: box 语法；而iOS UC 浏览器则支持两种方式。
-14.viewport 所有属性？
-答： (1)width :设置layout viewport 的宽度，为一个正整数，或字符串'device-width';
-(2)initial-scale:设置页面的初始缩放值，为一个数字，可以带小数。
-(3)minimum-scale:允许用户的最小缩放值，为一个数字，可以带小数。
-(4)maximum-scale:允许用户的最大缩放值，为一个数字，可以带小数。
-(5)height:设置layout viewport 的高度，这个属性对我们并不重要，很少使用
-(6)user-scalable:是否允许用户进行缩放，值为‘no’或者‘yes’。
-安卓中还支持：target-densitydpi，表示目标设备的密度等级，作用是决定css 中的1px
-代表多少物理像素
-(7)target-densitydpi:值可以为一个数值或者high-dpi 、medium-dpi、low-dpi、
-device-dpi 这几个字符串中的一个
-15. 如何理解HTML 结构的语义化？
-所谓标签语义化，就是指标签的含义。语义化的主要目的就是让大家直观的认识标签
-(markup)和属性(attribute)的用途和作用，对搜索引擎友好，有了良好的结构和语义我们的
-网页内容便自然容易被搜索引擎抓取，这种符合搜索引擎收索规则的做法，网站的推广便可
-以省下不少的功夫，而且可维护性更高，因为结构清晰,十分易于阅读。这也是搜索引擎优
-化SEO 重要的一步。
-16. 伪类选择器和伪元素？c3 中引入的伪类选择器有？c3 中伪元素有?
-伪类用一个冒号来表示，而伪元素则用两个冒号来表示。
-伪类选择器：
-由于状态是动态变化的，所以一个元素达到一个特定状态时，它可能得到一个伪类的样式；
-当状态改变时，它又会失去这个样式。
-伪元素选择器：
-并不是针对真正的元素使用的选择器，而是针对CSS 中已经定义好的伪元素使用的选择器；
-c3 中引入的伪类选择器：
-:root()选择器，根选择器，匹配元素E 所在文档的根元素。在HTML 文档中，根元素始终
-是<html>。:root 选择器等同于<html>元素。
-:not()选择器称为否定选择器，和jQuery 中的:not 选择器一模一样，可以选择除某个元素之
-外的所有元素。
-:empty()选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内
-容都没有，哪怕是一个空格。
-:target()选择器来对页面某个target 元素(该元素的id 被当做页面中的超链接来使用)指定样
-式，该样式只在用户点击了页面中的超链接，并且跳转到target 元素后起作用。
-:first-child()选择器表示的是选择父元素的第一个子元素的元素E。简单点理解就是选择元素
-中的第一个子元素，记住是子元素，而不是后代元素。
-:nth-child()选择某个元素的一个或多个特定的子元素。
-:nth-last-child()从某父元素的最后一个子元素开始计算，来选择特定的元素
-:nth-of-type(n)选择器和:nth-child(n)选择器非常类似，不同的是它只计算父元素中指定的某
-种类型的子元素。
-:only-child 表示的是一个元素是它的父元素的唯一一个子元素。
-:first-line 为某个元素的第一行文字使用样式。
-:first-letter 为某个元素中的文字的首字母或第一个字使用样式。
-:before 在某个元素之前插入一些内容。
-:after 在某个元素之后插入一些内容。
-c3 中伪元素：
-::first-line 选择元素的第一行，比如说改变每个段落的第一行文本的样式
-::before 和::after 这两个主要用来给元素的前面或后面插入内容，这两个常用"content"配合
-使用，见过最多的就是清除浮动
-::selection 用来改变浏览网页选中文的默认效果
 
-23.media 属性？screen？All？max-width?min-width?
-答：media 属性规定被链接文档将显示在什么设备上。media 属性用于为不同的媒介类型
-规定不同的样式。Screen 计算机默认屏幕，all 适用于所有设备，max-width 超过最大宽度
-就不执行，min-width 必须大于最小宽度才执行。
-24.meta 标签的name 属性值？
-答：name 属性主要用于描述网页，与之对应的属性值为content，content 中的内容主要是
-便于搜索引擎机器人查找信息和分类信息用的。meta 标签的name
-属性语法格式是：＜meta name="参数" content="
-具体的参数值"＞。其中name 属性主要有以下几种参数：A 、Keywords(关键字)说明：
-keywords 用来告诉搜索引擎你网页的关键字是什么。B 、description(网站内容描述) 说明：
-description 用来告诉搜索引擎你的网站主要内容.
-C robots(机器人向导)说明：
-robots 用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。content 的参数有
-all,none,index,noindex,follow,nofollow
-。默认是all。举例：＜meta name="robots" content="none"＞D 、author(作者)
-25.一般做手机页面切图有几种方式?
-答：三种。响应式布局，弹性布局display：flex，利用js 编写设定比例，给根元素设定像
-素，使用rem 为单位。
-px/em/rem 有什么区别？ 为什么通常给font-size 设置的字体为62.5%
-答：px 像素是相对长度单位。像素px 是相对于显示器屏幕分辨率而言的。em 是相对长度
-单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则
-相对于浏览器的默认字体尺寸。1、em 的值并不是固定的；2、em 会继承父级元素的字体
-大小。使用rem 为元素设定字体大小时，仍然是相对大小，但相对的只是HTML 根元素。
-这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比
-例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。
-rem 是相对于浏览器进行缩放的。1rem 默认是16px，在响应式布局中，一个个除来转换成
-rem，太麻烦，所以重置rem
-body{font-size=62.5% } 此时1rem = 10px;若是12px 则是1.2rem.
-26.sass 和scss 有什么区别?sass 一般怎么样编译的
-答：文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而SCSS 是以“.scss”后缀为扩展
-名；语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，
-而SCSS 的语法书写和我们的CSS 语法书写方式非常类似。
-27.如果对css 进行优化如何处理？
-答：压缩打包，图片整合，避免使用Hack，解决兼容问题，使用简写，让CSS 能保证日
-后的维护。
+46.弹性盒子模型?flex|box 区别?
+-------
+（1）引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的条目进行排列、对齐和分配空白空间。即便容器中条目的尺寸未知或是动态变化的，弹性盒布局模型也能正常的工作。在该布局模型中，容器会根据布局的需要，调整其中包含的条目的尺寸和顺序来最好地填充所有可用的空间。当容器的尺寸由于屏幕大小或窗口尺寸发生变化时，其中包含的条目也会被动态地调整。比如当容器尺寸变大时，其中包含的条目会被拉伸以占满多余的空白空间；当容器尺寸变小时，条目会被缩小以防止超出容器的范围。弹性盒布局是与方向无关的。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；而inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开发人员自由操作。<br/>
+（2）flex 和box 的区别:<br/>
+display：box 是老规范，要兼顾古董机子就加上它；父级元素有display:box;属性之后。他的子元素里面加上box-flex 属性。可以让子元素按照父元素的宽度进行一定比例的分占空间。flex 是最新的，董机老机子不支持的；父元素设置display:flex 后，子元素宽度会随父元素宽度的改变而改变，而display:box 不会。Android UC 浏览器只支持display: box 语法；而iOS UC 浏览器则支持两种方式。<br/>
 
-35.手机端上图片长时间点击会选中图片，如何处理?
-onselect=function() {
-return false
-}
-36.video 标签的几个个属性方法
-src：视频的URL poster：视频封面，没有播放时显示的图片preload：预加载autoplay：
-自动播放loop：循环播放controls：浏览器自带的控制条width：视频宽度height：
-视频高度
-37.常见的视频编码格式有几种?视频格式有几种?
-视频格式：MPEG-1、MPEG-2 和MPEG4 、AVI 、RM、ASF 和WMV 格式
-视频编码格式：H.264、MPEG-4、MPEG-2、WMA-HD 以及VC-1
-38.canvas 在标签上设置宽高和在style 中设置宽高有什么区别？
-canvas 标签的width 和height 是画布实际宽度和高度，绘制的图形都是在这个上面。而style
-的width 和height 是canvas 在浏览器中被渲染的高度和宽度。如果canvas 的width 和height
-没指定或值不正确，就被设置成默认值、
+47.viewport 所有属性？
+---------
+(1)width :设置layout viewport 的宽度，为一个正整数，或字符串'device-width';<br/>
+(2)initial-scale:设置页面的初始缩放值，为一个数字，可以带小数。<br/>
+(3)minimum-scale:允许用户的最小缩放值，为一个数字，可以带小数。<br/>
+(4)maximum-scale:允许用户的最大缩放值，为一个数字，可以带小数。<br/>
+(5)height:设置layout viewport 的高度，这个属性对我们并不重要，很少使用。<br/>
+(6)user-scalable:是否允许用户进行缩放，值为‘no’或者‘yes’。<br/>
+安卓中还支持：target-densitydpi，表示目标设备的密度等级，作用是决定css 中的1px代表多少物理像素。<br/>
+(7)target-densitydpi:值可以为一个数值或者high-dpi 、medium-dpi、low-dpi、device-dpi 这几个字符串中的一个。<br/>
 
-42.animation 对应的属性
-写法：animation: name duration timing-function delay iteration-count direction;
-下面是对应的属性的介绍
-animation-name 规定需要绑定到选择器的keyframe 名称。。
-animation-duration 规定完成动画所花费的时间，以秒或毫秒计。
-animation-timing-function 规定动画的速度曲线。
-animation-delay 规定在动画开始之前的延迟。
-animation-iteration-count 规定动画应该播放的次数。
-animation-direction 规定是否应该轮流反向播放动画。
-43.transition?
-css 的transition 允许css 的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠
-标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS 的属
-性值
-注意区别transform，transform 是进行2D 转换的如移动，比例化，反过来，旋转，和拉
-伸元素。
+48、伪类选择器和伪元素？css3中引入的伪类选择器有？css3中伪元素有?
+---------
+伪类用一个冒号来表示，而伪元素则用两个冒号来表示。<br/>
+#### 伪类选择器：
+由于状态是动态变化的，所以一个元素达到一个特定状态时，它可能得到一个伪类的样式；当状态改变时，它又会失去这个样式。<br/>
+#### 伪元素选择器：
+并不是针对真正的元素使用的选择器，而是针对CSS中已经定义好的伪元素使用的选择器；<br/>
+#### css3中引入的伪类选择器：
+:root()选择器，根选择器，匹配元素E 所在文档的根元素。在HTML 文档中，根元素始终是\<html\>。:root 选择器等同于\<html\>元素。<br/>
+:not()选择器称为否定选择器，和jQuery 中的:not 选择器一模一样，可以选择除某个元素之外的所有元素。<br/>
+:empty()选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，哪怕是一个空格。<br/>
+:target()选择器来对页面某个target 元素(该元素的id 被当做页面中的超链接来使用)指定样式，该样式只在用户点击了页面中的超链接，并且跳转到target 元素后起作用。<br/>
+:first-child()选择器表示的是选择父元素的第一个子元素的元素E。简单点理解就是选择元素中的第一个子元素，记住是子元素，而不是后代元素。<br/>
+:nth-child()选择某个元素的一个或多个特定的子元素。<br/>
+:nth-last-child()从某父元素的最后一个子元素开始计算，来选择特定的元素。<br/>
+:nth-of-type(n)选择器和:nth-child(n)选择器非常类似，不同的是它只计算父元素中指定的某种类型的子元素。<br/>
+:only-child 表示的是一个元素是它的父元素的唯一一个子元素。<br/>
+:first-line 为某个元素的第一行文字使用样式。<br/>
+:first-letter 为某个元素中的文字的首字母或第一个字使用样式。<br/>
+:before 在某个元素之前插入一些内容。<br/>
+:after 在某个元素之后插入一些内容。<br/>
+#### css3中伪元素：
+::first-line 选择元素的第一行，比如说改变每个段落的第一行文本的样式。<br/>
+::before 和::after这两个主要用来给元素的前面或后面插入内容，这两个常用"content"配合使用，见过最多的就是清除浮动。<br/>
+::selection 用来改变浏览网页选中文的默认效果。<br/>
 
-2.声明函数作用提升?声明变量和声明函数的提升有什么区别?
-（1）变量声明提升：变量申明在进入执行上下文就完成了。
-只要变量在代码中进行了声明，无论它在哪个位置上进行声明， js 引擎都会将它的声
-明放在范围作用域的顶部；
-（2）函数声明提升：执行代码之前会先读取函数声明，意味着可以把函数申明放在调用它
-的语句后面。
-只要函数在代码中进行了声明，无论它在哪个位置上进行声明， js 引擎都会将它的声明
-放在范围作用域的顶部；
-（3）变量or 函数声明：函数声明会覆盖变量声明，但不会覆盖变量赋值。
-同一个名称标识a，即有变量声明var a，又有函数声明function a() {}，不管二者声明
-的顺序，函数声明会覆盖变量声明，也就是说，此时a 的值是声明的函数function a() {}。
-注意：如果在变量声明的同时初始化a，或是之后对a 进行赋值，此时a 的值变量的值。eg: var
-a; var c = 1; a = 1; function a() { return true; } console.log(a);
+49.media 属性？screen？All？max-width?min-width?
+-------
+media 属性规定被链接文档将显示在什么设备上。media 属性用于为不同的媒介类型规定不同的样式。Screen 计算机默认屏幕，all 适用于所有设备，max-width 超过最大宽度就不执行，min-width 必须大于最小宽度才执行。
 
-9.回调函数?
-回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传
-递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。回调
-函数不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用
-的，用于对该事件或条件进行响应。
+50.px/em/rem 有什么区别？ 为什么通常给font-size 设置的字体为62.5%
+--------
+px 像素是相对长度单位。像素px是相对于显示器屏幕分辨率而言的。<br/>
+em 是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。a、em 的值并不是固定的；b、em 会继承父级元素的字体大小。使用rem 为元素设定字体大小时，仍然是相对大小，但相对的只是HTML 根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。<br/>
+rem 是相对于浏览器进行缩放的。1rem 默认是16px，在响应式布局中，一个个除来转换成rem，太麻烦，所以重置rem。<br/>
+body{font-size=62.5% } 此时1rem = 10px;若是12px 则是1.2rem。<br/>
 
-10、合并连个数组
-arr1.concat(arr2)
-Array.prototype.push.aplly(arr1,arr2)
-循环
+51.sass 和scss 有什么区别?sass 一般怎么样编译的
+------
+文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而SCSS 是以“.scss”后缀为扩展名；语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，而SCSS 的语法书写和我们的CSS 语法书写方式非常类似。<br/>
 
-22. var a = true;
+52、声明函数作用提升?声明变量和声明函数的提升有什么区别?
+------
+##### （1）变量声明提升：变量申明在进入执行上下文就完成了。
+只要变量在代码中进行了声明，无论它在哪个位置上进行声明，js引擎都会将它的声明放在范围作用域的顶部；<br/>
+##### （2）函数声明提升：
+执行代码之前会先读取函数声明，意味着可以把函数申明放在调用它的语句后面。只要函数在代码中进行了声明，无论它在哪个位置上进行声明，js引擎都会将它的声明放在范围作用域的顶部；<br/>
+##### （3）变量or函数声明：函数声明会覆盖变量声明，但不会覆盖变量赋值。
+同一个名称标识a，即有变量声明var a，又有函数声明function a() {}，不管二者声明的顺序，函数声明会覆盖变量声明，也就是说，此时a的值是声明的函数function a() {}。<br/>
+注意：如果在变量声明的同时初始化a，或是之后对a 进行赋值，此时a 的值变量的值。<br/>
+```javascript
+var a; 
+var c = 1; 
+a = 1; 
+function a() { 
+    return true; 
+} 
+console.log(a);//1
+```
+
+53.回调函数?
+------
+回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。回调函数不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用的，用于对该事件或条件进行响应。<br/>
+
+54.
+```javascript
+var a = true;
 typeof a++ //number
 typeof true++ //错误！
 typeof a+1 //number1
 typeof (true)+1 //boolean1
+```
 
-25.如何通过原生js 判断一个元素当前是显示还是隐藏状态?
+55.如何通过原生js 判断一个元素当前是显示还是隐藏状态?
+---------
+```javascript
 if( document.getElementById("div").css("display")==='none')
 if( document.getElementById("div").css("display")==='block')
 $("#div").is(":hidden"); // 判断是否隐藏
 $("#div").is(":visible")
+```
 
-29.jq 中如何将一个jq 对象转化为dom 对象？
-方法一：
-jQuery 对象是一个数据对象，可以通过[index]的方法，来得到相应的DOM 对象。
-如：var $v =$("#v") ; //jQuery 对象
+56.jq 中如何将一个jq 对象转化为dom 对象？
+--------
+方法一：<br/>
+jQuery 对象是一个数据对象，可以通过[index]的方法，来得到相应的DOM 对象。如：<br/>
+```javascript
+var $v =$("#v") ; //jQuery 对象
 var v=$v[0]; //DOM 对象
 alert(v.checked) //检测这个checkbox 是否被选中
-方法二：
-jQuery 本身提供，通过.get(index)方法，得到相应的DOM 对象
-如：var $v=$("#v"); //jQuery 对象
+```
+方法二：<br/>
+jQuery本身提供，通过.get(index)方法，得到相应的DOM 对象如：<br/>
+```javascript
+var $v=$("#v"); //jQuery 对象
 var v=$v.get(0); //DOM 对象
 alert(v.checked) //检测这个checkbox 是否被选中
+```
 
-31.jq 中怎么样编写插件?
-第一种是类级别的插件开发：
-使用$.extend
+57.jq 中怎么样编写插件?
+-------
+##### 第一种是类级别的插件开发：使用$.extend
+```javascript
 jQuery.extend({
-foo: function() {
-alert('This is a test. This is only a test.');
-},
-bar: function(param) {
-alert('This function takes a parameter, which is "' + param +'".');
+   foo: function() {
+     alert('This is a test. This is only a test.');
+   },
+   bar: function(param) {
+     alert('This function takes a parameter, which is "' + param +'".');
+   }
 }
-}
-也可以使用命名空间：
+```
+###### 也可以使用命名空间：
+```javascript
 jQuery.myPlugin = {
-foo:function() {
-alert('This is a test. This is only a test.');
-},
-bar:function(param) {
-alert('This function takes a parameter, which is "' + param + '".');
-}
+   foo:function() {
+      alert('This is a test. This is only a test.');
+   },
+   bar:function(param) {
+      alert('This function takes a parameter, which is "' + param + '".');
+   }
 };
+```
 采用命名空间的函数仍然是全局函数，调用时采用的方法：
+```javascript
 $.myPlugin.foo();
 $.myPlugin.bar('baz');
-
-第二种是对象级别的插件开发：
-形式1：
+```
+##### 第二种是对象级别的插件开发：
+###### 形式1：
+```javascript
 (function($){
-$.fn.extend({
-pluginName:function(opt,callback){
-// Our plugin implementation code goes here.
-}
-})
+   $.fn.extend({
+      pluginName:function(opt,callback){
+      // Our plugin implementation code goes here.
+      }
+   })
 })(jQuery);
+```
 形式2：
+```javascript
 (function($) {
 $.fn.pluginName = function() {
 // Our plugin implementation code goes here.
 };
 })(jQuery);
-形参是$，函数定义完成之后,把jQuery 这个实参传递进去.立即调用执行。这样的好处是,
-我们在写jQuery 插件时,也可以使用$这个别名,而不会与prototype 引起冲突。
+```
+形参是$，函数定义完成之后,把jQuery 这个实参传递进去.立即调用执行。这样的好处是,我们在写jQuery 插件时,也可以使用$这个别名,而不会与prototype 引起冲突。<br/>
 
-33.$.map 和$.each 有什么区别
-map()方法主要用来遍历操作数组和对象，会返回一个新的数组。$.map()方法适用于将数
-组或对象每个项目新阵列映射到一个新数组的函数；
-each()主要用于遍历jquery 对象，返回的是原来的数组，并不会新创建一个数组。
-
-34、JSON和JS对象的对比
-对比内容JSONJS对象键名必须是加双引号可允许不加、加单引号、加双引号属性值只能是数值（10进制）、字符串（双引号）、布尔值和null，
-也可以是数组或者符合JSON要求的对象，
-不能是函数、NaN, Infinity, -Infinity和undefined爱啥啥逗号问题最后一个属性后面不能有逗号可以数值前导0不能用，小数点后必须有数字没限制
+58、JSON和JS对象的对比
+-------
+对比内容JSONJS对象键名必须是加双引号可允许不加、加单引号、加双引号属性值只能是数值（10进制）、字符串（双引号）、布尔值和null，也可以是数组或者符合JSON要求的对象，不能是函数、NaN, Infinity, -Infinity和undefined爱啥啥逗号问题最后一个属性后面不能有逗号可以数值前导0不能用，小数点后必须有数字没限制
 var obj1 = {}; // 这只是 JS 对象
 // 可把这个称做：JSON 格式的 JavaScript 对象 
 var obj2 = {"width":100,"height":200,"name":"rose"};
