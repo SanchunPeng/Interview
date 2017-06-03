@@ -1527,7 +1527,8 @@ $.fn.pluginName = function() {
 
 58、JSON和JS对象的对比
 -------
-对比内容JSONJS对象键名必须是加双引号可允许不加、加单引号、加双引号属性值只能是数值（10进制）、字符串（双引号）、布尔值和null，也可以是数组或者符合JSON要求的对象，不能是函数、NaN, Infinity, -Infinity和undefined爱啥啥逗号问题最后一个属性后面不能有逗号可以数值前导0不能用，小数点后必须有数字没限制
+对比内容JSONJS对象键名必须是加双引号可允许不加、加单引号、加双引号属性值只能是数值（10进制）、字符串（双引号）、布尔值和null，也可以是数组或者符合JSON要求的对象，不能是函数、NaN, Infinity, -Infinity和undefined爱啥啥逗号问题最后一个属性后面不能有逗号可以数值前导0不能用，小数点后必须有数字没限制。<br/>
+```javascript
 var obj1 = {}; // 这只是 JS 对象
 // 可把这个称做：JSON 格式的 JavaScript 对象 
 var obj2 = {"width":100,"height":200,"name":"rose"};
@@ -1543,21 +1544,24 @@ var str2='['+
     '{"width":100,"height":200,"name":"rose"},'+
     '{"width":100,"height":200,"name":"rose"},'+
 ']';
-另外，除了常见的“正常的”JSON格式，要么表现为一个对象形式{...}，要么表现为一个数组形式[...]，任何单独的一个10进制数值、双引号字符串、布尔值和null都是有效符合JSON格式的。
-JSON不是JS的子集：
+```
+另外，除了常见的“正常的”JSON格式，要么表现为一个对象形式{...}，要么表现为一个数组形式[...]，任何单独的一个10进制数值、双引号字符串、布尔值和null都是有效符合JSON格式的。<br/>
+JSON不是JS的子集：<br/>
+```javascript
 var code = '"\u2028\u2029"';
 JSON.parse(code); // works fine
 eval(code); // fails
-JSON.parse可以正常解析，但是当做js解析时会报错。
-将JS数据结构转化为JSON字符串 —— JSON.stringify
-JSON.stringify(value[, replacer [, space]])
-基本使用 —— 仅需一个参数
-这个大家都会使用，传入一个JSON格式的JS对象或者数组，JSON.stringify({"name":"Good Man","age":18})返回一个字符串"{"name":"Good Man","age":18}"。
-第二个参数可以是函数，也可以是一个数组
-  ● 如果第二个参数是一个函数，那么序列化过程中的每个属性都会被这个函数转化和处理
-  ● 如果第二个参数是一个数组，那么只有包含在这个数组中的属性才会被序列化到最终的JSON字符串中
-  ● 如果第二个参数是null，那作用上和空着没啥区别，但是不想设置第二个参数，只是想设置第三个参数的时候，就可以设置第二个参数为null
-这第二个参数若是函数
+```
+JSON.parse可以正常解析，但是当做js解析时会报错。<br/>
+#### 将JS数据结构转化为JSON字符串 —— JSON.stringify
+JSON.stringify(value[, replacer [, space]])<br/>
+基本使用-仅需一个参数,这个大家都会使用，传入一个JSON格式的JS对象或者数组，JSON.stringify({"name":"Good Man","age":18})返回一个字符串"{"name":"Good Man","age":18}"。<br/>
+第二个参数可以是函数，也可以是一个数组<br/>
+  ● 如果第二个参数是一个函数，那么序列化过程中的每个属性都会被这个函数转化和处理<br/>
+  ● 如果第二个参数是一个数组，那么只有包含在这个数组中的属性才会被序列化到最终的JSON字符串中<br/>
+  ● 如果第二个参数是null，那作用上和空着没啥区别，但是不想设置第二个参数，只是想设置第三个参数的时候，就可以设置第二个参数为null<br/>
+##### 这第二个参数若是函数:
+```javascript
 var friend={
     "firstName": "Good",
     "lastName": "Man",
@@ -1574,9 +1578,11 @@ var friendAfter=JSON.stringify(friend,function(key,value){
 });
 console.log(friendAfter);
 //输出：{"firstName":"Good","lastName":"Man","phone":"(000)1234567","age":28}
-如果制定了第二个参数是函数，那么这个函数必须对每一项都有返回，这个函数接受两个参数，一个键名，一个是属性值，函数必须针对每一个原来的属性值都要有新属性值的返回。
-那么问题来了，如果传入的不是键值对的对象形式，而是方括号的数组形式呢？，比如上面的friend变成这样：friend=["Jack","Rose"]，那么这个逐属性处理的函数接收到的key和value又是什么？如果是数组形式，那么key是索引，而value是这个数组项，你可以在控制台在这个函数内部打印出来这个key和value验证，记得要返回value，不然会出错。
-这第二个参数若是数组
+```
+如果制定了第二个参数是函数，那么这个函数必须对每一项都有返回，这个函数接受两个参数，一个键名，一个是属性值，函数必须针对每一个原来的属性值都要有新属性值的返回。<br/>
+那么问题来了，如果传入的不是键值对的对象形式，而是方括号的数组形式呢？，比如上面的friend变成这样：friend=["Jack","Rose"]，那么这个逐属性处理的函数接收到的key和value又是什么？如果是数组形式，那么key是索引，而value是这个数组项，你可以在控制台在这个函数内部打印出来这个key和value验证，记得要返回value，不然会出错。<br/>
+##### 这第二个参数若是数组:
+```javascript
 var friend={
     "firstName": "Good",
     "lastName": "Man",
@@ -1588,28 +1594,31 @@ var friendAfter=JSON.stringify(friend,["firstName","address","phone"]);
 console.log(friendAfter);
 //{"firstName":"Good","phone":"1234567"}
 //指定的“address”由于没有在原来的对象中找到而被忽略
-如果第二个参数是一个数组，那么只有在数组中出现的属性才会被序列化进结果字符串，只要在这个提供的数组中找不到的属性就不会被包含进去，而这个数组中存在但是源JS对象中不存在的属性会被忽略，不会报错。
-第三个参数用于美化输出 —— 不建议用
+```
+如果第二个参数是一个数组，那么只有在数组中出现的属性才会被序列化进结果字符串，只要在这个提供的数组中找不到的属性就不会被包含进去，而这个数组中存在但是源JS对象中不存在的属性会被忽略，不会报错。<br/>
+第三个参数用于美化输出 —— 不建议用<br/>
 
-注意：这个函数的“小聪明”（重要）
-1）键名不是双引号的（包括没有引号或者是单引号），会自动变成双引号；字符串是单引号的，会自动变成双引号
-2）最后一个属性后面有逗号的，会被自动去掉
-3）非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中，也就是对非数组对象在最终字符串中不保证属性顺序和原来一致
-4）布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值，也就是你的什么new String("bala")会变成"bala"，new Number(2017)会变成2017
-5）undefined、任意的函数（其实有个函数会发生神奇的事，后面会说）以及 symbol 值（symbol详见ES6对symbol的介绍）
-  ● 出现在非数组对象的属性值中：在序列化过程中会被忽略
-    JSON.stringify({x: undefined, y: function(){return 1;}, z: Symbol("")});
-	 /出现在非数组对象的属性值中被忽略："{}"
-  ● 出现在数组中时：被转换成 null
-    JSON.stringify([undefined, Object, Symbol("")]);
-    //出现在数组对象的属性值中，变成null："[null,null,null]"
-6）NaN、Infinity和-Infinity，不论在数组还是非数组的对象中，都被转化为null
-7）所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们
-8）不可枚举的属性会被忽略
-将JSON字符串解析为JS数据结构 —— JSON.parse
-JSON.parse(text[, reviver])
+##### 注意：这个函数的“小聪明”（重要）
+1）键名不是双引号的（包括没有引号或者是单引号），会自动变成双引号；字符串是单引号的，会自动变成双引号<br/>
+2）最后一个属性后面有逗号的，会被自动去掉<br/>
+3）非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中，也就是对非数组对象在最终字符串中不保证属性顺序和原来一致<br/>
+4）布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值，也就是你的什么new String("bala")会变成"bala"，new Number(2017)会变成2017<br/>
+5）undefined、任意的函数（其实有个函数会发生神奇的事，后面会说）以及 symbol 值（symbol详见ES6对symbol的介绍）<br/>
+  ● 出现在非数组对象的属性值中：在序列化过程中会被忽略<br/>
+    JSON.stringify({x: undefined, y: function(){return 1;}, z: Symbol("")});<br/>
+	 /出现在非数组对象的属性值中被忽略："{}"<br/>
+  ● 出现在数组中时：被转换成 null<br/>
+    JSON.stringify([undefined, Object, Symbol("")]);<br/>
+    //出现在数组对象的属性值中，变成null："[null,null,null]"<br/>
+6）NaN、Infinity和-Infinity，不论在数组还是非数组的对象中，都被转化为null<br/>
+7）所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。<br/>
+8）不可枚举的属性会被忽略<br/>
+
+#### 将JSON字符串解析为JS数据结构 —— JSON.parse
+JSON.parse(text[, reviver])<br/>
 如果第一个参数，即JSON字符串不是合法的字符串的话，那么这个函数会抛出错误，所以如果你在写一个后端返回JSON字符串的脚本，最好调用语言本身的JSON字符串相关序列化函数，而如果是自己去拼接实现的序列化字符串，那么就尤其要注意序列化后的字符串是否是合法的，合法指这个JSON字符串完全符合JSON要求的严格格式。
-值得注意的是这里有一个可选的第二个参数，这个参数必须是一个函数，这个函数作用在属性已经被解析但是还没返回前，将属性处理后再返回。
+值得注意的是这里有一个可选的第二个参数，这个参数必须是一个函数，这个函数作用在属性已经被解析但是还没返回前，将属性处理后再返回。<br/>
+```javascript
 var friend={
     "firstName": "Good",
     "phone":{"home":"1234567","work":["7654321","999000"]}
@@ -1646,14 +1655,15 @@ Object
 Object
 ----
 */
-仔细看一下这些输出，可以发现这个遍历是由内而外的，可能由内而外这个词大家会误解，最里层是内部数组里的两个值啊，但是输出是从第一个属性开始的，怎么就是由内而外的呢？
-这个由内而外指的是对于复合属性来说的，通俗地讲，遍历的时候，从头到尾进行遍历，如果是简单属性值（数值、字符串、布尔值和null），那么直接遍历完成，如果是遇到属性值是对象或者数组形式的，那么暂停，先遍历这个子JSON，而遍历的原则也是一样的，等这个复合属性遍历完成，那么再完成对这个属性的遍历返回。
-本质上，这就是一个深度优先的遍历。
-有两点需要注意：
-1）如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。
-2）你可以注意到上面例子最后一组输出看上去没有key，其实这个key是一个空字符串，而最后的object是最后解析完成对象，因为到了最上层，已经没有真正的属性了。
-影响 JSON.stringify 的神奇函数 —— object.toJSON
-如果你在一个JS对象上实现了toJSON方法，那么调用JSON.stringify去序列化这个JS对象时，JSON.stringify会把这个对象的toJSON方法返回的值作为参数去进行序列化。
+```
+仔细看一下这些输出，可以发现这个遍历是由内而外的，可能由内而外这个词大家会误解，最里层是内部数组里的两个值啊，但是输出是从第一个属性开始的，怎么就是由内而外的呢？<br/>
+这个由内而外指的是对于复合属性来说的，通俗地讲，遍历的时候，从头到尾进行遍历，如果是简单属性值（数值、字符串、布尔值和null），那么直接遍历完成，如果是遇到属性值是对象或者数组形式的，那么暂停，先遍历这个子JSON，而遍历的原则也是一样的，等这个复合属性遍历完成，那么再完成对这个属性的遍历返回。本质上，这就是一个深度优先的遍历。<br/>
+##### 有两点需要注意：
+1）如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。<br/>
+2）你可以注意到上面例子最后一组输出看上去没有key，其实这个key是一个空字符串，而最后的object是最后解析完成对象，因为到了最上层，已经没有真正的属性了。<br/>
+#### 影响 JSON.stringify 的神奇函数 —— object.toJSON
+如果你在一个JS对象上实现了toJSON方法，那么调用JSON.stringify去序列化这个JS对象时，JSON.stringify会把这个对象的toJSON方法返回的值作为参数去进行序列化。<br/>
+```javascript
 var info={
     "msg":"I Love You",
     "toJSON":function(){
@@ -1664,45 +1674,46 @@ var info={
 };
 JSON.stringify(info);
 //出si了，返回的是：'"{"msg":"Go Die"}"',说好的忽略函数呢
-这个函数就是这样子的：其实Date类型可以直接传给JSON.stringify做参数，其中的道理就是，Date类型内置了toJSON方法。
-小结以及关于兼容性的问题
-JSON是一种语法上衍生于JS语言的一种轻量级的数据交换格式。不过遗憾的是，以上所用的3个函数，不兼容IE7以及IE7之前的浏览器。
+```
+这个函数就是这样子的：其实Date类型可以直接传给JSON.stringify做参数，其中的道理就是，Date类型内置了toJSON方法。<br/>
+##### 小结以及关于兼容性的问题
+JSON是一种语法上衍生于JS语言的一种轻量级的数据交换格式。不过遗憾的是，以上所用的3个函数，不兼容IE7以及IE7之前的浏览器。<br/>
 
-问题1:JavaScript 中 undefined 和 not defined 的区别
-JavaScript 未声明变量直接使用会抛出异常：var name is not defined，如果没有处理异常，代码就停止运行了。
-但是，使用typeof undeclared_variable并不会产生异常，会直接返回 undefined。
-var x; // 声明 x
-console.log(x); //output: undefined 
-console.log(typeof y); //output: undefined
-console.log(z); // 抛出异常: ReferenceError: z is not defined
-
-问题2:下面的代码输出什么？
+59:下面的代码输出什么？
+-------
+```javascript
 var y = 1;
 if (function f(){}) {
     y += typeof f;
 }
 console.log(y);
-正确的答案应该是 1undefined。
-JavaScript中if语句求值其实使用eval函数，eval(function f(){}) 返回 function f(){} 也就是 true。
-下面我们可以把代码改造下，变成其等效代码。
+```
+正确的答案应该是 1undefined。<br/>
+JavaScript中if语句求值其实使用eval函数，eval(function f(){}) 返回 function f(){} 也就是 true。<br/>
+下面我们可以把代码改造下，变成其等效代码。<br/>
+```javascript
 var k = 1;
 if (1) {
     eval(function foo(){});
     k += typeof foo;
 }
 console.log(k); 
-上面的代码输出其实就是 1undefined。为什么那？我们查看下 eval() 说明文档即可获得答案。该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。恰恰function f(){} 语句的返回值是 undefined，所以一切都说通了。
-注意上面代码和以下代码不同。
+```
+上面的代码输出其实就是 1undefined。为什么那？我们查看下 eval() 说明文档即可获得答案。该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。恰恰function f(){} 语句的返回值是 undefined，所以一切都说通了。<br/>
+注意上面代码和以下代码不同。<br/>
+```javascript
 var k = 1;
 if (1) {
     function foo(){};
     k += typeof foo;
 }
 console.log(k); // output 1function
+```
 
-问题3:在JavaScript中创建一个真正的private方法有什么缺点？
-每一个对象都会创建一个private方法的方法，这样很耗费内存
-观察下面代码
+60:在JavaScript中创建一个真正的private方法有什么缺点？
+------
+每一个对象都会创建一个private方法的方法，这样很耗费内存观察下面代码
+```javascript
 var Employee = function (name, company, salary) {
     this.name = name || "";       
     this.company = company || ""; 
@@ -1723,14 +1734,15 @@ var emp1 = new Employee("John","Pluto",3000);
 var emp2 = new Employee("Merry","Pluto",2000);
 // Create Employee class object
 var emp3 = new Employee("Ren","Pluto",2500);
-在这里 emp1,emp2,emp3都有一个increaseSalary私有方法的副本。
-所以我们除非必要，非常不推荐使用私有方法。
+```
+在这里 emp1,emp2,emp3都有一个increaseSalary私有方法的副本。所以我们除非必要，非常不推荐使用私有方法。
 
-
-问题5:写一个mul函数，使用方法如下。
+61:写一个mul函数，使用方法如下。
+------
+```javascript
 console.log(mul(2)(3)(4)); // output : 24 
 console.log(mul(4)(3)(4)); // output : 48
-答案直接给出：
+//答案直接给出：
 function mul (x) {
     return function (y) { // anonymous function 
         return function (z) { // anonymous function 
@@ -1738,127 +1750,122 @@ function mul (x) {
         };
     };
 }
-简单说明下： mul 返回一个匿名函数，运行这个匿名函数又返回一个匿名函数，最里面的匿名函数可以访问 x,y,z 进而算出乘积返回即可。
-对于JavaScript中的函数一般可以考察如下知识点：
-  ● 函数是一等公民
-  ● 函数可以有属性，并且能连接到它的构造方法
-  ● 函数可以像一个变量一样存在内存中
-  ● 函数可以当做参数传给其他函数
-  ● 函数可以返回其他函数
+```
+简单说明下： mul 返回一个匿名函数，运行这个匿名函数又返回一个匿名函数，最里面的匿名函数可以访问 x,y,z 进而算出乘积返回即可。<br/>
+对于JavaScript中的函数一般可以考察如下知识点：<br/>
+  ● 函数是一等公民<br/>
+  ● 函数可以有属性，并且能连接到它的构造方法<br/>
+  ● 函数可以像一个变量一样存在内存中<br/>
+  ● 函数可以当做参数传给其他函数<br/>
+  ● 函数可以返回其他函数<br/>
 
-问题6:JavaScript怎么清空数组？
-如var arrayList = ['a','b','c','d','e','f'];
-怎么清空 arrayList
-方法1：arrayList = [];直接改变arrayList所指向的对象，原对象并不改变。
-方法2：arrayList.length = 0;这种方法通过设置length=0 使原数组清除元素。
-方法3：arrayList.splice(0, arrayList.length)和方法2相似
+62:JavaScript怎么清空数组？
+------
+如var arrayList = ['a','b','c','d','e','f'];<br/>
+怎么清空 arrayList<br/>
+方法1：arrayList = [];直接改变arrayList所指向的对象，原对象并不改变。<br/>
+方法2：arrayList.length = 0;这种方法通过设置length=0 使原数组清除元素。<br/>
+方法3：arrayList.splice(0, arrayList.length)和方法2相似<br/>
 
-问题7:怎么判断一个object是否是数组(array)？
-方法1：使用 Object.prototype.toString 来判断是否是数组
+63:怎么判断一个object是否是数组(array)？
+-----
+##### 方法1：使用 Object.prototype.toString 来判断是否是数组
+```javascript
 function isArray(obj){
     return Object.prototype.toString.call( obj ) ==="[object Array]";
 }
-这里使用call来使 toString 中 this 指向 obj。进而完成判断
-方法2：使用 原型链 来完成判断
+```
+这里使用call来使 toString 中 this 指向 obj。进而完成判断<br/>
+##### 方法2：使用 原型链 来完成判断
+```javascript
 function isArray(obj){
     return obj.__proto__ === Array.prototype;
 }
-基本思想是利用 实例如果是某个构造函数构造出来的那么 它的 __proto__是指向构造函数的 prototype属性。
-方法3：利用JQuery
+```
+基本思想是利用 实例如果是某个构造函数构造出来的那么 它的 __proto__是指向构造函数的 prototype属性。<br/>
+##### 方法3：利用JQuery
+```javascript
 function isArray(obj){
     return $.isArray(obj)
 }
-JQuery isArray 的实现其实就是方法1
+```
+JQuery isArray 的实现其实就是方法1<br/>
 
-问题8:下面代码输出什么？
+64:下面代码输出什么？
+-------
+```javascript
 var output = (function(x){
     delete x;
     return x;
 })(0);
 console.log(output);
-输出是 0。 delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
-
-问题9:下面代码输出什么？
+//输出是 0。 delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+```
+```javascript
 var x = 1;
 var output = (function(){
     delete x;
     return x;
 })();
 console.log(output);
-输出是 1。delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
-
-问题10:下面代码输出什么？
+//输出是 1。delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+```
+```javascript
 var x = { foo : 1};
 var output = (function(){
     delete x.foo;
     return x.foo;
 })();
 console.log(output);
-输出是 undefined。x虽然是全局变量，但是它是一个object。delete作用在x.foo上，成功的将x.foo删去。所以返回undefined
-
-问题11:下面代码输出什么？
+//输出是 undefined。x虽然是全局变量，但是它是一个object。delete作用在x.foo上，成功的将x.foo删去。所以返回undefined
+```
+```javascript
 var Employee = {
     company: 'xyz'
 }
 var emp1 = Object.create(Employee);
 delete emp1.company
 console.log(emp1.company);
-输出是 xyz，这里的 emp1 通过 prototype 继承了 Employee的 company。emp1自己并没有company属性。所以delete操作符的作用是无效的。
-
-问题12:什么是 undefined x 1 ？
-在chrome下执行如下代码，我们就可以看到undefined x 1的身影。
-var trees = ["redwood","bay","cedar","oak","maple"];
-delete trees[3];
-console.log(trees);
-当我们使用 delete 操作符删除一个数组中的元素，这个元素的位置就会变成一个占位符。打印出来就是undefined x 1。
-注意如果我们使用trees[3] === 'undefined × 1'返回的是 false。因为它仅仅是一种打印表示，并不是值变为undefined x 1。
-
-问题13:下面代码输出什么？
+//输出是 xyz，这里的 emp1 通过 prototype 继承了 Employee的 company。emp1自己并没有company属性。所以delete操作符的作用是无效的。
+```
+```javascript
 var trees = ["xyz","xxxx","test","ryan","apple"];
 delete trees[3];
 console.log(trees.length);
-输出是5。因为delete操作符并不是影响数组的长度。
-
-问题14:下面代码输出什么？
+//输出是5。因为delete操作符并不是影响数组的长度。
+```
+```javascript
 var bar = true;
 console.log(bar + 0);   
 console.log(bar + "xyz");  
 console.log(bar + true);  
 console.log(bar + false);   
-输出是
+/*输出是
 1
 truexyz
 2
-1
-下面给出一个加法操作表
-  ● Number + Number -> 加法
-  ● Boolean + Number -> 加法
-  ● Boolean + Boolean -> 加法
-  ● Number + String -> 连接
-  ● String + Boolean -> 连接
-  ● String + String -> 连接
-
-
-问题15:下面代码输出什么？
+1*/
+```
+```javascript
 var z = 1, y = z = typeof y;
 console.log(y);  
-输出是 undefined。js中赋值操作结合律是右至左的 ，即从最右边开始计算值赋值给左边的变量。
-上面代码等价于
+//输出是 undefined。js中赋值操作结合律是右至左的 ，即从最右边开始计算值赋值给左边的变量。
+//上面代码等价于
 var z = 1
 z = typeof y;
 var y = z;
 console.log(y);  
-
-问题16:下面代码输出什么？
+```
+```javascript
 var foo = function bar(){ return 12; };
 typeof bar();  
-输出是抛出异常，bar is not defined。如果想让代码正常运行，需要这样修改代码：
+//输出是抛出异常，bar is not defined。如果想让代码正常运行，需要这样修改代码：
 var bar = function(){ return 12; };
 typeof bar();  
-或者是
+//或者是
 function bar(){ return 12; };
 typeof bar();  
-明确说明这个下问题
+//明确说明这个下问题
 var foo = function bar(){ 
     // foo is visible here 
     // bar is visible here
@@ -1866,17 +1873,84 @@ var foo = function bar(){
 };
 // foo is visible here
 // bar is undefined here
+```
+```javascript
+var salary = "1000$";
+(function () {
+    console.log("Original salary was " + salary);
+    var salary = "5000$";
+    console.log("My New Salary " + salary);
+})();
+//输出是
+Original salary was undefined
+My New Salary 5000$
+```
+这题同样考察的是变量提升。等价于以下代码:<br/>
+```javascript
+var salary = "1000$";
+ (function () {
+     var salary ;
+     console.log("Original salary was " + salary);
+     salary = "5000$";
+     console.log("My New Salary " + salary);
+ })();
+```
+```javascript
+function foo(){ 
+  return foo; 
+}
+console.log(new foo() instanceof foo);
+```
+instanceof操作符用来判断是否当前对象是特定类的对象。如
+```javascript
+function Animal(){
+    //或者不写return语句
+    return this;
+}
+var dog = new Animal();
+dog instanceof Animal // Output : true
+```
+但是，这里的foo定义为
+```javascript
+function foo(){ 
+  return foo; 
+}
+// here bar is pointer to function foo(){return foo}.
+var bar = new foo();
+//所以new foo() instanceof foo 返回 false
+```
+#### 下面给出一个加法操作表
+  ● Number + Number -> 加法
+  ● Boolean + Number -> 加法
+  ● Boolean + Boolean -> 加法
+  ● Number + String -> 连接
+  ● String + Boolean -> 连接
+  ● String + String -> 连接
 
-问题17:两种函数声明有什么区别
-变量定义和函数定义都会提升，函数赋值只会在调用的时候才会执行。
+65:什么是 undefined x 1 ？
+-----
+在chrome下执行如下代码，我们就可以看到undefined x 1的身影。
+```javascript
+var trees = ["redwood","bay","cedar","oak","maple"];
+delete trees[3];
+console.log(trees);
+```
+当我们使用 delete 操作符删除一个数组中的元素，这个元素的位置就会变成一个占位符。打印出来就是undefined x 1。<br/>
+注意如果我们使用trees[3] === 'undefined × 1'返回的是 false。因为它仅仅是一种打印表示，并不是值变为undefined x 1。<br/>
+
+66:两种函数声明有什么区别
+------
+变量定义和函数定义都会提升，函数赋值只会在调用的时候才会执行。<br/>
+```javascript
 var foo = function(){ 
     // Some code
 }; 
 function bar(){ 
     // Some code
 }; 
-foo的定义是在运行时。想系统说明这个问题，我们要引入变量提升的这一概念。
-我们可以运行下如下代码看看结果。
+```
+foo的定义是在运行时。想系统说明这个问题，我们要引入变量提升的这一概念。我们可以运行下如下代码看看结果。<br/>
+```javascript
 console.log(foo)
 console.log(bar)
 var foo = function(){ 
@@ -1885,15 +1959,17 @@ var foo = function(){
 function bar(){ 
     // Some code
 }; 
-
-输出为
+```
+输出为:<br/>
+```javascript
 undefined
 function bar(){ 
     // Some code
 }; 
-为什么那？为什么 foo 打印出来是 undefined，而 bar打印出来却是函数？
-JavaScript在执行时，会将变量提升。
-所以上面代码JavaScript 引擎在实际执行时按这个顺序执行。
+```
+为什么那？为什么 foo 打印出来是 undefined，而 bar打印出来却是函数？<br/>
+JavaScript在执行时，会将变量提升。所以上面代码JavaScript 引擎在实际执行时按这个顺序执行。<br/>
+```javascript
 // foo bar的定义位置被提升
 function bar(){ 
     // Some code
@@ -1904,57 +1980,16 @@ console.log(bar)
 foo = function(){ 
     // Some code
 }; 
+```
 
-
-
-问题18:下面代码输出什么？
-var salary = "1000$";
-(function () {
-    console.log("Original salary was " + salary);
-    var salary = "5000$";
-    console.log("My New Salary " + salary);
-})();
-输出是
-Original salary was undefined
-My New Salary 5000$
-这题同样考察的是变量提升。等价于以下代码
-var salary = "1000$";
- (function () {
-     var salary ;
-     console.log("Original salary was " + salary);
-     salary = "5000$";
-     console.log("My New Salary " + salary);
- })();
-
-问题19:什么是 instanceof 操作符？下面代码输出什么？
-function foo(){ 
-  return foo; 
-}
-console.log(new foo() instanceof foo);
-instanceof操作符用来判断是否当前对象是特定类的对象。
-如
-function Animal(){
-    //或者不写return语句
-    return this;
-}
-var dog = new Animal();
-dog instanceof Animal // Output : true
-但是，这里的foo定义为
-function foo(){ 
-  return foo; 
-}
-所以
-// here bar is pointer to function foo(){return foo}.
-var bar = new foo();
-
-所以 new foo() instanceof foo 返回 false
-
-问题20: 如果我们使用JavaScript的"关联数组"，我们怎么计算"关联数组"的长度？
+67: 如果我们使用JavaScript的"关联数组"，我们怎么计算"关联数组"的长度？
+-----
+```javascript
 var counterArray = {
     A : 3,
     B : 4
 };
 counterArray["C"] = 1;
-其实答案很简单，直接计算key的数量就可以了。
-Object.keys(counterArray).length // Output 3
+```
+直接计算key的数量就可以了。Object.keys(counterArray).length // Output 3
 
