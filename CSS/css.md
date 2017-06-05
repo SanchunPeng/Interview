@@ -147,11 +147,11 @@ div#demo {
 
 用CSS3 transfrom旋转45度实现<br/>
 ```css
--webkit-transform: rotate(45deg); <br/>
--moz-transform: rotate(45deg);<br/>
--ms-transform: rotate(45deg);<br/>
--o-transform: rotate(45deg);<br/>
-transform: rotate(45deg);<br/>
+-webkit-transform: rotate(45deg); 
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
 ```
 
 11、常用的css hack的技巧 ？
