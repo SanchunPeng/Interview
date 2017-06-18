@@ -146,49 +146,49 @@ cookie虽然在持久保存客户端数据提供了方便，分担了服务器�
 5）chrome和Safari没有做硬性限制    
 IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。cookie的最大大约为4096字节4KB，为了兼容性，一般不能超过4095字节。IE 提供了一种存储可以持久化用户数据，叫做userData，从IE5.0就开始支持。每个数据最多128K，每个域名下最多1M。这个持久化数据放在缓存中，如果缓存没有清理，那么会一直存在。     
 
-优点：极高的扩展性和可用性      
+##### 优点：极高的扩展性和可用性      
 1）通过良好的编程，控制保存在cookie中的session对象的大小。    
 2）通过加密和安全传输技术（SSL），减少cookie被破解的可能性。   
 3）只在cookie中存放不敏感数据，即使被盗也不会有重大损失。    
 4）控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie。    
 
-缺点：    
+##### 缺点：    
 1）Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。      
 2）安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。    
 3）有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。
 所以为了绕开cookie个数限制，一些开发人员使用了子cookie，使用cookie存储多个名值对，用&连接。   
 
-cookie的构造：       
+##### cookie的构造：       
 cookie的名称不区分大小写，可以设置cookie域，路径，失效时间（没定义的话是会话结束失效），安全标志（SSL）e.g.Set-Cookie:name-value;domain=.wrox.com;path=/;secure，指定在.erox.com域或子域下的所有路径发送https请求时都会带上cookie。都会进行URL编码。    
 
-web storage和cookie的区别：    
+##### web storage和cookie的区别：    
 Web Storage的概念和cookie相似，区别是它是为了更大容量存储，在cookie之外存储会话数据的途径设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。      
 
 Web Storage定义了两种用于存储数据的对象，sessionStorage和localStorage，前者严格用于在一个浏览器会话中存储数据，浏览器关闭后立即删除，后者用户跨会话持久化数据并遵循跨域安全策略。要访问同一个localStorage对象，页面必须来自同一个域名（子域名无效），同一种协议，同一端口。    
 
-但是Cookie也是不可以或缺的：      
+##### 但是Cookie也是不可以或缺的：      
 Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生。浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的UserData（可以应用在页面的某个元素上，每个文档最多128KB，每个域名最多1M，在使用userData之前需要再DOM元素上使用style的behavior属性，通过setAttribute()保存数据，最后必须使用save(数据空间名称)指定数据空间名称，最后就可以使用load(数据空间名称)方法指定同样的数据空间名称来获取数据，每次添加或者删除后都要使用save进行提交更改，用户数据会跨越会话永久存在，所以需要使用removeAttribute删除释放，也不安全）其实就是javascript本地存储的解决方案。所以通过简单的代码封装可以统一到所有的浏览器都支持web storage。很容就能够兼容。    
 
 在较高版本的浏览器（IE8+）中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。    
 localStorage和sessionStorage都具有相同的操作方法，例如（setItem、getItem）（也可以用点的方式存取）和removeItem,key(index)：获得index位置处的值的名字等，也可以通过Storage对象间接调用，因为localStorage，sessionStorage都是Storage对象的实例。     
 
-sessionStorage：       
+##### sessionStorage：       
 可以跨页面刷新存在，浏览器崩溃后重启依然可用（IE不行）只能由最初给对象存储数据的页面可以访问，所以对多页应用有限制。IE8可以通过这个对象将数据写入磁盘，设置数据之前使用sessionStorage.begin()。成功之后使用sessionStorage.commit()，主要用于仅针对会话的小段数据存储，如果需要跨越会话存储数据，用localStorage或globalStorage更合适。
 
-globalStorage：      
+##### globalStorage：      
 跨越会话存储数据，globalStorage不是Storage实例，使用globalStorage["wrox.com"]确定针对特定域名的存储空间，globalStorage["wrox.com"]是Storage实例，也就是该域可以访问存储在上面的数据。同时也要遵从类似同源策略的规则设置和访问。没有使用removeItem()或者delete删除，或者用户没有清除浏览器缓存，globalStorage中存储的数据会一直保存在磁盘上，适合存储文档或用户偏好设置。     
 
-localStorage：     
+##### localStorage：     
 是Storage实例，该对象在HTML5规范中作为持久保存客户端的数据的方案取代了globalStorage。访问规则事先也设定，相当于globalStorage[location.host]。    
 对localStorage，globalStorage，sessionStorage进行操作都会触发storage事件。    
 
-本地存储和事务存储之间的区别:    
+##### 本地存储和事务存储之间的区别:    
 本地存储数据持续永久，但是会话在浏览器打开时有效知道浏览器关闭时会话变量重置    
 
 cookie，localStorage和sessionStorage有什么区别？
 ------
-共同点：都是保存在浏览器端，且同源的。<br/>
-区别：<br/>
+##### 共同点：都是保存在浏览器端，且同源的。<br/>
+##### 区别：<br/>
 1）cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。<br/>
 2）cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。<br/>
 3）存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。<br/>
@@ -197,12 +197,13 @@ cookie，localStorage和sessionStorage有什么区别？
 
 6、HTML5的离线储存怎么使用，工作原理能不能解释一下？
 --------
-离线检测：       
+##### 离线检测：       
 HTML5定义了一个navigator.onLine属性，ture表示能上网，由于浏览器兼容问题，配合使用online和offline事件，当网络从在线转为离线触发offline，转为在线触发online，都在window对象上触发。      
 
-离线储存：    
+##### 离线储存：    
 所谓的离线存储就是将一些资源文件保存在本地，这样后续的页面加载将使用本地的资源文件，在 离线的情况下可以继续访问web应用。在用户与因特网连接时，更新用户机器上的缓存文件。   
-原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
+##### 原理：
+HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
 ```javascript
 localStorage 长期存储数据，浏览器关闭后数据不丢失；   
 localStorage.setItem("key","value");//数据添加到本地存储采用键值对,value也可以是一个js对象。     localStorage.setItem(“I001”,JSON.stringify(country));//也可以存储json格式的数据   
@@ -210,7 +211,7 @@ var item = localStorage.getItem("key");//从本地存储中检索数据
 ```
 本地存储没有生命周期，它将保留直到用户从浏览器清除或者使用Javascript代码移除。
 sessionStorage 数据在浏览器关闭后自动删除。    
-如何使用：       
+##### 如何使用：       
 1）、页面头部像下面一样加入一个manifest的属性；将描述文件与页面关联起来\<html manifest="/offine.manifest"\>           
 2）、在cache.manifest文件的编写离线存储的资源;现在推荐描述文件扩展名为appcache.           
 ```javscript
@@ -226,7 +227,7 @@ sessionStorage 数据在浏览器关闭后自动删除。
 ```
 3）、在离线状态时，操作window.applicationCache进行需求实现。    
 
-HTML5中的应用缓存
+##### HTML5中的应用缓存
 一个最需要的事最终是用户的离线浏览，换句话说，如果网络连接不可用时，页面应该来自浏览器缓存，离线应用缓存可以帮助你达到这个目的，应用缓存可以帮助你指定哪些文件需要缓存，哪些不需要。     
 1）如何实现应用缓存：首先我们需要指定”manifest”文件，“manifest”文件帮助你定义你的缓存如何工作
 ```javascript
@@ -245,7 +246,7 @@ FALLBACK:
 5）NETWORK://不需要缓存的文件      
 home.aspx      
 
-浏览器是怎么对HTML5的离线储存资源进行管理和加载    
+##### 浏览器是怎么对HTML5的离线储存资源进行管理和加载    
 在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。    
 离线的情况下，浏览器就直接使用离线存储的资源。      
 步骤：     
@@ -254,12 +255,12 @@ home.aspx
 
 6、iframe有那些优缺点？ 
 ----------
-优点：     
+##### 优点：     
 1）解决加载缓慢的第三方内容如图标和广告等的加载问题    
 2）Security sandbox    
 3）并行加载脚本    
 
-缺点：       
+##### 缺点：       
 1）在网页中使用框架结构最大的弊病是搜索引擎的检索程序无法解读这种页面，不利于SEO;     
 2）iframe会阻塞主页面的Onload事件；     
 3）iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。即使内容为空，加载也需要时间。     
@@ -268,8 +269,9 @@ home.aspx
 
 7、什么是闭包？闭包有什么好处？为什么要用它？使用闭包要注意什么？
 ----------
-闭包：闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和参数传递到外部。该变量和参数不会被垃圾回收机制所回收<br/>
-好处 ：<br/>
+##### 闭包：
+闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和参数传递到外部。该变量和参数不会被垃圾回收机制所回收<br/>
+##### 好处 ：<br/>
 1）希望一个变量长期驻扎在内存之中<br/>
 2）避免全局变量的污染<br/>
 3）私有成员的存在<br/>
@@ -309,16 +311,14 @@ var sayAlert = say667();
 sayAlert()//执行结果应该弹出的667
 ```
 
-闭包的原理和应用
---------
+##### 闭包的原理和应用
 闭包就是能够读取其他函数内部变量的函数。<br/>
 当回调发生时，闭包能记住它原来所在的执行上下文<br/>
 它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。<br/>
 1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。<br/>
 2）闭包会在父函数外部，改变父函数内部变量的值。<br/>
 
-闭包的用途：
--------
+##### 闭包的用途：
 (1)匿名自执行函数<br/>
 如果变量不加上var关键字，则会默认添加到全局对象属性上去，这样可能造成别的函数误用这些变量，造成全局对象过于庞大，影响访问速度。此外，也会有的函数只需执行一次，内部的变量无需维护
 ```javascript
