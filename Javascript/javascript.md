@@ -450,7 +450,7 @@ c2.inc();// 13
 ```javascript
 function fibonacii(n){
     var sum=0,pre=0,next=1;
-    return function function(n){
+    return function(n){
         if(n==0){
             return 0;
         }else if(n==1){
