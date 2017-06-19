@@ -465,7 +465,25 @@ function fibonacii(n){
     }
 }
 ```
-
+### 使用生成器实现
+```javascript
+function* fibonacci(){
+		let a=0;
+		let b=1;
+		yield a;
+		yield b;
+		while(true){
+				let next=a+b;
+				a=b;
+				b=next;
+				yield next;
+		}
+}
+let gen=fibonacci();
+for(var i=0;i<n;i++){
+		console.log(gen.next().value);
+}
+```
 8、JavaScript原型，原型链 ? 有什么特点？
 ------
 每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。<br/>
