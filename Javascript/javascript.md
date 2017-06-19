@@ -464,8 +464,8 @@ function fibonacii(n){
         return sum;
     }
 }
-for(var i=0;i<10;i++){
-    console.log(fibonacii(i)(i));
+for(var i=0;i<n;i++){//显示斐波那契数列前n项
+    console.log(fibonacii(i)(i));
 }
 ```
 ### 使用生成器实现
