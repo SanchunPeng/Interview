@@ -456,13 +456,16 @@ function fibonacii(n){
         }else if(n==1){
             return 1;
         }
-        for(var i=1;i<=n;i++){
+        for(var i=2;i<=n;i++){
             sum=pre+next;
             pre=next;
             next=sum;
         }
         return sum;
     }
+}
+for(var i=0;i<10;i++){
+    console.log(fibonacii(i)(i));
 }
 ```
 ### 使用生成器实现
