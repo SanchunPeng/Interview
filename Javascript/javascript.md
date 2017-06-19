@@ -468,20 +468,20 @@ function fibonacii(n){
 ### 使用生成器实现
 ```javascript
 function* fibonacci(){
-		let a=0;
-		let b=1;
-		yield a;
-		yield b;
-		while(true){
-				let next=a+b;
-				a=b;
-				b=next;
-				yield next;
-		}
+   let a=0;
+   let b=1;
+   yield a;
+   yield b;
+   while(true){
+	 let next=a+b;
+	 a=b;
+	 b=next;
+	 yield next;
+   }
 }
 let gen=fibonacci();
 for(var i=0;i<n;i++){
-		console.log(gen.next().value);
+    console.log(gen.next().value);
 }
 ```
 8、JavaScript原型，原型链 ? 有什么特点？
