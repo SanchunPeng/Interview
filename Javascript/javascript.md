@@ -1297,6 +1297,7 @@ polyfill 是“在旧版浏览器上复制标准 API 的 JavaScript 补充”,�
 所以本题是会执行两次，但是执行顺序按照代码的书写顺序执行。<br/>
 
 46、使用JS实现获取文件扩展名？
+--------
 ```javascript
 function getFileExtension(filename) {
   return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
@@ -1330,7 +1331,7 @@ $.ajax({
    }
 });
 ```
-流程：<br/>
+#### 流程：<br/>
 1）首先在客户端注册一个callback (如:'jsoncallback'), 然后把callback的名字(如:jsonp1236827957501)传给服务器。注意：服务端得到callback的数值后，要用jsonp1236827957501(......)把将要输出的json内容包括起来，此时，服务器生成 json 数据才能被客户端正确接收。<br/>
 2）以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数 'jsoncallback'的值 jsonp1236827957501。<br/>
 3）将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。<br/>
@@ -1412,7 +1413,7 @@ console.log('Server has disconnected');
   }); 
 });
 ```
-javascript 跨域有两种情况：<br/>
+#### javascript 跨域有两种情况：<br/>
 1、基于同一父域的子域之间，如：a.c.com 和b.c.com<br/>
 2、基于不同的父域之间，如：www.a.com 和www.b.com<br/>
 3、端口的不同，如：www.a.com:8080 和www.a.com:8088<br/>
