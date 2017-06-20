@@ -1441,7 +1441,7 @@ d、proxy 将获得的数据返回给发起方的js<br/>
 ## 4）—AJAX long-polling 
 模拟websocket<br/>
 
-## W5）—IFrame：
+## 5）—IFrame：
 该方法只适合主域相同但子域不同的情况，比如 a.com 和 www.a.com，我们只需要给这两个页面都加上一句 document.domain = 'a.com' ，就可以在其中一个页面嵌套另一个页面，然后进行窗体间的交互。<br/>
 
 ## 6）CORS：支持POST
