@@ -27,7 +27,7 @@ html5要适应各种分辨率的移动设备，应该使用rem这样的尺寸单
 \<meta name="viewport"   content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"\>    
 通过document.documentElement.clientWidth获得deviceWidth，然后通过js动态设置html的font-size。            
 布局的时候，各元素的css尺寸=设计稿标注尺寸/设计稿横向分辨率/10     
-对于容器的font-size，需要通过媒介查询设置font-size,不使用rem：             
+对于容器的font-size，需要通过媒介查询设置font-size：             
 @media screen and (max-width:321px){    
     .m-navlist{font-size:15px}            
 }      
