@@ -15,7 +15,7 @@ border-box：border和padding计算入width之内，其实就是怪异模式了;
 3、浏览器渲染
 ---------
 DOM:浏览器将HTML解析成树形结构，即DOM。<br/>
-CSSOM:将css解析成树形结构，即CSSDOM。<br/>
+CSSOM:将css解析成树形结构，即CSSOM。<br/>
 Render Tree:DOM 和 CSSDOM合并后生成Render Tree。<br/>
 Layout：计算Render Tree每个节点的具体位置。<br/>
 Painting：将layout后的节点内容呈现在屏幕上；<br/>
